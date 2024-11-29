@@ -50,6 +50,24 @@ h1 {
   font-size: 24px;
 }
 
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tabs p {
+  margin: 0 10px;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+
+.tabs .active-tab {
+  border-bottom: 2px solid aqua;
+  font-weight: bold;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
