@@ -50,6 +50,24 @@ h1 {
   font-size: 24px;
 }
 
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tabs p {
+  margin: 0 10px;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+
+.tabs .active-tab {
+  border-bottom: 2px solid aqua;
+  font-weight: bold;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -122,6 +140,11 @@ label {
   transition: color 0.3s ease;
 }
 
+.label-class {
+  font-size: 14px;
+  color: black;
+}
+
 .advanced-label {
   position: absolute;
   right: 20px;
@@ -161,9 +184,19 @@ input[type="radio"]:checked + label {
   border-radius: 10px;
 }
 
+.basic-content {
+  position: relative;
+}
+
+.search {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+}
+
 .search-input {
   width: 100%;
-  padding: 10px 40px;
+  padding: 10px 140px;
   font-size: 16px;
   border: none;
   outline: none;
@@ -188,7 +221,9 @@ input[type="radio"]:checked + label {
   background-color: #0056b3;
 }
 
-.basic-content input {
+.basic-content input,
+.advanced-content input,
+.advanced-content select {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -197,13 +232,12 @@ input[type="radio"]:checked + label {
   margin-bottom: 10px;
 }
 
-.advanced-content input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 10px;
+.basic-content input {
+  padding: 10px 40px;
+}
+
+.advanced-content select {
+  background-color: #f5f5f5;
 }
 
 .advanced-content button {
@@ -230,6 +264,7 @@ section {
   align-items: center;
   padding: 20px;
 }
+
 
 .displayed-employee-text {
   position: absolute;

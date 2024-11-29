@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="not-found.css" />
   </head>
   <body>
@@ -61,11 +62,19 @@
 
         <div class="content">
           <div class="basic-content">
+            <img
+            src="./assets/search.png"
+            alt="search icon"
+            width="20px"
+            height="20px"
+            class="search"
+          />
             <form action="not-found.html" method="GET">
               <input
                 type="text"
                 class="search-input"
-                placeholder="Enter search term"
+                placeholder="John Smith"
+                required
               />
               <button type="submit">Search</button>
             </form>
@@ -73,10 +82,66 @@
 
           <div class="advanced-content">
             <form action="not-found.html" method="GET">
-              <input type="text" placeholder="Enter name" />
-              <input type="email" placeholder="Enter email" />
-              <input type="tel" placeholder="Enter phone" />
-              <input type="text" placeholder="Enter address" />
+              <label for="name" class="label-class">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="John Smith"
+                required
+              />
+
+              <label for="email" class="label-class">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="johnsmith@leverx.com"
+                required
+              />
+
+              <label for="phone" class="label-class">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Phone number"
+                required
+              />
+
+              <label for="skype" class="label-class">Skype</label>
+              <input
+                type="text"
+                id="skype"
+                name="skype"
+                placeholder="SkypeID"
+              />
+
+              <label for="building" class="label-class">Building</label>
+              <select id="building" name="building" required>
+                <option value="">Any</option>
+                <option value="building-a">Building A</option>
+                <option value="building-b">Building B</option>
+                <option value="building-c">Building C</option>
+              </select>
+
+              <label for="room" class="label-class">Room</label>
+              <input
+                type="text"
+                id="room"
+                name="room"
+                placeholder="303.1"
+              />
+
+              <label for="department" class="label-class">Department</label>
+              <select id="department" name="department" required>
+                <option value="">Any</option>
+                <option value="hr">HR</option>
+                <option value="it">IT</option>
+                <option value="sales">Sales</option>
+                <option value="marketing">Marketing</option>
+              </select>
+
               <button type="submit">Search</button>
             </form>
           </div>
