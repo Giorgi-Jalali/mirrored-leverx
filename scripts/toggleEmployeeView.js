@@ -80,7 +80,7 @@ export default function toggleEmployeeView() {
                             <p class="employee-name">${person.first_name} ${person.last_name}</p>
                         </div>
                         <div class="dep-room">
-                            <p>${person.department}</p>
+                            <p class="department">${person.department}</p>
                             <p>${person.room}</p>
                         </div>
                     `;
