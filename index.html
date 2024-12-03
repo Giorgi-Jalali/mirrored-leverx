@@ -20,8 +20,9 @@
             </a>
 
             <div class="tabs">
-                <p class="active-tab">Address Book</p>
-                <p>Another Tab</p>
+                <a href="index.html" class="home-link-wrap">
+                    <p class="active-tab">Address Book</p>
+                </a>
             </div>
 
             <nav>
@@ -78,7 +79,7 @@
                             height="20px"
                             class="search"
                         />
-                        <form action="not-found.html" method="GET">
+                        <form action="pages/404.html" method="GET">
                             <input
                                 type="text"
                                 class="search-input"
@@ -90,7 +91,7 @@
                     </div>
 
                     <div class="advanced-content">
-                        <form action="not-found.html" method="GET">
+                        <form action="404.html" method="GET">
                             <label for="name" class="label-class">Name</label>
                             <input
                                 type="text"
@@ -163,21 +164,24 @@
 
             <section>
                 <p class="displayed-employee-text">6 employees displayed</p>
+            
+                <!-- Radio Buttons for Toggling Views -->
                 <input
                     type="radio"
                     id="grid"
                     name="view-toggle"
                     class="toggle"
+                    checked
                 />
                 <label for="grid" class="grid-icon">
                     <img
-                        src=".//assets/grid.png"
+                        src="./assets/grid.png"
                         alt="Grid View"
                         width="20px"
                         height="20px"
                     />
                 </label>
-
+            
                 <input
                     type="radio"
                     id="list"
@@ -186,350 +190,28 @@
                 />
                 <label for="list" class="list-icon">
                     <img
-                        src=".//assets/list.png"
+                        src="./assets/list.png"
                         alt="List View"
                         width="20px"
                         height="20px"
                     />
                 </label>
-
+            
+                <!-- Views Section -->
                 <div class="views">
-                    <!-- Grid view -->
-
-                    <div class="section-body">
-                        <div class="employee">
-                            <div class="image-center">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="120px"
-                                    height="120px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="line"></div>
-                            <div class="employee-job">
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/suitcase.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>Web & Mobile</p>
-                                </div>
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/door.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>LPT1403</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="employee">
-                            <div class="image-center">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="120px"
-                                    height="120px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="line"></div>
-                            <div class="employee-job">
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/suitcase.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>Web & Mobile</p>
-                                </div>
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/door.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>LPT1403</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="employee">
-                            <div class="image-center">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="120px"
-                                    height="120px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="line"></div>
-                            <div class="employee-job">
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/suitcase.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>Web & Mobile</p>
-                                </div>
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/door.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>LPT1403</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="employee">
-                            <div class="image-center">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="120px"
-                                    height="120px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="line"></div>
-                            <div class="employee-job">
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/suitcase.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>Web & Mobile</p>
-                                </div>
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/door.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>LPT1403</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="employee">
-                            <div class="image-center">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="120px"
-                                    height="120px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="line"></div>
-                            <div class="employee-job">
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/suitcase.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>Web & Mobile</p>
-                                </div>
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/door.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>LPT1403</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="employee">
-                            <div class="image-center">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="120px"
-                                    height="120px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="line"></div>
-                            <div class="employee-job">
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/suitcase.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>Web & Mobile</p>
-                                </div>
-                                <div class="person-job">
-                                    <img
-                                        src=".//assets/door.png"
-                                        alt="Log out"
-                                        width="20px"
-                                        height="20px"
-                                    />
-                                    <p>LPT1403</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- List view -->
-
-                    <div class="section-body-list">
-                        <div class="list-header">
-                            <div class="photo-name">
-                                <div class="photo">
-                                    <img
-                                        src=".//assets/camera.png"
-                                        alt="photo"
-                                        width="15px"
-                                        height="15px"
-                                    />
-                                    <p>Photo</p>
-                                </div>
-                                <div class="photo">
-                                    <img
-                                        src=".//assets/man-name.png"
-                                        alt="photo"
-                                        width="15px"
-                                        height="15px"
-                                    />
-                                    <p>Name</p>
-                                </div>
-                            </div>
-                            <div class="dep-room">
-                                <div class="photo">
-                                    <img
-                                        src=".//assets/suitcase.png"
-                                        alt="photo"
-                                        width="15px"
-                                        height="15px"
-                                    />
-                                    <p>Department</p>
-                                </div>
-                                <div class="photo">
-                                    <img
-                                        src=".//assets/door.png"
-                                        alt="photo"
-                                        width="15px"
-                                        height="15px"
-                                    />
-                                    <p>Room</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="employee-list">
-                            <div class="person-image-name">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="60px"
-                                    height="60px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="dep-room">
-                                <p>Web & Mobile</p>
-                                <p>LPT1403</p>
-                            </div>
-                        </div>
-                        <div class="employee-list">
-                            <div class="person-image-name">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="60px"
-                                    height="60px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="dep-room">
-                                <p>Web & Mobile</p>
-                                <p>LPT1403</p>
-                            </div>
-                        </div>
-                        <div class="employee-list">
-                            <div class="person-image-name">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="60px"
-                                    height="60px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="dep-room">
-                                <p>Web & Mobile</p>
-                                <p>LPT1403</p>
-                            </div>
-                        </div>
-                        <div class="employee-list">
-                            <div class="person-image-name">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="60px"
-                                    height="60px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="dep-room">
-                                <p>Web & Mobile</p>
-                                <p>LPT1403</p>
-                            </div>
-                        </div>
-                        <div class="employee-list">
-                            <div class="person-image-name">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="60px"
-                                    height="60px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="dep-room">
-                                <p>Web & Mobile</p>
-                                <p>LPT1403</p>
-                            </div>
-                        </div>
-                        <div class="employee-list">
-                            <div class="person-image-name">
-                                <img
-                                    src=".//assets/man.png"
-                                    alt="Log out"
-                                    width="60px"
-                                    height="60px"
-                                />
-                                <p class="employee-name">Brendan Krueger</p>
-                            </div>
-                            <div class="dep-room">
-                                <p>Web & Mobile</p>
-                                <p>LPT1403</p>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Grid View -->
+                    <ul class="section-body" style="display: grid;"></ul>
+            
+                    <!-- List View -->
+                    <ul class="section-body-list" style="display: none;"></ul>
                 </div>
+            
+                <script type="module">
+                    import toggleEmployeeView from "./scripts/toggleEmployeeView.js";
+                    toggleEmployeeView();
+                </script>
             </section>
+            
         </main>
     </body>
 </html>

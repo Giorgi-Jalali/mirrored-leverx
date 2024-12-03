@@ -46,6 +46,7 @@ header {
 }
 
 .home-link-wrap {
+    color: var(--white);
     text-decoration: none;
     cursor: pointer;
 }
