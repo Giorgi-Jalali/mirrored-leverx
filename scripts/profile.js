@@ -1,92 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>LEVERX - Profile</title>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-        />
-        <link rel="stylesheet" href="../styles/profile.css" />
-    </head>
-    <body>
-        <header>
-            <a href="../index.html" class="home-link-wrap">
-                <div class="home-link">
-                    <p>LEVERX</p>
-                    <h1>EMPLOYEE SERVICES</h1>
-                </div>
-            </a>
+import infoContainer from "./infoContainer.js";
 
-            <div class="tabs">
-                <a href="../index.html" class="home-link-wrap">
-                    <p class="active-tab">Address Book</p>
-                </a>
-            </div>
+export default function loadEmployeeProfile(employeeId) {
+    const profileView = document.querySelector("main");
 
-            <nav>
-                <a href="#support" class="nav-link">
-                    <img
-                        src="../assets/question.png"
-                        alt="Support icon"
-                        width="30px"
-                        height="30px"
-                    />
-                    <p>SUPPORT</p>
-                </a>
+    const fetchData = () =>
+        fetch("../data.json").then((response) => response.json());
 
-                <a href="#profile" class="nav-link">
-                    <img
-                        src="../assets/Ethan.png"
-                        alt="Profile icon"
-                        width="30px"
-                        height="30px"
-                    />
-                    <p>Ethan Davis</p>
-                </a>
+    const loadProfile = (data, id) => {
+        function formatDate(date) {
+            const months = [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+            ];
 
-                <a href="#logout" class="nav-link">
-                    <img
-                        src="../assets/logout.png"
-                        alt="Logout icon"
-                        width="30px"
-                        height="30px"
-                    />
-                    <p>LOGOUT</p>
-                </a>
-            </nav>
-        </header>
+            const day = date.day;
+            const month = months[date.month - 1];
+            const year = date.year;
 
-        <div class="profile-view">
-            <!-- Employee profile content will be injected here -->
-        </div>
+            return `${day} ${month} ${year}`;
+        }
 
-        <script type="module">
-            import loadEmployeeProfile from "../scripts/profile.js";
-            loadEmployeeProfile();
-        </script>
+        const employee = data.find((person) => person.id === id);
 
+        if (!employee) {
+            profileView.innerHTML = "<p>Employee not found.</p>";
+            return;
+        }
 
-        <main>
-            <aside>
-                <a href="../index.html">
+        profileView.innerHTML = `
+                <aside>
                     <div class="back">
                         <img
                             src="../assets/less.png"
                             alt="less than arrow"
                             width="15px"
                             height="15px"
-                        /></div
-                ></a>
+                        />
+                    </div>
                 <img
-                    src="../assets/Ethan.png"
-                    alt="Ethan Davis"
+                    src="../assets/${employee.first_name}.png"
+                    alt="${employee.first_name} ${employee.last_name}"
                     width="120px"
                     height="120px"
                 />
-                <p>Name Surname</p>
-                <p>Full name</p>
+                <p>${employee.first_name} ${employee.last_name}</p>
+                <p>${employee.first_name} ${employee.middle_native_name} ${
+            employee.last_name
+        }</p>
                 <div class="copy">
                     <img
                         src="../assets/copy.png"
@@ -168,12 +138,14 @@
                             </div>
                         </div>
                         <div class="info-right">
-                            <p class="info-list">Web & Mobile</p>
-                            <p>Street with number (Country)</p>
-                            <p>1404</p>
-                            <p>20</p>
-                            <p>01 Jan 1901</p>
-                            <p>John Snow</p>
+                            <p class="info-list">${employee.department}</p>
+                            <p>${employee.building}</p>
+                            <p>${employee.room}</p>
+                            <p>${employee.desk_number}</p>
+                            <p>${formatDate(employee.date_birth)}</p>
+                            <p>${employee.manager.first_name} ${
+            employee.manager.last_name
+        }</p>
                         </div>
                     </div>
                 </div>
@@ -220,78 +192,39 @@
                             </div>
                         </div>
                         <div class="info-right">
-                            <p><a href="tel:+995574812225">+995574812225</a></p>
+                            <p><a href="tel:+995574812225">${
+                                employee.phone
+                            }</a></p>
                             <p>
-                                <a href="mailto:nataliegviniashvili@gmail.com"
-                                    >nataliegviniashvili@gmail.com</a
+                                <a href="mailto:${employee.email}"
+                                    >${employee.email}</a
                                 >
                             </p>
-                            <p>live:.cid.fewfefevrverr</p>
-                            <p>C5336116</p>
+                            <p>${employee.skype}</p>
+                            <p>${employee.cnumber}</p>
                         </div>
                     </div>
                 </div>
                 <div>
                     <h3>TRAVEL INFO</h3>
                     <div class="line"></div>
-                    <div class="info-container">
-                        <div class="info-left">
-                            <div class="info-list">
-                                <img
-                                    src="../assets/earth.png"
-                                    alt="suitcase icon"
-                                    width="20px"
-                                    height="20px"
-                                />
-                                <p>Citizenship</p>
-                            </div>
-                            <div class="info-list">
-                                <img
-                                    src="../assets/v.png"
-                                    alt="building icon"
-                                    width="20px"
-                                    height="20px"
-                                />
-                                <p>Visa 1</p>
-                            </div>
-                            <div class="info-list">
-                                <img
-                                    src="../assets/validity.png"
-                                    alt="door icon"
-                                    width="20px"
-                                    height="20px"
-                                />
-                                <p>Visa 1 validity period (expired)</p>
-                            </div>
-                            <div class="info-list">
-                                <img
-                                    src="../assets/v.png"
-                                    alt="number icon"
-                                    width="20px"
-                                    height="20px"
-                                />
-                                <p>Visa 2</p>
-                            </div>
-                            <div class="info-list">
-                                <img
-                                    src="../assets/validity.png"
-                                    alt="date icon"
-                                    width="20px"
-                                    height="20px"
-                                />
-                                <p>Visa 2 validity period</p>
-                            </div>
-                        </div>
-                        <div class="info-right">
-                            <p>Country</p>
-                            <p>National visa type D (country)</p>
-                            <p>10 May 2022 - 09 May 2023</p>
-                            <p>National visa type C (country)</p>
-                            <p>10 May 2024 - 09 May 2025</p>
-                        </div>
-                    </div>
+                    <div class="info-container">${infoContainer(employee)}</div>
                 </div>
             </section>
-        </main>
-    </body>
-</html>
+
+
+        `;
+
+        const backButton = document.querySelector(".back");
+        backButton.addEventListener("click", () => {
+            window.history.back();
+        });
+    };
+
+    fetchData()
+        .then((data) => loadProfile(data, employeeId))
+        .catch((error) => {
+            console.error("Error loading profile data:", error);
+            profileView.innerHTML = "<p>Error loading profile.</p>";
+        });
+}

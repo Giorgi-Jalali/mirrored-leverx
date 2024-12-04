@@ -33,6 +33,12 @@
                 "type": "National visa type D",
                 "start_date": 1652158800000,
                 "end_date": 1683608400000
+            },
+            {
+                "issuing_country": "Georgia",
+                "type": "National visa type D",
+                "start_date": 1952558800000,
+                "end_date": 2683108400000
             }
         ]
     },
