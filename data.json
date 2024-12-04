@@ -39,6 +39,12 @@
                 "type": "National visa type D",
                 "start_date": 1952558800000,
                 "end_date": 2683108400000
+            },
+            {
+                "issuing_country": "Spain",
+                "type": "National visa type J",
+                "start_date": 1952558800000,
+                "end_date": 2184311220002
             }
         ]
     },
@@ -146,9 +152,15 @@
         "citizenship": "Georgia",
         "visa": [
             {
-                "issuing_country": "Poland",
+                "issuing_country": "Italy",
+                "type": "National visa type G",
+                "start_date": 1552158800000,
+                "end_date": 1683608400000
+            },
+            {
+                "issuing_country": "Germany",
                 "type": "National visa type D",
-                "start_date": 1652158800000,
+                "start_date": 1612158800000,
                 "end_date": 1683608400000
             }
         ]
@@ -183,10 +195,28 @@
         "citizenship": "Georgia",
         "visa": [
             {
+                "issuing_country": "Hungary",
+                "type": "National visa type D",
+                "start_date": 1650158800000,
+                "end_date": 1683608400000
+            },
+            {
                 "issuing_country": "Poland",
                 "type": "National visa type D",
-                "start_date": 1652158800000,
+                "start_date": 1652058800000,
                 "end_date": 1683608400000
+            },
+            {
+                "issuing_country": "France",
+                "type": "National visa type D",
+                "start_date": 1652158800000,
+                "end_date": 1683607400000
+            },
+            {
+                "issuing_country": "China",
+                "type": "National visa type R",
+                "start_date": 1652158800000,
+                "end_date": 1683708400000
             }
         ]
     },

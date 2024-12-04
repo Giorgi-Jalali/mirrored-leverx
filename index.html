@@ -36,14 +36,14 @@
                     <p>SUPPORT</p>
                 </a>
 
-                <a href="#profile" class="nav-link">
+                <a href="./pages/users.html?id=1" class="nav-link">
                     <img
-                        src="./assets/Ethan.png"
+                        src="./assets/Sophia.png"
                         alt="Profile icon"
                         width="30px"
                         height="30px"
                     />
-                    <p>Ethan Davis</p>
+                    <p>Sophia Thompson</p>
                 </a>
 
                 <a href="#logout" class="nav-link">
@@ -63,13 +63,11 @@
 
             <aside>
                 <input type="radio" id="basic" name="toggle" checked />
-                <label for="basic">Basic Search</label>
-
+                <label for="basic" id="basic-label">Basic Search</label>
+            
                 <input type="radio" id="advanced" name="toggle" />
-                <label for="advanced" class="advanced-label"
-                    >Advanced Search</label
-                >
-
+                <label for="advanced" id="advanced-label" class="advanced-label">Advanced Search</label>
+            
                 <div class="content">
                     <div class="basic-content">
                         <img
@@ -89,8 +87,8 @@
                             <button type="submit">Search</button>
                         </form>
                     </div>
-
-                    <div class="advanced-content">
+            
+                    <div class="advanced-content" style="display: none;">
                         <form action="404.html" method="GET">
                             <label for="name" class="label-class">Name</label>
                             <input
@@ -100,7 +98,6 @@
                                 placeholder="John Smith"
                                 required
                             />
-
                             <label for="email" class="label-class">Email</label>
                             <input
                                 type="email"
@@ -109,7 +106,6 @@
                                 placeholder="johnsmith@leverx.com"
                                 required
                             />
-
                             <label for="phone" class="label-class">Phone</label>
                             <input
                                 type="tel"
@@ -118,7 +114,6 @@
                                 placeholder="Phone number"
                                 required
                             />
-
                             <label for="skype" class="label-class">Skype</label>
                             <input
                                 type="text"
@@ -126,10 +121,7 @@
                                 name="skype"
                                 placeholder="SkypeID"
                             />
-
-                            <label for="building" class="label-class"
-                                >Building</label
-                            >
+                            <label for="building" class="label-class">Building</label>
                             <select id="building" name="building" required>
                                 <option value="">Any</option>
                                 <option value="building-65">Pilsudskiego 65 (Poland)</option>
@@ -139,7 +131,6 @@
                                 <option value="building-69">Pilsudskiego 69 (Poland)</option>
                                 <option value="building-70">Pilsudskiego 70 (Poland)</option>
                             </select>
-
                             <label for="room" class="label-class">Room</label>
                             <input
                                 type="text"
@@ -147,10 +138,7 @@
                                 name="room"
                                 placeholder="303.1"
                             />
-
-                            <label for="department" class="label-class"
-                                >Department</label
-                            >
+                            <label for="department" class="label-class">Department</label>
                             <select id="department" name="department" required>
                                 <option value="">Any</option>
                                 <option value="web">Web & Mobile</option>
@@ -160,12 +148,12 @@
                                 <option value="ai">AI & Data Science</option>
                                 <option value="cloud">Cloud & DevOps</option>
                             </select>
-
                             <button type="submit">Search</button>
                         </form>
                     </div>
                 </div>
             </aside>
+            
 
             <section>
                 <p class="displayed-employee-text">6 employees displayed</p>

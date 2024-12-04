@@ -387,11 +387,35 @@ section {
     text-align: center;
 }
 
+.employee-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.list-employee-view {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
 .person-image-name {
     width: 50%;
     display: flex;
     align-items: center;
     gap: 50px;
+}
+
+.dep-room {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .employee-name {
@@ -445,9 +469,15 @@ section {
     gap: 5px;
 }
 
-.dep-room {
-    width: 50%;
+
+.not-found {
+    background-color: var(--white);
+    width: 100%;
+    height: 400px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    margin: 50px;
+    padding: 70px;
+    border-radius: 20px;
 }

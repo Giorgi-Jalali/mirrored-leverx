@@ -31,7 +31,7 @@ body {
     font-family: var(--font-family);
     margin: 0;
     padding: 0;
-    background-color: var(--white);
+    background-color: var(--background-color);
 }
 
 header {
@@ -142,28 +142,134 @@ nav {
 }
 
 main {
+    width: 90%;
+    max-width: 1920px;
+    display: flex;
+    gap: 3px;
+    margin: 0 auto;
+}
+
+.loader {
+    color: var(--header-bg-color);
+    font-size: 28px;
+    margin: 25% 50%;
+}
+
+aside {
+    position: relative;
+    background-color: var(--white);
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
+    border-radius: 10px 0 0 10px;
+    margin: 30px 0;
+    padding: 50px 0;
+    box-shadow: var(--card-box-shadow);
 }
 
-.image404 {
-    margin-top: 100px;
-}
-
-.back-button {
-    width: 100%;
-    padding: 20px;
-    background-color: var(--button-bg-color);
-    color: var(--white);
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
+.back {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background-color: var(--background-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-.back-button:hover {
-    background-color: var(--button-hover-bg-color);
+.back:hover {
+    scale: 1.1;
+    background-color: var(--input-border);
 }
+
+.copy {
+    background-color: var(--input-border);
+    border-radius: 15px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.copy:hover {
+    background-color: var(--background-color);
+}
+
+.edit {
+    background-color: var(--background-color);
+    border-radius: 5px;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.edit:hover {
+    background-color: var(--button-bg-color);
+}
+
+section {
+    background-color: var(--white);
+    color: var(--gray);
+    flex: 2;
+    border-radius: 0 10px 10px 0;
+    margin: 30px 0;
+    padding: 60px;
+    box-shadow: var(--card-box-shadow);
+}
+
+.line {
+    width: 90%;
+    height: 1px;
+    background-color: var(--background-color);
+    margin: 10px 0;
+}
+
+.info-container {
+    display: flex;
+    margin-bottom: 100px;
+}
+
+.info-left {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-left-citizenship {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-list {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.info-right {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
