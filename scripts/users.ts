@@ -1,11 +1,37 @@
-import infoContainer from "./infoContainer.js";
+import infoContainer from "./infoContainer";
 
-function getEmployeeIdFromURL() {
+// Define types for employee and manager
+interface Manager {
+    first_name: string;
+    last_name: string;
+}
+
+interface Employee {
+    _id: string;
+    first_name: string;
+    last_name: string;
+    middle_native_name: string;
+    department: string;
+    building: string;
+    room: string;
+    desk_number: string;
+    date_birth: { day: number; month: number; year: number };
+    manager: Manager;
+    phone: string;
+    email: string;
+    skype: string;
+    cnumber: string;
+    citizenship: string;
+}
+
+// Utility function to get employee ID from URL
+function getEmployeeIdFromURL(): string | null {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("id");
 }
 
-function formatDate(date) {
+// Format date into readable string
+function formatDate(date: { day: number; month: number; year: number }): string {
     const months = [
         "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -18,18 +44,27 @@ function formatDate(date) {
     return `${day} ${month} ${year}`;
 }
 
-export default function loadEmployeeProfile() {
-    const profileView = document.querySelector("main");
+// Main function to load employee profile
+export default function loadEmployeeProfile(): void {
+    const profileView = document.querySelector("main") as HTMLElement;
     const employeeId = getEmployeeIdFromURL();
 
     profileView.innerHTML = '<p class="loader">Loading...</p>';
 
-    const fetchData = () => fetch("../data.json").then((response) => response.json());
+    const fetchData = (): Promise<Employee[]> => fetch("../data.json").then((response) => response.json());
 
-    function loadProfile (data, id) {
+    function loadProfile(data: Employee[], id: string | null): void {
+        if (!id) {
+            window.location.href = "../pages/404.html";
+            return;
+        }
+
         const employee = data.find((person) => String(person._id) === String(id));
 
-        console.log("employee: ", employee);
+        if (!employee) {
+            window.location.href = "../pages/404.html";
+            return;
+        }
 
         profileView.innerHTML = `
             <aside>
@@ -97,11 +132,11 @@ export default function loadEmployeeProfile() {
             </section>
         `;
 
-        document.querySelector(".back").addEventListener("click", () => {
+        document.querySelector(".back")?.addEventListener("click", () => {
             window.history.back();
         });
 
-        document.querySelector(".copy").addEventListener("click", () => {
+        document.querySelector(".copy")?.addEventListener("click", () => {
             const url = window.location.href;
             navigator.clipboard.writeText(url)
                 .then(() => {
@@ -111,16 +146,14 @@ export default function loadEmployeeProfile() {
                     console.error("Error copying the link:", error);
                 });
         });
-    };
+    }
 
     fetchData()
-    .then((data) => {
-        console.log("Fetched data:", data);
-        loadProfile(data, employeeId);
-    })
+        .then((data) => {
+            console.log("Fetched data:", data);
+            loadProfile(data, employeeId);
+        })
         .catch((error) => {
             window.location.href = "../pages/404.html";
-            return;
         });
 }
-

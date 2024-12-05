@@ -9,6 +9,10 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         />
         <link rel="stylesheet" href="../styles/users.css" />
+        <script type="module" defer>
+            import loadEmployeeProfile from "../dist/users.js";
+            loadEmployeeProfile();
+        </script>
     </head>
     <body>
         <header>
@@ -60,10 +64,7 @@
 
         <main></main>
 
-        <script type="module">
-            import loadEmployeeProfile from "../scripts/users.js";
-            loadEmployeeProfile();
-        </script>
+        
         
     </body>
 </html>

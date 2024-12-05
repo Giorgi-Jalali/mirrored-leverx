@@ -9,6 +9,10 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         />
         <link rel="stylesheet" href="style.css" />
+        <script type="module" defer>
+            import toggleEmployeeView from "./dist/toggleEmployeeView.js";
+            toggleEmployeeView();
+        </script>
     </head>
     <body>
         <header>
@@ -199,10 +203,7 @@
                     <ul class="section-body-list" style="display: none;"></ul>
                 </div>
             
-                <script type="module">
-                    import toggleEmployeeView from "./scripts/toggleEmployeeView.js";
-                    toggleEmployeeView();
-                </script>
+                
             </section>
             
         </main>

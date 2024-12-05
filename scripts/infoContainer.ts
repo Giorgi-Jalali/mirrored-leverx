@@ -1,10 +1,20 @@
-export default function infoContainer(employee) {
-    const infoContainer = document.querySelector(".info-container");
+interface Visa {
+    type: string;
+    issuing_country: string;
+    start_date: number;
+    end_date: number;
+}
 
+interface Employee {
+    citizenship: string;
+    visa?: Visa[];
+}
+
+export default function infoContainer(employee: Employee): string {
     const leftContent = renderVisaList(employee);
     const rightContent = renderVisaInfo(employee);
 
-    let html = `
+    const html = `
         <div class="info-left-citizenship">${leftContent}</div>
         <div class="info-right">${rightContent}</div>
     `;
@@ -12,8 +22,7 @@ export default function infoContainer(employee) {
     return html;
 }
 
-function renderVisaInfo(employee) {
-
+function renderVisaInfo(employee: Employee): string {
     const visaArray = employee.visa || [];
     let html = `<p>${employee.citizenship}</p>`;
 
@@ -29,7 +38,7 @@ function renderVisaInfo(employee) {
     return html;
 }
 
-function renderVisaList(employee) {
+function renderVisaList(employee: Employee): string {
     const visaArray = employee.visa || [];
 
     let html = `
@@ -50,7 +59,7 @@ function renderVisaList(employee) {
             </div>
             <div class="info-list">
                 <img src="../assets/validity.png" alt="validity icon" width="20px" height="20px" />
-                <p>${visaNumber} validity period</p>
+                <p>${validityText}</p>
             </div>
         `;
     });
@@ -58,11 +67,11 @@ function renderVisaList(employee) {
     return html;
 }
 
-function formatDateRange(startTimestamp, endTimestamp) {
+function formatDateRange(startTimestamp: number, endTimestamp: number): string {
     const startDate = new Date(startTimestamp);
     const endDate = new Date(endTimestamp);
 
-    const options = {
+    const options: Intl.DateTimeFormatOptions = {
         day: "numeric",
         month: "long",
         year: "numeric",
