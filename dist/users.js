@@ -1,10 +1,8 @@
 import infoContainer from "./infoContainer.js";
-// Utility function to get employee ID from URL
 function getEmployeeIdFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("id");
 }
-// Format date into readable string
 function formatDate(date) {
     const months = [
         "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -15,11 +13,11 @@ function formatDate(date) {
     const year = date.year;
     return `${day} ${month} ${year}`;
 }
-// Main function to load employee profile
 export default function loadEmployeeProfile() {
     const profileView = document.querySelector("main");
     const employeeId = getEmployeeIdFromURL();
     profileView.innerHTML = '<p class="loader">Loading...</p>';
+    const storedEmail = sessionStorage.getItem("email");
     const fetchData = () => fetch("../data.json").then((response) => response.json());
     function loadProfile(data, id) {
         var _a, _b;
@@ -84,7 +82,7 @@ export default function loadEmployeeProfile() {
                         </div>
                         <div class="info-right">
                             <p><a href="tel:${employee.phone}">${employee.phone}</a></p>
-                            <p><a href="mailto:${employee.email}">${employee.email}</a></p>
+                            <p><a href="mailto:${id == "1" ? storedEmail : employee.email}">${id == "1" ? storedEmail : employee.email}</a></p>
                             <p>${employee.skype}</p>
                             <p>${employee.cnumber}</p>
                         </div>

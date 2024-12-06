@@ -1,5 +1,6 @@
 import infoContainer from "./infoContainer";
 
+
 // Define types for employee and manager
 interface Manager {
     first_name: string;
@@ -50,6 +51,8 @@ export default function loadEmployeeProfile(): void {
     const employeeId = getEmployeeIdFromURL();
 
     profileView.innerHTML = '<p class="loader">Loading...</p>';
+
+    const storedEmail = sessionStorage.getItem("email");
 
     const fetchData = (): Promise<Employee[]> => fetch("../data.json").then((response) => response.json());
 
@@ -118,7 +121,7 @@ export default function loadEmployeeProfile(): void {
                         </div>
                         <div class="info-right">
                             <p><a href="tel:${employee.phone}">${employee.phone}</a></p>
-                            <p><a href="mailto:${employee.email}">${employee.email}</a></p>
+                            <p><a href="mailto:${id == "1" ? storedEmail : employee.email}">${id == "1" ? storedEmail : employee.email}</a></p>
                             <p>${employee.skype}</p>
                             <p>${employee.cnumber}</p>
                         </div>
