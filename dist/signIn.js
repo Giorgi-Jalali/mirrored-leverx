@@ -13,8 +13,10 @@ function signIn() {
     return __awaiter(this, void 0, void 0, function* () {
         const passwordElement = document.getElementById("password");
         const emailElement = document.getElementById("email");
+        const rememberElement = document.getElementById("remember");
         const password = passwordElement.value;
         const email = emailElement.value;
+        const remember = rememberElement.checked;
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
             alert("Please enter a valid email address.");
@@ -35,8 +37,12 @@ function signIn() {
             });
             const hashData = yield hashRequest.json();
             if (hashData.ok) {
-                // localStorage.setItem("bcryptHash", hashData.hash);
-                sessionStorage.setItem("bcryptHash", hashData.hash);
+                if (remember) {
+                    localStorage.setItem("bcryptHash", hashData.hash);
+                }
+                else {
+                    sessionStorage.setItem("bcryptHash", hashData.hash);
+                }
                 // sessionStorage.setItem("email", email);
                 // localStorage.setItem("email", email);
                 const responseElement = document.getElementById("response");
