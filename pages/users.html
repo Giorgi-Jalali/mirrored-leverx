@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LEVERX - Profile</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        />
+        <link rel="stylesheet" href="../styles/users.css" />
+    </head>
+    <body>
+        <header>
+            <a href="../index.html" class="home-link-wrap">
+                <div class="home-link">
+                    <p>LEVERX</p>
+                    <h1>EMPLOYEE SERVICES</h1>
+                </div>
+            </a>
+
+            <div class="tabs">
+                <a href="../index.html" class="home-link-wrap">
+                    <p class="active-tab">Address Book</p>
+                </a>
+            </div>
+
+            <nav>
+                <a href="#support" class="nav-link">
+                    <img
+                        src="../assets/question.png"
+                        alt="Support icon"
+                        width="30px"
+                        height="30px"
+                    />
+                    <p>SUPPORT</p>
+                </a>
+
+                <a href="../pages/users.html?id=1" class="nav-link">
+                    <img
+                        src="../assets/Sophia.png"
+                        alt="Profile icon"
+                        width="30px"
+                        height="30px"
+                    />
+                    <p>Sophia Thompson</p>
+                </a>
+
+                <a href="#logout" class="nav-link">
+                    <img
+                        src="../assets/logout.png"
+                        alt="Logout icon"
+                        width="30px"
+                        height="30px"
+                    />
+                    <p>LOGOUT</p>
+                </a>
+            </nav>
+        </header>
+
+        <main></main>
+
+        <script type="module">
+            import loadEmployeeProfile from "../scripts/users.js";
+            loadEmployeeProfile();
+        </script>
+        
+    </body>
+</html>
