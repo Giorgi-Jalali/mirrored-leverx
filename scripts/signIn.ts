@@ -1,7 +1,9 @@
 document.getElementById("sign-in-button")!.addEventListener("click", signIn);
 
 async function signIn(): Promise<void> {
-    const passwordElement = document.getElementById("password") as HTMLInputElement;
+    const passwordElement = document.getElementById(
+        "password"
+    ) as HTMLInputElement;
     const emailElement = document.getElementById("email") as HTMLInputElement;
 
     const password = passwordElement.value;
@@ -10,12 +12,12 @@ async function signIn(): Promise<void> {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
+        alert("Please enter a valid email address.");
         return;
     }
 
     if (password.length < 2) {
-        alert('Password must be at least 2 characters long.');
+        alert("Password must be at least 2 characters long.");
         return;
     }
 
@@ -37,7 +39,8 @@ async function signIn(): Promise<void> {
         if (hashData.ok) {
             // localStorage.setItem("bcryptHash", hashData.hash);
             sessionStorage.setItem("bcryptHash", hashData.hash);
-            sessionStorage.setItem("email", email);
+            // sessionStorage.setItem("email", email);
+            // localStorage.setItem("email", email);
 
             const responseElement = document.getElementById("response");
 

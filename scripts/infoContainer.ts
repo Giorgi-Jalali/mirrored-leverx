@@ -27,7 +27,10 @@ function renderVisaInfo(employee: Employee): string {
     let html = `<p>${employee.citizenship}</p>`;
 
     visaArray.forEach((visa) => {
-        const formattedDateRange = formatDateRange(visa.start_date, visa.end_date);
+        const formattedDateRange = formatDateRange(
+            visa.start_date,
+            visa.end_date
+        );
 
         html += `
             <p>${visa.type} (${visa.issuing_country})</p>

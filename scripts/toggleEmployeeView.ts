@@ -2,12 +2,20 @@ export default function toggleEmployeeView(): void {
     const gridRadio = document.getElementById("grid") as HTMLInputElement;
     const listRadio = document.getElementById("list") as HTMLInputElement;
     const gridView = document.querySelector(".section-body") as HTMLElement;
-    const listView = document.querySelector(".section-body-list") as HTMLElement;
+    const listView = document.querySelector(
+        ".section-body-list"
+    ) as HTMLElement;
 
     const basicLabel = document.getElementById("basic-label") as HTMLElement;
-    const advancedLabel = document.getElementById("advanced-label") as HTMLElement;
-    const basicContent = document.querySelector(".basic-content") as HTMLElement;
-    const advancedContent = document.querySelector(".advanced-content") as HTMLElement;
+    const advancedLabel = document.getElementById(
+        "advanced-label"
+    ) as HTMLElement;
+    const basicContent = document.querySelector(
+        ".basic-content"
+    ) as HTMLElement;
+    const advancedContent = document.querySelector(
+        ".advanced-content"
+    ) as HTMLElement;
 
     const showBasicContent = (): void => {
         basicContent.style.display = "block";
@@ -77,7 +85,9 @@ export default function toggleEmployeeView(): void {
                     gridView.appendChild(employeeDiv);
                 });
             })
-            .catch((error) => console.error("Error loading data for grid view:", error));
+            .catch((error) =>
+                console.error("Error loading data for grid view:", error)
+            );
     };
 
     const loadListView = (filteredData: Employee[] | null = null): void => {
@@ -143,7 +153,9 @@ export default function toggleEmployeeView(): void {
                     listView.appendChild(employeeItem);
                 });
             })
-            .catch((error) => console.error("Error loading data for list view:", error));
+            .catch((error) =>
+                console.error("Error loading data for list view:", error)
+            );
     };
 
     const toggle = (): void => {
@@ -158,8 +170,12 @@ export default function toggleEmployeeView(): void {
         }
     };
 
-    const searchInput = document.querySelector(".search-input") as HTMLInputElement;
-    const searchForm = document.querySelector(".basic-content form") as HTMLFormElement;
+    const searchInput = document.querySelector(
+        ".search-input"
+    ) as HTMLInputElement;
+    const searchForm = document.querySelector(
+        ".basic-content form"
+    ) as HTMLFormElement;
 
     searchForm.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -169,7 +185,8 @@ export default function toggleEmployeeView(): void {
             .then((response) => response.json())
             .then((data: Employee[]) => {
                 const filteredData = data.filter((person) => {
-                    const fullName = `${person.first_name} ${person.last_name}`.toLowerCase();
+                    const fullName =
+                        `${person.first_name} ${person.last_name}`.toLowerCase();
                     return (
                         person._id.toString() === searchQuery ||
                         person.first_name.toLowerCase().includes(searchQuery) ||

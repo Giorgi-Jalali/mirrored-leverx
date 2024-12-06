@@ -1,6 +1,5 @@
 import infoContainer from "./infoContainer";
 
-
 // Define types for employee and manager
 interface Manager {
     first_name: string;
@@ -32,10 +31,24 @@ function getEmployeeIdFromURL(): string | null {
 }
 
 // Format date into readable string
-function formatDate(date: { day: number; month: number; year: number }): string {
+function formatDate(date: {
+    day: number;
+    month: number;
+    year: number;
+}): string {
     const months = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
     ];
 
     const day = date.day;
@@ -52,9 +65,10 @@ export default function loadEmployeeProfile(): void {
 
     profileView.innerHTML = '<p class="loader">Loading...</p>';
 
-    const storedEmail = sessionStorage.getItem("email");
+    // const storedEmail = sessionStorage.getItem("email");
 
-    const fetchData = (): Promise<Employee[]> => fetch("../data.json").then((response) => response.json());
+    const fetchData = (): Promise<Employee[]> =>
+        fetch("../data.json").then((response) => response.json());
 
     function loadProfile(data: Employee[], id: string | null): void {
         if (!id) {
@@ -62,7 +76,9 @@ export default function loadEmployeeProfile(): void {
             return;
         }
 
-        const employee = data.find((person) => String(person._id) === String(id));
+        const employee = data.find(
+            (person) => String(person._id) === String(id)
+        );
 
         if (!employee) {
             window.location.href = "../pages/404.html";
@@ -74,9 +90,13 @@ export default function loadEmployeeProfile(): void {
                 <div class="back">
                     <img src="../assets/less.png" alt="Back arrow" width="15px" height="15px"/>
                 </div>
-                <img src="../assets/${employee.first_name}.png" alt="${employee.first_name} ${employee.last_name}" width="120px" height="120px"/>
+                <img src="../assets/${employee.first_name}.png" alt="${
+            employee.first_name
+        } ${employee.last_name}" width="120px" height="120px"/>
                 <p>${employee.first_name} ${employee.last_name}</p>
-                <p>${employee.first_name} ${employee.middle_native_name} ${employee.last_name}</p>
+                <p>${employee.first_name} ${employee.middle_native_name} ${
+            employee.last_name
+        }</p>
                 <div class="copy">
                     <img src="../assets/copy.png" alt="Copy icon" width="30px" height="30px"/>
                     <p>Copy link</p>
@@ -105,7 +125,9 @@ export default function loadEmployeeProfile(): void {
                             <p>${employee.room}</p>
                             <p>${employee.desk_number}</p>
                             <p>${formatDate(employee.date_birth)}</p>
-                            <p>${employee.manager.first_name} ${employee.manager.last_name}</p>
+                            <p>${employee.manager.first_name} ${
+            employee.manager.last_name
+        }</p>
                         </div>
                     </div>
                 </div>
@@ -120,8 +142,12 @@ export default function loadEmployeeProfile(): void {
                             <div class="info-list"><img src="../assets/c-number.png" alt="C-Number icon" width="20px" height="20px"/><p>C-Number</p></div>
                         </div>
                         <div class="info-right">
-                            <p><a href="tel:${employee.phone}">${employee.phone}</a></p>
-                            <p><a href="mailto:${id == "1" ? storedEmail : employee.email}">${id == "1" ? storedEmail : employee.email}</a></p>
+                            <p><a href="tel:${employee.phone}">${
+            employee.phone
+        }</a></p>
+                            <p><a href="mailto:${employee.email}">${
+            employee.email
+        }</a></p>
                             <p>${employee.skype}</p>
                             <p>${employee.cnumber}</p>
                         </div>
@@ -141,7 +167,8 @@ export default function loadEmployeeProfile(): void {
 
         document.querySelector(".copy")?.addEventListener("click", () => {
             const url = window.location.href;
-            navigator.clipboard.writeText(url)
+            navigator.clipboard
+                .writeText(url)
                 .then(() => {
                     alert("Link copied to clipboard!");
                 })

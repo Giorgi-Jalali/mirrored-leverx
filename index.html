@@ -9,9 +9,19 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         />
         <link rel="stylesheet" href="style.css" />
+        <script type="module">
+            import auth from "./dist/auth.js";
+            auth();
+        </script>
         <script type="module" defer>
             import toggleEmployeeView from "./dist/toggleEmployeeView.js";
             toggleEmployeeView();
+        </script>
+        <script type="module">
+            import logOut from "./dist/logOut.js";
+            document.addEventListener("DOMContentLoaded", () => {
+                document.getElementById("logout-button").addEventListener("click", logOut);
+            });
         </script>
     </head>
     <body>
@@ -50,7 +60,7 @@
                     <p>Sophia Thompson</p>
                 </a>
 
-                <a href="#logout" class="nav-link">
+                <a href="#logout" class="nav-link" id="logout-button">
                     <img
                         src="./assets/logout.png"
                         alt="Logout icon"
