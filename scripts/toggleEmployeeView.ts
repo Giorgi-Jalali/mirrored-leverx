@@ -1,20 +1,28 @@
-export default function toggleEmployeeView() {
-    const gridRadio = document.getElementById("grid");
-    const listRadio = document.getElementById("list");
-    const gridView = document.querySelector(".section-body");
-    const listView = document.querySelector(".section-body-list");
+export default function toggleEmployeeView(): void {
+    const gridRadio = document.getElementById("grid") as HTMLInputElement;
+    const listRadio = document.getElementById("list") as HTMLInputElement;
+    const gridView = document.querySelector(".section-body") as HTMLElement;
+    const listView = document.querySelector(
+        ".section-body-list"
+    ) as HTMLElement;
 
-    const basicLabel = document.getElementById("basic-label");
-    const advancedLabel = document.getElementById("advanced-label");
-    const basicContent = document.querySelector(".basic-content");
-    const advancedContent = document.querySelector(".advanced-content");
+    const basicLabel = document.getElementById("basic-label") as HTMLElement;
+    const advancedLabel = document.getElementById(
+        "advanced-label"
+    ) as HTMLElement;
+    const basicContent = document.querySelector(
+        ".basic-content"
+    ) as HTMLElement;
+    const advancedContent = document.querySelector(
+        ".advanced-content"
+    ) as HTMLElement;
 
-    const showBasicContent = () => {
+    const showBasicContent = (): void => {
         basicContent.style.display = "block";
         advancedContent.style.display = "none";
     };
 
-    const showAdvancedContent = () => {
+    const showAdvancedContent = (): void => {
         basicContent.style.display = "none";
         advancedContent.style.display = "block";
     };
@@ -22,34 +30,38 @@ export default function toggleEmployeeView() {
     basicLabel.addEventListener("click", showBasicContent);
     advancedLabel.addEventListener("click", showAdvancedContent);
 
-    const loadGridView = (filteredData = null) => {
+    type Employee = {
+        _id: string;
+        first_name: string;
+        last_name: string;
+        user_avatar: string;
+        department: string;
+        room: string;
+    };
+
+    const loadGridView = (filteredData: Employee[] | null = null): void => {
         fetch("../data.json")
             .then((response) => response.json())
-            .then((data) => {
+            .then((data: Employee[]) => {
                 gridView.innerHTML = "";
                 const employees = filteredData || data;
-    
+
                 if (employees.length === 0) {
                     gridView.style.display = "flex";
                     gridView.innerHTML = `
                         <div class="not-found">
-                            <img
-                                src="../assets/404.png"
-                                alt="not found"
-                                width="400px"
-                                height="225px"
-                            />
+                            <img src="../assets/404.png" alt="not found" width="400px" height="225px"/>
                         </div>
                     `;
                     return;
                 }
-    
+
                 employees.forEach((person) => {
                     const employeeDiv = document.createElement("li");
                     employeeDiv.classList.add("employee");
 
                     gridView.style.display = "grid";
-    
+
                     employeeDiv.innerHTML = `
                     <a href="../pages/users.html?id=${person._id}" class="employee-link">
                         <div class="image-center">
@@ -69,35 +81,31 @@ export default function toggleEmployeeView() {
                         </div>
                     </a>
                     `;
-    
+
                     gridView.appendChild(employeeDiv);
                 });
             })
-            .catch((error) => console.error("Error loading data for grid view:", error));
+            .catch((error) =>
+                console.error("Error loading data for grid view:", error)
+            );
     };
-    
 
-    const loadListView = (filteredData = null) => {
+    const loadListView = (filteredData: Employee[] | null = null): void => {
         fetch("../data.json")
             .then((response) => response.json())
-            .then((data) => {
+            .then((data: Employee[]) => {
                 listView.innerHTML = "";
                 const employees = filteredData || data;
-    
+
                 if (employees.length === 0) {
                     listView.innerHTML = `
                         <div class="not-found">
-                            <img
-                                src="../assets/404.png"
-                                alt="not found"
-                                width="400px"
-                                height="225px"
-                            />
+                            <img src="../assets/404.png" alt="not found" width="400px" height="225px"/>
                         </div>
                     `;
                     return;
                 }
-    
+
                 const listHeaderHTML = `
                     <div class="list-header">
                         <div class="photo-name">
@@ -122,13 +130,13 @@ export default function toggleEmployeeView() {
                         </div>
                     </div>
                 `;
-    
+
                 listView.innerHTML = listHeaderHTML;
-    
+
                 employees.forEach((person) => {
                     const employeeItem = document.createElement("li");
                     employeeItem.classList.add("employee-list");
-    
+
                     employeeItem.innerHTML = `
                     <a href="../pages/users.html?id=${person._id}" class="list-employee-view">
                     <div class="person-image-name">
@@ -141,14 +149,16 @@ export default function toggleEmployeeView() {
                     </div>
                     </a>
                     `;
-    
+
                     listView.appendChild(employeeItem);
                 });
             })
-            .catch((error) => console.error("Error loading data for list view:", error));
+            .catch((error) =>
+                console.error("Error loading data for list view:", error)
+            );
     };
-    
-    const toggle = () => {
+
+    const toggle = (): void => {
         if (gridRadio.checked) {
             gridView.style.display = "grid";
             listView.style.display = "none";
@@ -160,8 +170,12 @@ export default function toggleEmployeeView() {
         }
     };
 
-    const searchInput = document.querySelector(".search-input");
-    const searchForm = document.querySelector(".basic-content form");
+    const searchInput = document.querySelector(
+        ".search-input"
+    ) as HTMLInputElement;
+    const searchForm = document.querySelector(
+        ".basic-content form"
+    ) as HTMLFormElement;
 
     searchForm.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -169,9 +183,10 @@ export default function toggleEmployeeView() {
 
         fetch("../data.json")
             .then((response) => response.json())
-            .then((data) => {
+            .then((data: Employee[]) => {
                 const filteredData = data.filter((person) => {
-                    const fullName = `${person.first_name} ${person.last_name}`.toLowerCase();
+                    const fullName =
+                        `${person.first_name} ${person.last_name}`.toLowerCase();
                     return (
                         person._id.toString() === searchQuery ||
                         person.first_name.toLowerCase().includes(searchQuery) ||

@@ -1,36 +1,48 @@
 import infoContainer from "./infoContainer.js";
-
+// Utility function to get employee ID from URL
 function getEmployeeIdFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("id");
 }
-
+// Format date into readable string
 function formatDate(date) {
     const months = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
     ];
-
     const day = date.day;
     const month = months[date.month - 1];
     const year = date.year;
-
     return `${day} ${month} ${year}`;
 }
-
+// Main function to load employee profile
 export default function loadEmployeeProfile() {
     const profileView = document.querySelector("main");
     const employeeId = getEmployeeIdFromURL();
-
     profileView.innerHTML = '<p class="loader">Loading...</p>';
-
+    // const storedEmail = sessionStorage.getItem("email");
     const fetchData = () => fetch("../data.json").then((response) => response.json());
-
-    function loadProfile (data, id) {
+    function loadProfile(data, id) {
+        var _a, _b;
+        if (!id) {
+            window.location.href = "../pages/404.html";
+            return;
+        }
         const employee = data.find((person) => String(person._id) === String(id));
-
-        console.log("employee: ", employee);
-
+        if (!employee) {
+            window.location.href = "../pages/404.html";
+            return;
+        }
         profileView.innerHTML = `
             <aside>
                 <div class="back">
@@ -96,31 +108,27 @@ export default function loadEmployeeProfile() {
                 </div>
             </section>
         `;
-
-        document.querySelector(".back").addEventListener("click", () => {
+        (_a = document.querySelector(".back")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
             window.history.back();
         });
-
-        document.querySelector(".copy").addEventListener("click", () => {
+        (_b = document.querySelector(".copy")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
             const url = window.location.href;
-            navigator.clipboard.writeText(url)
+            navigator.clipboard
+                .writeText(url)
                 .then(() => {
-                    alert("Link copied to clipboard!");
-                })
+                alert("Link copied to clipboard!");
+            })
                 .catch((error) => {
-                    console.error("Error copying the link:", error);
-                });
+                console.error("Error copying the link:", error);
+            });
         });
-    };
-
+    }
     fetchData()
-    .then((data) => {
+        .then((data) => {
         console.log("Fetched data:", data);
         loadProfile(data, employeeId);
     })
         .catch((error) => {
-            window.location.href = "../pages/404.html";
-            return;
-        });
+        window.location.href = "../pages/404.html";
+    });
 }
-
