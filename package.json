@@ -1,0 +1,19 @@
+{
+  "name": "leverx-employee-services",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass sass/main.scss style.css -w",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "sass": "^1.82.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  }
+}
