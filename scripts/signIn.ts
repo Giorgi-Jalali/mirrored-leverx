@@ -44,8 +44,6 @@ async function signIn(): Promise<void> {
             } else {
                 sessionStorage.setItem("bcryptHash", hashData.hash);
             }
-            // sessionStorage.setItem("email", email);
-            // localStorage.setItem("email", email);
 
             const responseElement = document.getElementById("response");
 

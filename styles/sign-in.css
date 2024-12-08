@@ -1,34 +1,42 @@
-:root {
-    --font-family: Arial, sans-serif;
-    --background-color: #e7e7e8;
-    --white: #fff;
-    --input-border: #ccc;
-    --card-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+@import "./variables.css";
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 12px;
+}
+
+@media (min-width: 640px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
     font-family: var(--font-family);
-    margin: 0;
-    padding: 0;
     background-color: var(--background-color);
-    padding-top: 120px;
+    padding-top: 8rem;
 }
 
 main {
     background-color: var(--white);
-    width: 400px;
-    padding: 30px;
+    width: 25em;
     box-shadow: var(--card-box-shadow);
-    border-radius: 30px;
+    border-radius: 2em;
     border: 1px solid var(--input-border);
+    padding: 2em;
     margin: 0 auto;
 }
 
@@ -38,39 +46,38 @@ form {
 }
 
 label {
-    margin-bottom: 8px;
+    margin-bottom: 0.5em;
     font-weight: bold;
 }
 
 input[type="email"],
 input[type="password"] {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 0.5em;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--input-border);
+    border-radius: 0.25em;
 }
 
 .checkbox-group {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
 }
 
 input[type="checkbox"] {
-    margin-right: 10px;
+    margin-right: 1rem;
 }
 
 button {
-    padding: 10px;
+    background: var(--button-bg-color);
+    color: var(--white);
     border: none;
-    background: #007bff;
-    color: white;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 0.25em;
+    padding: 1em;
+    text-transform: uppercase;
     cursor: pointer;
 }
 
 button:hover {
-    background: #0056b3;
+    background: var(--button-hover-bg-color);
 }

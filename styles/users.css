@@ -1,19 +1,4 @@
-:root {
-    --font-family: Arial, sans-serif;
-    --background-color: #e7e7e8;
-    --header-bg-color: #3a23ac;
-    --white: #fff;
-    --aqua: aqua;
-    --gray: gray;
-    --link-bg-color: #1a0971;
-    --link-hover-bg-color: #330b91;
-    --link-hover-text-color: #f0f0f0;
-    --nav-link-hover-bg: #4b2f7d;
-    --nav-link-hover-text: #ffd700;
-    --input-border: #ccc;
-    --button-bg-color: #007bff;
-    --card-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+@import "./variables.css";
 
 *,
 *::before,

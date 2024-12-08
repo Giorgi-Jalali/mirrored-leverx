@@ -43,8 +43,6 @@ function signIn() {
                 else {
                     sessionStorage.setItem("bcryptHash", hashData.hash);
                 }
-                // sessionStorage.setItem("email", email);
-                // localStorage.setItem("email", email);
                 const responseElement = document.getElementById("response");
                 if (responseElement) {
                     responseElement.textContent = `Hash: ${hashData.hash}`;

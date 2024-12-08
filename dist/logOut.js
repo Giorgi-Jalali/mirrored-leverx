@@ -5,8 +5,6 @@ export default function logOut(event) {
     if (localHash || sessionHash) {
         localStorage.removeItem("bcryptHash");
         sessionStorage.removeItem("bcryptHash");
-        // localStorage.removeItem("email");
-        // sessionStorage.removeItem("email");
         window.location.href = "./pages/sign-in.html";
     }
 }

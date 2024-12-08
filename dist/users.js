@@ -30,7 +30,6 @@ export default function loadEmployeeProfile() {
     const profileView = document.querySelector("main");
     const employeeId = getEmployeeIdFromURL();
     profileView.innerHTML = '<p class="loader">Loading...</p>';
-    // const storedEmail = sessionStorage.getItem("email");
     const fetchData = () => fetch("../data.json").then((response) => response.json());
     function loadProfile(data, id) {
         var _a, _b;

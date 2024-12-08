@@ -1,30 +1,31 @@
-:root {
-    --font-family: Arial, sans-serif;
-    --background-color: #e7e7e8;
-    --header-bg-color: #3a23ac;
-    --white: #fff;
-    --aqua: aqua;
-    --link-bg-color: #1a0971;
-    --link-hover-bg-color: #330b91;
-    --link-hover-text-color: #f0f0f0;
-    --nav-link-hover-bg: #4b2f7d;
-    --nav-link-hover-text: #ffd700;
-    --button-bg-color: #007bff;
-    --button-hover-bg-color: #0056b3;
-}
+@import "./variables.css";
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 12px;
+}
+
+@media (min-width: 640px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
     font-family: var(--font-family);
-    margin: 0;
-    padding: 0;
     background-color: var(--white);
 }
 
@@ -36,7 +37,7 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    padding: 20px 50px;
+    padding: 1.5em 4em;
 }
 
 .home-link-wrap {
@@ -48,9 +49,9 @@ header {
 .home-link {
     color: var(--white);
     background-color: var(--link-bg-color);
-    padding: 20px;
-    border-radius: 10px;
+    border-radius: 1em;
     transition: all 0.3s ease;
+    padding: 1.5em;
 }
 
 .home-link p,
@@ -68,7 +69,7 @@ header {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 .tabs {
@@ -78,8 +79,8 @@ h1 {
 }
 
 .tabs p {
-    margin: 0 10px;
-    padding: 12px 20px;
+    padding: 1em 1.5em;
+    margin: 0 1rem;
     cursor: pointer;
 }
 
@@ -92,7 +93,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 1.25rem;
 }
 
 .nav-link {
@@ -100,23 +101,24 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    border-radius: 30px;
+    gap: 0.5em;
+    padding: 1em 1.5em;
+    border-radius: 2em;
     cursor: pointer;
     transition: all 0.3s ease;
     border: none;
+    text-decoration: none;
 }
 
 .nav-link img {
-    width: 30px;
-    height: 30px;
+    width: 1.75em;
+    height: 1.75em;
     transition: transform 0.3s ease;
 }
 
 .nav-link p {
     margin: 0;
-    font-size: 14px;
+    font-size: 0.8rem;
     color: var(--white);
     font-weight: bold;
     transition: color 0.3s ease;
@@ -139,21 +141,20 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 3em;
 }
 
 .image404 {
-    margin-top: 100px;
+    margin-top: 6em;
 }
 
 .back-button {
     width: 100%;
-    padding: 20px;
+    padding: 1.5em;
     background-color: var(--button-bg-color);
     color: var(--white);
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 0.8em;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }

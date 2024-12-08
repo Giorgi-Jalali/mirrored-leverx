@@ -65,8 +65,6 @@ export default function loadEmployeeProfile(): void {
 
     profileView.innerHTML = '<p class="loader">Loading...</p>';
 
-    // const storedEmail = sessionStorage.getItem("email");
-
     const fetchData = (): Promise<Employee[]> =>
         fetch("../data.json").then((response) => response.json());
 
