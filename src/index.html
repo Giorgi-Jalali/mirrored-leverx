@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LEVERX - EMPLOYEE SERVICES</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <script type="module">
+            import auth from "./scripts/auth.ts";
+            auth();
+        </script>
+        <script type="module" defer>
+            import toggleEmployeeView from "./scripts/toggleEmployeeView.ts";
+            toggleEmployeeView();
+        </script>
+        <script type="module">
+            import logOut from "./scripts/logOut.ts";
+            document.addEventListener("DOMContentLoaded", () => {
+                document.getElementById("logout-button").addEventListener("click", logOut);
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <a href="index.html" class="home-link-wrap">
+                <div class="home-link">
+                    <p>LEVERX</p>
+                    <h1>EMPLOYEE SERVICES</h1>
+                </div>
+            </a>
+
+            <div class="tabs">
+                <a href="index.html" class="home-link-wrap">
+                    <p class="active-tab">Address Book</p>
+                </a>
+                <a href="../pages/settings.html" class="home-link-wrap">
+                    <p class="active-tab">Settings</p>
+                </a>
+            </div>
+
+            <nav>
+                <a href="#support" class="nav-link">
+                    <img
+                        src="./assets/question.png"
+                        alt="Support icon"
+                        width="30px"
+                        height="30px"
+                    />
+                    <p>SUPPORT</p>
+                </a>
+
+                <a href="./pages/users.html?id=1" class="nav-link">
+                    <img
+                        src="./assets/Sophia.png"
+                        alt="Profile icon"
+                        width="30px"
+                        height="30px"
+                    />
+                    <p>Sophia Thompson</p>
+                </a>
+
+                <a href="#logout" class="nav-link" id="logout-button">
+                    <img
+                        src="./assets/logout.png"
+                        alt="Logout icon"
+                        width="30px"
+                        height="30px"
+                    />
+                    <p>LOGOUT</p>
+                </a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Search section -->
+
+            <aside>
+                <input type="radio" id="basic" name="toggle" checked />
+                <label for="basic" id="basic-label">Basic Search</label>
+            
+                <input type="radio" id="advanced" name="toggle" />
+                <label for="advanced" id="advanced-label" class="advanced-label">Advanced Search</label>
+            
+                <div class="content">
+                    <div class="basic-content">
+                        <img
+                            src="./assets/search.png"
+                            alt="search icon"
+                            width="20px"
+                            height="20px"
+                            class="search"
+                        />
+                        <form action="pages/404.html" method="GET">
+                            <input
+                                type="text"
+                                class="search-input"
+                                placeholder="John Smith"
+                                required
+                            />
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+            
+                    <div class="advanced-content" style="display: none;">
+                        <form action="404.html" method="GET">
+                            <label for="name" class="label-class">Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="John Smith"
+                                required
+                            />
+                            <label for="email" class="label-class">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="johnsmith@leverx.com"
+                                required
+                            />
+                            <label for="phone" class="label-class">Phone</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="Phone number"
+                                required
+                            />
+                            <label for="skype" class="label-class">Skype</label>
+                            <input
+                                type="text"
+                                id="skype"
+                                name="skype"
+                                placeholder="SkypeID"
+                            />
+                            <label for="building" class="label-class">Building</label>
+                            <select id="building" name="building" required>
+                                <option value="">Any</option>
+                                <option value="building-65">Pilsudskiego 65 (Poland)</option>
+                                <option value="building-66">Pilsudskiego 66 (Poland)</option>
+                                <option value="building-67">Pilsudskiego 67 (Poland)</option>
+                                <option value="building-68">Pilsudskiego 68 (Poland)</option>
+                                <option value="building-69">Pilsudskiego 69 (Poland)</option>
+                                <option value="building-70">Pilsudskiego 70 (Poland)</option>
+                            </select>
+                            <label for="room" class="label-class">Room</label>
+                            <input
+                                type="text"
+                                id="room"
+                                name="room"
+                                placeholder="303.1"
+                            />
+                            <label for="department" class="label-class">Department</label>
+                            <select id="department" name="department" required>
+                                <option value="">Any</option>
+                                <option value="web">Web & Mobile</option>
+                                <option value="cybersecurity">Cybersecurity & Compliance</option>
+                                <option value="ui">UI/UX Design</option>
+                                <option value="backend">Backend & Integration</option>
+                                <option value="ai">AI & Data Science</option>
+                                <option value="cloud">Cloud & DevOps</option>
+                            </select>
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </aside>
+            
+
+            <section>
+                <p class="displayed-employee-text">6 employees displayed</p>
+            
+                <!-- Radio Buttons for Toggling Views -->
+                <input
+                    type="radio"
+                    id="grid"
+                    name="view-toggle"
+                    class="toggle"
+                    checked
+                />
+                <label for="grid" class="grid-icon">
+                    <img
+                        src="./assets/grid.png"
+                        alt="Grid View"
+                        width="20px"
+                        height="20px"
+                    />
+                </label>
+            
+                <input
+                    type="radio"
+                    id="list"
+                    name="view-toggle"
+                    class="toggle"
+                />
+                <label for="list" class="list-icon">
+                    <img
+                        src="./assets/list.png"
+                        alt="List View"
+                        width="20px"
+                        height="20px"
+                    />
+                </label>
+            
+                <!-- Views Section -->
+                <div class="views">
+                    <!-- Grid View -->
+                    <ul class="section-body" style="display: grid;"></ul>
+            
+                    <!-- List View -->
+                    <ul class="section-body-list" style="display: none;"></ul>
+                </div>
+            
+                
+            </section>
+            
+        </main>
+    </body>
+</html>

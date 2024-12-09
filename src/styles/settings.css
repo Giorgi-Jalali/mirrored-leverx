@@ -1,0 +1,256 @@
+@import "./variables.css";
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 12px;
+}
+
+@media (min-width: 640px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-color: #e7e7e8;
+}
+
+header {
+    background-color: var(--header-bg-color);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+.home-link-wrap {
+    color: var(--white);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.home-link {
+    color: var(--white);
+    background-color: var(--link-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+.home-link:hover {
+    background-color: var(--link-hover-bg-color);
+}
+
+.home-link p,
+.home-link h1 {
+    margin: 0;
+}
+
+.home-link:hover p,
+.home-link:hover h1 {
+    color: var(--link-hover-text-color);
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.tabs p {
+    margin: 0 10px;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+.tabs .active-tab {
+    border-bottom: 2px solid var(--aqua);
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    background-color: var(--link-bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+}
+.nav-link img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+.nav-link p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--white);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.nav-link:hover {
+    background-color: var(--nav-link-hover-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.nav-link:hover img {
+    transform: scale(1.1);
+}
+.nav-link:hover p {
+    color: var(--nav-link-hover-text);
+}
+
+main {
+    width: 90%;
+    max-width: 1920px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    margin: 0 auto;
+}
+
+.roles-title {
+    background-color: var(--white);
+    border-radius: 1rem 1rem 0 0;
+    padding: 2em;
+    box-shadow: var(--card-box-shadow);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 1.5em;
+}
+
+.roles-header {
+    background-color: var(--white);
+    padding: 1.5em 4em 1.5em 3em;
+    box-shadow: var(--card-box-shadow);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 3em;
+}
+
+.left-header {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    gap: 3em;
+}
+
+.column-header {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.basic-content {
+    width: 50%;
+    position: relative;
+    border-radius: 1em;
+}
+
+.search {
+    position: absolute;
+    left: 0.6em;
+    top: 0.6em;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.7em 3em;
+    border: none;
+    outline: none;
+    background-color: var(--search-input);
+    border-radius: 0.5rem;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.vertical-line {
+    height: 2rem;
+    width: 2px;
+    background-color: var(--line-color);
+    opacity: 0.3;
+}
+
+.right-header {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3em;
+}
+
+.roles-list {
+    background-color: var(--white);
+    padding: 2em;
+    box-shadow: var(--card-box-shadow);
+}
+
+.basic-content-list {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.role-container {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.role-button {
+    background-color: var(--search-input);
+    border: 1px solid var(--background-color);
+    padding: 1em 2em;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+
+
+
+
+.roles-footer {
+    background-color: var(--white);
+    border-radius: 0 0 1rem 1rem;
+    padding: 2em;
+    box-shadow: var(--card-box-shadow);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 1.5em;
+}
