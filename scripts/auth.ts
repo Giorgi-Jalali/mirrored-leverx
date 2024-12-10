@@ -1,6 +1,6 @@
 export default function auth() {
-    const localBcryptHash = localStorage.getItem("bcryptHash");
-    const sessionBcryptHash = sessionStorage.getItem("bcryptHash");
+    const localEmail = localStorage.getItem("userEmail");
+    const sessionEmail = sessionStorage.getItem("userEmail");
 
     const currentUrl = window.location.href;
 
@@ -10,7 +10,7 @@ export default function auth() {
         "http://127.0.0.1:5500/pages/users.html",
     ];
 
-    if (localBcryptHash || sessionBcryptHash) {
+    if (localEmail || sessionEmail) {
         if (currentUrl.endsWith("sign-in.html") && !currentUrl.endsWith("index.html")) {
             window.location.href = "/index.html";
         }

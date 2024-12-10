@@ -8,7 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-document.getElementById("sign-in-button").addEventListener("click", signIn);
+document.addEventListener("DOMContentLoaded", () => {
+    const signInButton = document.getElementById("sign-in-button");
+    signInButton.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
+        yield signIn();
+    }));
+});
+function loadUsers() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch("../data.json");
+        if (!response.ok) {
+            throw new Error("Failed to load users data.");
+        }
+        return yield response.json();
+    });
+}
 function signIn() {
     return __awaiter(this, void 0, void 0, function* () {
         const passwordElement = document.getElementById("password");
@@ -16,7 +30,6 @@ function signIn() {
         const rememberElement = document.getElementById("remember");
         const password = passwordElement.value;
         const email = emailElement.value;
-        const remember = rememberElement.checked;
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
             alert("Please enter a valid email address.");
@@ -27,30 +40,32 @@ function signIn() {
             return;
         }
         try {
-            const cost = 5;
-            const hashRequest = yield fetch("https://www.toptal.com/developers/bcrypt/api/generate-hash.json", {
+            const users = yield loadUsers();
+            const user = users.find((u) => u.email === email);
+            if (!user) {
+                alert("User not found. Please sign up.");
+                return;
+            }
+            const checkRequest = yield fetch("https://www.toptal.com/developers/bcrypt/api/check-password.json", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
-                body: `password=${encodeURIComponent(password)}&cost=${cost}`,
+                body: `password=${encodeURIComponent(password)}&hash=${encodeURIComponent(user.passwordHash)}`,
             });
-            const hashData = yield hashRequest.json();
-            if (hashData.ok) {
-                if (remember) {
-                    localStorage.setItem("bcryptHash", hashData.hash);
+            const checkData = yield checkRequest.json();
+            if (checkData.ok) {
+                if (rememberElement.checked) {
+                    localStorage.setItem("userEmail", email);
                 }
                 else {
-                    sessionStorage.setItem("bcryptHash", hashData.hash);
+                    sessionStorage.setItem("userEmail", email);
                 }
-                const responseElement = document.getElementById("response");
-                if (responseElement) {
-                    responseElement.textContent = `Hash: ${hashData.hash}`;
-                }
+                alert("Login successful!");
                 window.location.href = "../index.html";
             }
             else {
-                alert("Error generating hash.");
+                alert("Invalid password.");
             }
         }
         catch (error) {

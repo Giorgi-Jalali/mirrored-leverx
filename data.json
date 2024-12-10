@@ -2,6 +2,8 @@
     {
         "_id": 1,
         "isRemoteWork": true,
+        "password": "1234",
+        "passwordHash": "$2b$05$GRUMVCHj0CIXwu7nBEjRMe0L0uIv43Xy0EsklN4JWQGozhZ8iyUE2",
         "user_avatar": "./assets/Sophia.png",
         "first_name": "Sophia",
         "last_name": "Thompson",
@@ -23,7 +25,7 @@
             "last_name": "Snow"
         },
         "phone": "+12931293129",
-        "email": "luffy.monkey@leverx.com",
+        "email": "sophia@sophia.com",
         "skype": "live:.cid.21asd41jd1m132",
         "cnumber": "C5336116",
         "citizenship": "Georgia",
@@ -51,6 +53,8 @@
     {
         "_id": 2,
         "isRemoteWork": false,
+        "password": "123",
+        "passwordHash": "$2b$05$K1vBb4K5cIxqzjASD1XMgu2x7jDiBbff1UfnVXFlwPkCi3elrmJN2",
         "user_avatar": "./assets/James.png",
         "first_name": "James",
         "last_name": "Harris",
@@ -72,7 +76,7 @@
             "last_name": "Snow"
         },
         "phone": "+12931293129",
-        "email": "luffy.monkey@leverx.com",
+        "email": "james@james.com",
         "skype": "live:.cid.21asd41jd1m132",
         "cnumber": "C5336116",
         "citizenship": "Georgia",
@@ -88,6 +92,8 @@
     {
         "_id": 3,
         "isRemoteWork": false,
+        "password": "abc",
+        "passwordHash": "$2b$05$5chRayqD25nkxb8mcic9S.dumwjkchfXmMtKb0SB2D3QWuT.DX9oO",
         "user_avatar": "./assets/Olivia.png",
         "first_name": "Olivia",  
         "last_name": "Bennett",
@@ -109,7 +115,7 @@
             "last_name": "Snow"
         },
         "phone": "+12931293129",
-        "email": "luffy.monkey@leverx.com",
+        "email": "olivia@olivia.com",
         "skype": "live:.cid.21asd41jd1m132",
         "cnumber": "C5336116",
         "citizenship": "Georgia",
@@ -125,6 +131,8 @@
     {
         "_id": 4,
         "isRemoteWork": true,
+        "password": "ggg",
+        "passwordHash": "$2b$05$MrT1nT0jgZtpMxrDkclBQuvFalNE6a2ojil5OsrJPO5Wyi0xZ6ujG",
         "user_avatar": "./assets/Ethan.png",
         "first_name": "Ethan",
         "last_name": "Davis",
@@ -146,7 +154,7 @@
             "last_name": "Snow"
         },
         "phone": "+12931293129",
-        "email": "luffy.monkey@leverx.com",
+        "email": "ethan@ethan.com",
         "skype": "live:.cid.21asd41jd1m132",
         "cnumber": "C5336116",
         "citizenship": "Georgia",
@@ -168,6 +176,8 @@
     {
         "_id": 5,
         "isRemoteWork": true,
+        "password": "12345",
+        "passwordHash": "$2b$05$Pu.wtFYvHh3LAKfFyl2nD.tOrgLSGovfixKpv1q3/wOntHxFTD4we",
         "user_avatar": "./assets/Ava.png",
         "first_name": "Ava",
         "last_name": "Mitchell",
@@ -189,7 +199,7 @@
             "last_name": "Snow"
         },
         "phone": "+12931293129",
-        "email": "luffy.monkey@leverx.com",
+        "email": "mitchell@mitchell.com",
         "skype": "live:.cid.21asd41jd1m132",
         "cnumber": "C5336116",
         "citizenship": "Georgia",
@@ -223,6 +233,8 @@
     {
         "_id": 6,
         "isRemoteWork": true,
+        "password": "1212",
+        "passwordHash": "$2b$05$zLjLAuY1.LJk2GHcPK39OeOUKULuvcLKrhna4vm47c2tTcKIJud8S",
         "user_avatar": "./assets/Benjamin.png",
         "first_name": "Benjamin",
         "last_name": "Roberts",
@@ -244,7 +256,7 @@
             "last_name": "Snow"
         },
         "phone": "+12931293129",
-        "email": "luffy.monkey@leverx.com",
+        "email": "benjamin@benjamin.com",
         "skype": "live:.cid.21asd41jd1m132",
         "cnumber": "C5336116",
         "citizenship": "Georgia",
