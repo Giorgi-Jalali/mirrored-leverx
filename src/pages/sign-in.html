@@ -4,11 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>LEVERX - EMPLOYEE SERVICES - Sign In</title>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-        />
-        <link rel="stylesheet" href="../styles/sign-in.css" />
+        <link rel="stylesheet" href="../sass/pages/_sign-in.scss" />
         <script type="module">
             import auth from "../scripts/auth.ts";
             auth();
@@ -23,6 +19,13 @@
 
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Your password..." required />
+
+                <label for="role">Role</label>
+                <select id="role" name="role" required>
+                    <option value="admin">Admin</option>
+                    <option value="manager">HR</option>
+                    <option value="employee">Employee</option>
+                </select>
 
                 <div class="checkbox-group">
                     <input type="checkbox" id="remember" name="remember" />

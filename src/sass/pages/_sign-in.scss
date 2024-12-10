@@ -1,4 +1,7 @@
-@import "./variables.css";
+@use "../vendors/normalize";
+
+@use "../abstracts/var";
+
 
 *,
 *::before,
@@ -25,17 +28,17 @@ html {
 }
 
 body {
-    font-family: var(--font-family);
-    background-color: var(--background-color);
+    font-family: var.$font-family;
+    background-color: var.$background-color;
     padding-top: 8rem;
 }
 
 main {
-    background-color: var(--white);
+    background-color: var.$white;
     width: 25em;
-    box-shadow: var(--card-box-shadow);
+    box-shadow: var.$card-box-shadow;
     border-radius: 2em;
-    border: 1px solid var(--input-border);
+    border: 1px solid var.$input-border;
     padding: 2em;
     margin: 0 auto;
 }
@@ -51,12 +54,17 @@ label {
 }
 
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+select {
     padding: 0.5em;
     margin-bottom: 1.5rem;
-    border: 1px solid var(--input-border);
+    border: 1px solid var.$input-border;
     border-radius: 0.25em;
 }
+
+select {
+    background-color: var.$search-input;
+  }
 
 .checkbox-group {
     display: flex;
@@ -69,8 +77,8 @@ input[type="checkbox"] {
 }
 
 button {
-    background: var(--button-bg-color);
-    color: var(--white);
+    background: var.$button-bg-color;
+    color: var.$white;
     border: none;
     border-radius: 0.25em;
     padding: 1em;
@@ -79,5 +87,5 @@ button {
 }
 
 button:hover {
-    background: var(--button-hover-bg-color);
+    background: var.$button-hover-bg-color;
 }

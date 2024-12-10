@@ -3,12 +3,20 @@
 ## Table of contents
 
 - [Overview](#overview)
+  - [How to launch the app](#how-to-launch-the-app)
   - [The challenge](#the-challenge)
 - [My process](#my-process)
   - [Technical Requirements](#technical-requirements)
 - [Author](#author)
 
 ## Overview
+
+### How to launch the app
+
+-
+-
+-
+-
 
 ### The challenge
 

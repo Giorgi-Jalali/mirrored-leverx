@@ -1,0 +1,124 @@
+@use "../abstracts/var";
+
+html {
+    font-size: 12px;
+}
+
+@media (min-width: 640px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+header {
+    background-color: var.$header-bg-color;
+    color: var.$white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1.5em 4em;
+}
+
+.home-link-wrap {
+    color: var.$white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.home-link {
+    color: var.$white;
+    background-color: var.$link-bg-color;
+    border-radius: 1em;
+    padding: 1.5em;
+    transition: all 0.3s ease;
+}
+
+.home-link p,
+.home-link h1 {
+    margin: 0;
+
+    &:hover {
+        color: var.$link-hover-text-color;
+    }
+}
+
+.home-link:hover {
+    background-color: var.$link-hover-bg-color;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    p {
+        padding: 1em 1.5em;
+        margin: 0 1rem;
+        cursor: pointer;
+    }
+
+    .active-tab {
+        border-bottom: 2px solid var.$aqua;
+        font-weight: bold;
+    }
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.nav-link {
+    background-color: var.$link-bg-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5em;
+    padding: 1em 1.5em;
+    border-radius: 2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+
+    img {
+        width: 1.75em;
+        height: 1.75em;
+        transition: transform 0.3s ease;
+    }
+
+    p {
+        margin: 0;
+        font-size: 0.8rem;
+        color: var.$white;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    &:hover {
+        background-color: var.$nav-link-hover-bg;
+        box-shadow: 0 4px 12px rgba(var.$black, 0.2);
+
+        img {
+            transform: scale(1.1);
+        }
+
+        p {
+            color: var.$nav-link-hover-text;
+        }
+    }
+}

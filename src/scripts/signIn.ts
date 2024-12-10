@@ -5,10 +5,12 @@ async function signIn(): Promise<void> {
         "password"
     ) as HTMLInputElement;
     const emailElement = document.getElementById("email") as HTMLInputElement;
+    const roleElement = document.getElementById("role") as HTMLInputElement;
     const rememberElement = document.getElementById("remember") as HTMLInputElement;
 
     const password = passwordElement.value;
     const email = emailElement.value;
+    const role = roleElement.value;
     const remember = rememberElement.checked;
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -41,8 +43,12 @@ async function signIn(): Promise<void> {
         if (hashData.ok) {
             if (remember) {
                 localStorage.setItem("bcryptHash", hashData.hash);
+                localStorage.setItem("email", email);
+                localStorage.setItem("role", role);
             } else {
                 sessionStorage.setItem("bcryptHash", hashData.hash);
+                sessionStorage.setItem("email", email);
+                sessionStorage.setItem("role", role);
             }
 
             const responseElement = document.getElementById("response");

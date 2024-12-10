@@ -1,0 +1,60 @@
+@use "../vendors/normalize";
+
+@use "../abstracts/var";
+
+@use "../layout/header";
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 12px;
+}
+
+@media (min-width: 640px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    font-family: var.$font-family;
+    background-color: var.$white;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em;
+}
+
+.image404 {
+    margin-top: 6em;
+}
+
+.back-button {
+    width: 100%;
+    padding: 1.5em;
+    background-color: var.$button-bg-color;
+    color: var.$white;
+    border: none;
+    border-radius: 0.8em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: var.$button-hover-bg-color;
+}

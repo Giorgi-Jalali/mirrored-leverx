@@ -24,11 +24,19 @@ interface Employee {
     citizenship: string;
 }
 
-// Utility function to get employee ID from URL
+// Get employee ID from Path
 function getEmployeeIdFromURL(): string | null {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("id");
 }
+
+function getEmployeeIdFromPath(): string | null {
+    const pathParts = window.location.pathname.split("/");
+    console.log("pathParts: ", pathParts);
+    return pathParts[pathParts.length - 1] || null;
+}
+
+console.log("employee id:", getEmployeeIdFromPath());
 
 // Format date into readable string
 function formatDate(date: {
