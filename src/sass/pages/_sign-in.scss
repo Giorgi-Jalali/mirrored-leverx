@@ -1,31 +1,7 @@
 @use "../vendors/normalize";
 
 @use "../abstracts/var";
-
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    font-size: 12px;
-}
-
-@media (min-width: 640px) {
-    html {
-        font-size: 14px;
-    }
-}
-
-@media (min-width: 1024px) {
-    html {
-        font-size: 16px;
-    }
-}
+@use "../base/typography";
 
 body {
     font-family: var.$font-family;

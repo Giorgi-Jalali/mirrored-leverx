@@ -1,31 +1,16 @@
 @use "../vendors/normalize";
 
 @use "../abstracts/var";
-
 @use "../layout/header";
+@use "../base/typography";
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    font-size: 12px;
-}
-
-@media (min-width: 640px) {
-    html {
-        font-size: 14px;
-    }
-}
-
-@media (min-width: 1024px) {
-    html {
-        font-size: 16px;
-    }
+@mixin space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 body {
@@ -73,46 +58,38 @@ aside {
     padding: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
 
-.back:hover {
-    scale: 1.1;
-    background-color: var.$input-border;
+    &:hover {
+        scale: 1.1;
+        background-color: var.$input-border;
+    }
 }
 
 .copy {
     background-color: var.$input-border;
     border-radius: 15px;
     padding: 5px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 5px;
     font-size: 14px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
+    
+    @include space-between;
 
-.copy:hover {
-    background-color: var.$background-color;
+    &:hover {
+        background-color: var.$background-color;
+    }
 }
 
 .edit {
     background-color: var.$background-color;
     border-radius: 5px;
     padding: 10px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 5px;
     font-size: 16px;
     font-weight: 600;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.edit:hover {
-    background-color: var.$button-bg-color;
+    
+    @include space-between;
+    
+    &:hover {
+        background-color: var.$button-bg-color;
+    }
 }
 
 section {

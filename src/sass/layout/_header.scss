@@ -1,20 +1,5 @@
 @use "../abstracts/var";
-
-html {
-    font-size: 12px;
-}
-
-@media (min-width: 640px) {
-    html {
-        font-size: 14px;
-    }
-}
-
-@media (min-width: 1024px) {
-    html {
-        font-size: 16px;
-    }
-}
+@use "../base/typography";
 
 header {
     background-color: var.$header-bg-color;
