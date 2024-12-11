@@ -19,6 +19,7 @@
                 document.getElementById("logout-button").addEventListener("click", logOut);
             });
         </script>
+        <script type="module" src="./scripts/currentUser.ts" defer></script>
     </head>
     <body>
         <header>
@@ -49,14 +50,14 @@
                     <p>SUPPORT</p>
                 </a>
 
-                <a href="./pages/users.html?id=1" class="nav-link">
+                <a href="./pages/users.html?id=1" class="nav-link" id="user-profile-link">
                     <img
-                        src="./assets/Sophia.png"
                         alt="Profile icon"
                         width="30px"
                         height="30px"
+                        id="user-image"
                     />
-                    <p>Sophia Thompson</p>
+                    <p id="user-name"></p>
                 </a>
 
                 <a href="#logout" class="nav-link" id="logout-button">

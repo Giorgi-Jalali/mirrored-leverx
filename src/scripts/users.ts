@@ -8,6 +8,8 @@ interface Manager {
 
 interface Employee {
     _id: string;
+    password: string;
+    passwordHash: string;
     first_name: string;
     last_name: string;
     middle_native_name: string;
