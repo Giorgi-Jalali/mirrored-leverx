@@ -8,8 +8,14 @@
         <script type="module">
             import logOut from "../scripts/logOut.ts";
             document.addEventListener("DOMContentLoaded", () => {
-                document.getElementById("logout-button").addEventListener("click", logOut);
+                document
+                    .getElementById("logout-button")
+                    .addEventListener("click", logOut);
             });
+        </script>
+        <script type="module" defer>
+            import settings from "../scripts/settings.ts";
+            settings();
         </script>
     </head>
     <body>
@@ -99,77 +105,9 @@
                     </div>
                 </div>
             </div>
-
-            <div class="roles-header">
-                <div class="left-header">
-                    <div class="basic-content-list">
-                        <img
-                            src="../assets/Sophia.png"
-                            alt="person icon"
-                            width="50px"
-                            height="50px"
-                        />
-                        <div class="name">
-                            <p>name lastname</p>
-                            <p>full name</p>
-                        </div>
-                    </div>
-                    <div class="role-container">
-                        <input
-                            type="radio"
-                            name="address-book-role"
-                            id="employee"
-                            class="role-button"
-                        />
-                        <label for="employee">employee</label>
-                        <input
-                            type="radio"
-                            name="address-book-role"
-                            id="hr"
-                            class="role-button"
-                        />
-                        <label for="hr">hr</label>
-                    </div>
-                </div>
-                <div class="right-header">
-                    <div class="role-container">
-                        <input
-                            type="radio"
-                            name="vacation-role"
-                            id="employee-vacation"
-                            class="role-button"
-                            disabled
-                        />
-                        <label for="employee-vacation">employee</label>
-                        <input
-                            type="radio"
-                            name="vacation-role"
-                            id="po"
-                            class="role-button"
-                            disabled
-                        />
-                        <label for="po">po</label>
-                        <input
-                            type="radio"
-                            name="vacation-role"
-                            id="dd"
-                            class="role-button"
-                            disabled
-                        />
-                        <label for="dd">dd</label>
-                    </div>
-                    <div class="role-container">
-                        <input
-                            type="radio"
-                            name="address-book-role"
-                            id="admin"
-                            class="role-button"
-                        />
-                        <label for="admin">admin</label>
-                    </div>
-                </div>
+            <div id="settings-Employees">
+                
             </div>
-
             <div class="roles-footer"></div>
         </main>
     </body>
