@@ -24,7 +24,7 @@ export default function infoContainer(employee: Employee): string {
 
 function renderVisaInfo(employee: Employee): string {
     const visaArray = employee.visa || [];
-    let html = `<p>${employee.citizenship}</p>`;
+    let html = `<input type="text" value="${employee.citizenship}" id="citizenship" disabled />`;
 
     visaArray.forEach((visa) => {
         const formattedDateRange = formatDateRange(
@@ -34,6 +34,8 @@ function renderVisaInfo(employee: Employee): string {
 
         html += `
             <p>${visa.type} (${visa.issuing_country})</p>
+            <input type="date" value="${formattedDateRange}" id="date
+            " disabled />
             <p>${formattedDateRange}</p>
         `;
     });

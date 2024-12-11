@@ -11,10 +11,20 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const userName = document.getElementById("user-name") as HTMLParagraphElement;
                 const userImage = document.getElementById("user-image") as HTMLImageElement;
 
+                if (localStorage.getItem("userEmail")) {
+                    localStorage.setItem("currentUserRole", user.role);
+                    localStorage.setItem("currentUserId", user._id);
+                } else if (sessionStorage.getItem("userEmail")){
+                    sessionStorage.setItem("currentUserRole", user.role);
+                    sessionStorage.setItem("currentUserId", user._id);
+                }
+
+                
+
                 userLink.href = `../pages/users.html?id=${user._id}`;
 
                 userName.textContent = `${user.first_name} ${user.last_name}`;
-                userImage.src = "." + user.user_avatar || "./assets/default-profile.png";
+                userImage.src = "." + user.user_avatar || "../assets/Sophia.png";
 
             } else {
                 console.error("User not found in db.json");

@@ -6,11 +6,13 @@ export default function logOut(event: MouseEvent): void {
 
     if (localHash || sessionHash) {
         localStorage.removeItem("userEmail");
-        localStorage.removeItem("role");
+        localStorage.removeItem("currentUserRole");
+        localStorage.removeItem("currentUserId");
 
         sessionStorage.removeItem("userEmail");
-        sessionStorage.removeItem("role");
+        sessionStorage.removeItem("currentUserRole");
+        sessionStorage.removeItem("currentUserId");
         
-        window.location.href = "./pages/sign-in.html";
+        window.location.href = `${window.location.origin}/pages/sign-in.html`;
     }
 }

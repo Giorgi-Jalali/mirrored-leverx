@@ -4,8 +4,6 @@ export default function auth() {
 
     const currentUrl = window.location.href;
     const baseUrl = window.location.origin;
-    console.log("baseUrl: ", baseUrl);
-    console.log("currentUrl: ", baseUrl);
 
     const protectedPaths = [
         "/",
