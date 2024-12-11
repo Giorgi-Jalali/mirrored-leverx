@@ -113,13 +113,29 @@ main {
 }
 
 .role-button {
-    background-color: var.$search-input;
-    border: 1px solid var.$background-color;
-    padding: 1em 2em;
-    border-radius: 5px;
-    text-transform: uppercase;
-}
+    display: none;
 
+    + label {
+        background-color: var.$search-input;
+        padding: 1em 2em;
+        border-radius: 5px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var.$button-hover-bg-color;
+            color: var.$white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    &:checked + label {
+        background-color: var.$button-hover-bg-color;
+        color: var.$white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+}
 
 .roles-footer {
     background-color: var.$white;

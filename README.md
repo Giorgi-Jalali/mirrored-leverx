@@ -13,10 +13,21 @@
 
 ### How to launch the app
 
--
--
--
--
+- npm i
+
+It needs two terminals
+
+- npm run dev
+- npm run serve (for json-server)
+
+
+### How to test
+
+- Admin - sophia@sophia.com - password: 1234
+- HR - james@james.com - password: 123
+- Employee with manager - olivia@olivia.com - password: abc
+- Employee without manager - mitchell@mitchell.com - password: 12345
+
 
 ### The challenge
 

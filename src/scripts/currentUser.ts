@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 userImage.src = "." + user.user_avatar || "./assets/default-profile.png";
 
             } else {
-                console.error("User not found in data.json");
+                console.error("User not found in db.json");
             }
         } catch (error) {
             console.error("Error fetching user data:", error);
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadAll(): Promise<any[]> {
-    const response = await fetch("../data.json");
+    const response = await fetch("../db.json");
     if (!response.ok) {
         throw new Error("Failed to load users data.");
     }

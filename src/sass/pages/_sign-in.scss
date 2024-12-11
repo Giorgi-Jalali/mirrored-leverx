@@ -30,17 +30,12 @@ label {
 }
 
 input[type="email"],
-input[type="password"],
-select {
+input[type="password"] {
     padding: 0.5em;
     margin-bottom: 1.5rem;
     border: 1px solid var.$input-border;
     border-radius: 0.25em;
 }
-
-select {
-    background-color: var.$search-input;
-  }
 
 .checkbox-group {
     display: flex;

@@ -1,8 +1,7 @@
 [
     {
         "_id": 1,
-        "admin": true,
-        "isManager": false,
+        "role": "admin",
         "isRemoteWork": true,
         "password": "1234",
         "passwordHash": "$2b$05$GRUMVCHj0CIXwu7nBEjRMe0L0uIv43Xy0EsklN4JWQGozhZ8iyUE2",
@@ -54,8 +53,7 @@
     },
     {
         "_id": 2,
-        "admin": false,
-        "isManager": true,
+        "role": "hr",
         "isRemoteWork": false,
         "password": "123",
         "passwordHash": "$2b$05$K1vBb4K5cIxqzjASD1XMgu2x7jDiBbff1UfnVXFlwPkCi3elrmJN2",
@@ -95,8 +93,7 @@
     },
     {
         "_id": 3,
-        "admin": false,
-        "isManager": false,
+        "role": "employee",
         "isRemoteWork": false,
         "password": "abc",
         "passwordHash": "$2b$05$5chRayqD25nkxb8mcic9S.dumwjkchfXmMtKb0SB2D3QWuT.DX9oO",
@@ -136,8 +133,7 @@
     },
     {
         "_id": 4,
-        "admin": false,
-        "isManager": false,
+        "role": "employee",
         "isRemoteWork": true,
         "password": "ggg",
         "passwordHash": "$2b$05$MrT1nT0jgZtpMxrDkclBQuvFalNE6a2ojil5OsrJPO5Wyi0xZ6ujG",
@@ -183,8 +179,7 @@
     },
     {
         "_id": 5,
-        "admin": false,
-        "isManager": false,
+        "role": "employee",
         "isRemoteWork": true,
         "password": "12345",
         "passwordHash": "$2b$05$Pu.wtFYvHh3LAKfFyl2nD.tOrgLSGovfixKpv1q3/wOntHxFTD4we",
@@ -242,8 +237,7 @@
     },
     {
         "_id": 6,
-        "admin": false,
-        "isManager": false,
+        "role": "employee",
         "isRemoteWork": true,
         "password": "1212",
         "passwordHash": "$2b$05$zLjLAuY1.LJk2GHcPK39OeOUKULuvcLKrhna4vm47c2tTcKIJud8S",

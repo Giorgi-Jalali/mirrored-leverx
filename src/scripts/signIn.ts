@@ -1,15 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const signInButton = document.getElementById(
-        "sign-in-button"
-    ) as HTMLButtonElement;
+    const signInButton = document.getElementById("sign-in-button") as HTMLButtonElement;
 
-    signInButton.addEventListener("click", async () => {
-        await signIn();
-    });
+    if (signInButton) {
+        signInButton.addEventListener("click", async () => {
+            await signIn();
+        });
+    } else {
+        console.error("Sign In button not found.");
+    }
 });
 
 async function loadUsers(): Promise<any[]> {
-    const response = await fetch("../data.json");
+    const response = await fetch("../db.json");
     if (!response.ok) {
         throw new Error("Failed to load users data.");
     }
@@ -17,18 +19,18 @@ async function loadUsers(): Promise<any[]> {
 }
 
 async function signIn(): Promise<void> {
-    const passwordElement = document.getElementById(
-        "password"
-    ) as HTMLInputElement;
+    const passwordElement = document.getElementById("password") as HTMLInputElement;
     const emailElement = document.getElementById("email") as HTMLInputElement;
-    const roleElement = document.getElementById("role") as HTMLInputElement;
-    const rememberElement = document.getElementById(
-        "remember"
-    ) as HTMLInputElement;
+    const rememberElement = document.getElementById("remember") as HTMLInputElement;
+
+    if (!passwordElement || !emailElement || !rememberElement) {
+        console.error("Required elements not found.");
+        alert("Required fields are missing.");
+        return;
+    }
 
     const password = passwordElement.value;
     const email = emailElement.value;
-    const role = roleElement.value;
     const remember = rememberElement.checked;
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -44,11 +46,7 @@ async function signIn(): Promise<void> {
     }
 
     try {
-        // const cost = 5;
-        // const hashRequest = await fetch(
-        //     "https://www.toptal.com/developers/bcrypt/api/generate-hash.json",
         const users = await loadUsers();
-
         const user = users.find((u: any) => u.email === email);
         if (!user) {
             alert("User not found. Please sign up.");
@@ -62,21 +60,18 @@ async function signIn(): Promise<void> {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
-                body: `password=${encodeURIComponent(
-                    password
-                )}&hash=${encodeURIComponent(user.passwordHash)}`,
+                body: `password=${encodeURIComponent(password)}&hash=${encodeURIComponent(user.passwordHash)}`,
             }
         );
 
         const checkData = await checkRequest.json();
 
         if (checkData.ok) {
+
             if (remember) {
                 localStorage.setItem("userEmail", email);
-                localStorage.setItem("role", role);
             } else {
                 sessionStorage.setItem("userEmail", email);
-                sessionStorage.setItem("role", role);
             }
 
             alert("Login successful!");

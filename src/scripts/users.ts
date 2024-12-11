@@ -76,7 +76,7 @@ export default function loadEmployeeProfile(): void {
     profileView.innerHTML = '<p class="loader">Loading...</p>';
 
     const fetchData = (): Promise<Employee[]> =>
-        fetch("../data.json").then((response) => response.json());
+        fetch("../db.json").then((response) => response.json());
 
     function loadProfile(data: Employee[], id: string | null): void {
         if (!id) {

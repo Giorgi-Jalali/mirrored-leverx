@@ -40,7 +40,7 @@ export default function toggleEmployeeView(): void {
     };
 
     const loadGridView = (filteredData: Employee[] | null = null): void => {
-        fetch("../data.json")
+        fetch("../db.json")
             .then((response) => response.json())
             .then((data: Employee[]) => {
                 gridView.innerHTML = "";
@@ -91,7 +91,7 @@ export default function toggleEmployeeView(): void {
     };
 
     const loadListView = (filteredData: Employee[] | null = null): void => {
-        fetch("../data.json")
+        fetch("../db.json")
             .then((response) => response.json())
             .then((data: Employee[]) => {
                 listView.innerHTML = "";
@@ -181,7 +181,7 @@ export default function toggleEmployeeView(): void {
         event.preventDefault();
         const searchQuery = searchInput.value.toLowerCase();
 
-        fetch("../data.json")
+        fetch("../db.json")
             .then((response) => response.json())
             .then((data: Employee[]) => {
                 const filteredData = data.filter((person) => {
