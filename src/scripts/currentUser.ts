@@ -1,3 +1,5 @@
+import backUrl from "./config";
+
 document.addEventListener("DOMContentLoaded", async () => {
     const email = localStorage.getItem("userEmail") || sessionStorage.getItem("userEmail");
 
@@ -13,15 +15,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 if (localStorage.getItem("userEmail")) {
                     localStorage.setItem("currentUserRole", user.role);
-                    localStorage.setItem("currentUserId", user._id);
+                    localStorage.setItem("currentUserId", user.id);
                 } else if (sessionStorage.getItem("userEmail")){
                     sessionStorage.setItem("currentUserRole", user.role);
-                    sessionStorage.setItem("currentUserId", user._id);
+                    sessionStorage.setItem("currentUserId", user.id);
                 }
 
                 
 
-                userLink.href = `../pages/users.html?id=${user._id}`;
+                userLink.href = `../pages/users.html?id=${user.id}`;
 
                 userName.textContent = `${user.first_name} ${user.last_name}`;
                 userImage.src = "." + user.user_avatar || "../assets/Sophia.png";
@@ -38,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadAll(): Promise<any[]> {
-    const response = await fetch("../db.json");
+    const response = await fetch(`${backUrl}`);
     if (!response.ok) {
         throw new Error("Failed to load users data.");
     }

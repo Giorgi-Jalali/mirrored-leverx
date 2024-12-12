@@ -1,24 +1,11 @@
+import backUrl from "./config";
 import infoContainer from "./infoContainer";
 
-const storedEmail = localStorage.getItem("userEmail") || sessionStorage.getItem("userEmail");
 const storedUserRole = localStorage.getItem("currentUserRole") || sessionStorage.getItem("currentUserRole");
 const storedUserId = localStorage.getItem("currentUserId") || sessionStorage.getItem("currentUserId");
-// let currentUser: any;
-
-// if (storedEmail) {
-//     try {
-//         const users = await loadAll();
-//         currentUser = users.find((user: any) => user.email === storedEmail);
-
-//     } catch (error) {
-//         console.error("Error fetching user data:", error);
-//     }
-// } else {
-//     console.error("No email found in storage.");
-// }
 
 async function loadAll(): Promise<any[]> {
-    const response = await fetch("../db.json");
+    const response = await fetch(`${backUrl}`);
     if (!response.ok) {
         throw new Error("Failed to load users data.");
     }
@@ -33,7 +20,7 @@ interface Manager {
 }
 
 interface Employee {
-    _id: string;
+    id: string;
     password: string;
     passwordHash: string;
     role: string;
@@ -92,7 +79,7 @@ export default function loadEmployeeProfile(): void {
     profileView.innerHTML = '<p class="loader">Loading...</p>';
 
     const fetchData = (): Promise<Employee[]> =>
-        fetch("../db.json").then((response) => response.json());
+        fetch(`${backUrl}`).then((response) => response.json());
 
     function loadProfile(data: Employee[], id: string | null): void {
         if (!id) {
@@ -101,7 +88,7 @@ export default function loadEmployeeProfile(): void {
         }
 
         const employee = data.find(
-            (person) => String(person._id) === String(id)
+            (person) => String(person.id) === String(id)
         );
         if (!employee) {
             window.location.href = "../pages/404.html";
@@ -272,7 +259,7 @@ export default function loadEmployeeProfile(): void {
 
             const employeeIndex = Number(employeeId) - 1;
 
-            fetch(`http://localhost:3000/${employeeIndex}`, {
+            fetch(`${backUrl}${employeeIndex}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
