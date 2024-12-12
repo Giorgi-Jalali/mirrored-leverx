@@ -17,6 +17,7 @@
             import settings from "../scripts/settings.ts";
             settings();
         </script>
+        <script type="module" src="../scripts/currentUser.ts" defer></script>
     </head>
     <body>
         <header>
@@ -29,7 +30,7 @@
 
             <div class="tabs">
                 <a href="../index.html" class="home-link-wrap">
-                    <p class="active-tab">Address Book</p>
+                    <p>Address Book</p>
                 </a>
                 <a href="./settings.html" class="home-link-wrap">
                     <p class="active-tab">Settings</p>
@@ -47,14 +48,14 @@
                     <p>SUPPORT</p>
                 </a>
 
-                <a href="../pages/users.html?id=1" class="nav-link">
+                <a href="./pages/users.html?id=1" class="nav-link" id="user-profile-link">
                     <img
-                        src="../assets/Sophia.png"
                         alt="Profile icon"
                         width="30px"
                         height="30px"
+                        id="user-image"
                     />
-                    <p>Sophia Thompson</p>
+                    <p id="user-name"></p>
                 </a>
 
                 <a href="#logout" class="nav-link" id="logout-button">
