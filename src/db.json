@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "_id": 1,
+      "id": 1,
       "role": "admin",
       "isRemoteWork": true,
       "password": "1234",
@@ -50,8 +50,7 @@
           "start_date": 1952558800000,
           "end_date": 2184311220002
         }
-      ],
-      "id": "68fd"
+      ]
     },
     {
       "id": "2",

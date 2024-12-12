@@ -87,11 +87,11 @@ export default function toggleEmployeeView(): void {
                         <div class="line"></div>
                         <div class="employee-job">
                             <div class="person-job">
-                                <img src=".//assets/suitcase.png" alt="Job icon" width="20px" height="20px"/>
+                                <img src="./assets/suitcase.png" alt="Job icon" width="20px" height="20px"/>
                                 <p>${person.department}</p>
                             </div>
                             <div class="person-job">
-                                <img src=".//assets/door.png" alt="ID icon" width="20px" height="20px"/>
+                                <img src="./assets/door.png" alt="ID icon" width="20px" height="20px"/>
                                 <p>${person.room}</p>
                             </div>
                         </div>
@@ -126,21 +126,21 @@ export default function toggleEmployeeView(): void {
                     <div class="list-header">
                         <div class="photo-name">
                             <div class="photo">
-                                <img src=".//assets/camera.png" alt="photo" width="15px" height="15px" />
+                                <img src="./assets/camera.png" alt="photo" width="15px" height="15px" />
                                 <p>Photo</p>
                             </div>
                             <div class="photo">
-                                <img src=".//assets/man-name.png" alt="photo" width="15px" height="15px" />
+                                <img src="./assets/man-name.png" alt="photo" width="15px" height="15px" />
                                 <p>Name</p>
                             </div>
                         </div>
                         <div class="dep-room">
                             <div class="photo">
-                                <img src=".//assets/suitcase.png" alt="photo" width="15px" height="15px" />
+                                <img src="./assets/suitcase.png" alt="photo" width="15px" height="15px" />
                                 <p>Department</p>
                             </div>
                             <div class="photo">
-                                <img src=".//assets/door.png" alt="photo" width="15px" height="15px" />
+                                <img src="./assets/door.png" alt="photo" width="15px" height="15px" />
                                 <p>Room</p>
                             </div>
                         </div>

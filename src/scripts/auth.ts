@@ -15,12 +15,6 @@ export default function auth() {
     const protectedPages = protectedPaths.map(path => `${baseUrl}${path}`);
 
     if (storedEmail) {
-
-        // if (userRole !== "admin" && currentUrl.endsWith("settings.html")) {
-        //     console.log("hello from not admin");
-        //     window.location.href = `${baseUrl}/index.html`;
-        //     return;
-        // } else 
         if (currentUrl.endsWith("/sign-in.html")) {
             console.log("hello from second");
             
