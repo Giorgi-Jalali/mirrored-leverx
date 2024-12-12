@@ -1,11 +1,11 @@
-import backUrl from "./config";
+import dbUrl from "./config";
 import infoContainer from "./infoContainer";
 
 const storedUserRole = localStorage.getItem("currentUserRole") || sessionStorage.getItem("currentUserRole");
 const storedUserId = localStorage.getItem("currentUserId") || sessionStorage.getItem("currentUserId");
 
 async function loadAll(): Promise<any[]> {
-    const response = await fetch(`${backUrl}`);
+    const response = await fetch(`${dbUrl}`);
     if (!response.ok) {
         throw new Error("Failed to load users data.");
     }
@@ -75,24 +75,28 @@ function formatDate(date: {
 // Main function to load employee profile
 export default function loadEmployeeProfile(): void {
     const profileView = document.querySelector("main") as HTMLElement;
+    const settingsTab = document.getElementById("settings-tab") as HTMLElement;
+
     const employeeId = getEmployeeIdFromURL();
 
     profileView.innerHTML = '<p class="loader">Loading...</p>';
 
     const fetchData = (): Promise<Employee[]> =>
-        fetch(`${backUrl}`).then((response) => response.json());
+        fetch(`${dbUrl}`).then((response) => response.json());
 
     function loadProfile(data: Employee[], id: string | null): void {
+        
         if (!id) {
-            window.location.href = "../pages/404.html";
+            window.location.href = "../404.html";
             return;
         }
 
         const employee = data.find(
             (person) => String(person.id) === String(id)
         );
+        
         if (!employee) {
-            window.location.href = "../pages/404.html";
+            window.location.href = "../404.html";
             return;
         }
 
@@ -258,7 +262,7 @@ export default function loadEmployeeProfile(): void {
                 cnumber: (document.querySelector("#c-number") as HTMLInputElement).value,
             };
 
-            fetch(`${backUrl}${employeeId}`, {
+            fetch(`${dbUrl}${employeeId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -295,9 +299,18 @@ export default function loadEmployeeProfile(): void {
 
     fetchData()
         .then((data) => {
-            loadProfile(data, employeeId);
+            const employees: Employee[] = data;
+
+                const currentUser = employees.find(person => person.id === storedUserId);
+
+                if (currentUser?.role !== "admin") {
+                    if (settingsTab) {
+                        settingsTab.style.display = "none";
+                    }
+                }
+            loadProfile(employees, employeeId);
         })
         .catch((error) => {
-            window.location.href = "../pages/404.html";
+            window.location.href = "../404.html";
         });
 }

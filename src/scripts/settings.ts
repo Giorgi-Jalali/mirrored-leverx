@@ -1,4 +1,4 @@
-import backUrl from "./config";
+import dbUrl from "./config";
 
 interface Employee {
     id: string;
@@ -12,20 +12,37 @@ interface Employee {
 }
 
 export default function settings() {
-    const settingsEmployees = document.getElementById("settings-Employees") as HTMLElement;
-    const storedUserId = localStorage.getItem("currentUserId") || sessionStorage.getItem("currentUserId");
+    const settingsEmployees = document.getElementById(
+        "settings-Employees"
+    ) as HTMLElement;
+    const storedUserId =
+        localStorage.getItem("currentUserId") ||
+        sessionStorage.getItem("currentUserId");
+
+    const settingsTab = document.getElementById("settings-tab") as HTMLElement;
 
     function fetchRoles(): void {
-        fetch(`${backUrl}`)
-            .then(response => response.json())
-            .then(data => {
+        fetch(`${dbUrl}`)
+            .then((response) => response.json())
+            .then((data) => {
                 const employees: Employee[] = data;
 
-                employees.forEach(person => {
+                const currentUser = employees.find(
+                    (person) => person.id === storedUserId
+                );
+
+                if (currentUser?.role !== "admin") {
+                    if (settingsTab) {
+                        settingsTab.style.display = "none";
+                    }
+                }
+
+                employees.forEach((person) => {
                     const employeeList = document.createElement("li");
                     employeeList.classList.add("roles-header");
 
-                    const isEmployee = person.role === "employee" ? "checked" : "";
+                    const isEmployee =
+                        person.role === "employee" ? "checked" : "";
                     const isHR = person.role === "hr" ? "checked" : "";
                     const isAdmin = person.role === "admin" ? "checked" : "";
 
@@ -39,8 +56,12 @@ export default function settings() {
                                     height="50px"
                                 />
                                 <div class="name">
-                                    <p>${person.first_name} ${person.last_name}/</p>
-                                    <p>${person.first_native_name} ${person.middle_native_name} ${person.last_native_name}</p>
+                                    <p>${person.first_name} ${
+                        person.last_name
+                    }/</p>
+                                    <p>${person.first_native_name} ${
+                        person.middle_native_name
+                    } ${person.last_native_name}</p>
                                 </div>
                             </div>
                             <div class="role-container">
@@ -50,16 +71,26 @@ export default function settings() {
                                     id="employee-${person.id}"
                                     class="role-button"
                                     ${isEmployee}
-                                    ${person.id == storedUserId ? "disabled" : ""}
+                                    ${
+                                        person.id == storedUserId
+                                            ? "disabled"
+                                            : ""
+                                    }
                                 />
-                                <label for="employee-${person.id}">employee</label>
+                                <label for="employee-${
+                                    person.id
+                                }">employee</label>
                                 <input
                                     type="radio"
                                     name="address-book-role-${person.id}"
                                     id="hr-${person.id}"
                                     class="role-button"
                                     ${isHR}
-                                    ${person.id == storedUserId ? "disabled" : ""}
+                                    ${
+                                        person.id == storedUserId
+                                            ? "disabled"
+                                            : ""
+                                    }
                                 />
                                 <label for="hr-${person.id}">hr</label>
                             </div>
@@ -73,7 +104,9 @@ export default function settings() {
                                     class="role-button"
                                     disabled
                                 />
-                                <label for="employee-vacation-${person.id}">employee</label>
+                                <label for="employee-vacation-${
+                                    person.id
+                                }">employee</label>
                                 <input
                                     type="radio"
                                     name="vacation-role-${person.id}"
@@ -97,7 +130,11 @@ export default function settings() {
                                     name="address-book-role-${person.id}"
                                     id="admin-${person.id}"
                                     class="role-button"
-                                    ${person.id == storedUserId ? "disabled" : ""}
+                                    ${
+                                        person.id == storedUserId
+                                            ? "disabled"
+                                            : ""
+                                    }
                                     ${isAdmin}
                                 />
                                 <label for="admin-${person.id}">admin</label>
@@ -106,41 +143,50 @@ export default function settings() {
                     `;
                     settingsEmployees.appendChild(employeeList);
 
-                    document.querySelectorAll(`input[name="address-book-role-${person.id}"]`).forEach((input) => {
+                    document
+                        .querySelectorAll(
+                            `input[name="address-book-role-${person.id}"]`
+                        )
+                        .forEach((input) => {
+                            const inputElement = input as HTMLInputElement;
+                            inputElement.addEventListener("change", (event) => {
+                                if (
+                                    storedUserId !== person.id &&
+                                    inputElement.checked
+                                ) {
+                                    const updatedRole =
+                                        inputElement.id.split("-")[0];
+                                    const updatedEmployee = {
+                                        ...person,
+                                        role: updatedRole,
+                                    };
 
-                        const inputElement = input as HTMLInputElement;
-                        inputElement.addEventListener("change", (event) => {
-                            if (storedUserId !== person.id && inputElement.checked) {
-                                const updatedRole = inputElement.id.split('-')[0];
-                                const updatedEmployee = {
-                                    ...person,
-                                    role: updatedRole,
-                                };
-
-                                updateRole(updatedEmployee);
-                            }
+                                    updateRole(updatedEmployee);
+                                }
+                            });
                         });
-                    });
                 });
             });
     }
 
     function updateRole(updatedEmployee: Employee): void {
-
-        fetch(`${backUrl}${updatedEmployee.id}`, {
+        fetch(`${dbUrl}${updatedEmployee.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ ...updatedEmployee, role: updatedEmployee.role }),
+            body: JSON.stringify({
+                ...updatedEmployee,
+                role: updatedEmployee.role,
+            }),
         })
-        .then(response => response.json())
-        .then(updated => {
-            console.log("Role updated successfully", updated);
-        })
-        .catch(error => {
-            console.error("Error updating role:", error);
-        });
+            .then((response) => response.json())
+            .then((updated) => {
+                console.log("Role updated successfully", updated);
+            })
+            .catch((error) => {
+                console.error("Error updating role:", error);
+            });
     }
 
     fetchRoles();

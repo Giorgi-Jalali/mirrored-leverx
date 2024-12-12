@@ -1,4 +1,4 @@
-import backUrl from "./config";
+import dbUrl from "./config";
 
 document.addEventListener("DOMContentLoaded", () => {
     const signInButton = document.getElementById("sign-in-button") as HTMLButtonElement;
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function loadUsers(): Promise<any[]> {
-    const response = await fetch(`${backUrl}`);
+    const response = await fetch(`${dbUrl}`);
     if (!response.ok) {
         throw new Error("Failed to load users data.");
     }

@@ -1,3 +1,3 @@
-const backUrl = "http://localhost:3000/users/";
+const dbUrl = "http://localhost:3000/users/";
 
-export default backUrl;
+export default dbUrl;

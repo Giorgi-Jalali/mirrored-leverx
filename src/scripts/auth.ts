@@ -1,26 +1,39 @@
 export default function auth() {
-    const localEmail = localStorage.getItem("userEmail");
-    const sessionEmail = sessionStorage.getItem("userEmail");
+    const storedUserId = localStorage.getItem("currentUserId") || sessionStorage.getItem("currentUserId");
+    const userRole = localStorage.getItem("userRole") || sessionStorage.getItem("userRole");
+    const storedEmail = localStorage.getItem("userEmail") || sessionStorage.getItem("userEmail");
 
     const currentUrl = window.location.href;
     const baseUrl = window.location.origin;
 
     const protectedPaths = [
-        "/",
         "/index.html",
-        "/pages/users.html",
+        "/users.html",
+        "/settings.html",
     ];
-
+    
     const protectedPages = protectedPaths.map(path => `${baseUrl}${path}`);
 
+    if (storedEmail) {
 
-    if (localEmail || sessionEmail) {
-        if (currentUrl.endsWith("sign-in.html") && !currentUrl.endsWith("index.html")) {
+        // if (userRole !== "admin" && currentUrl.endsWith("settings.html")) {
+        //     console.log("hello from not admin");
+        //     window.location.href = `${baseUrl}/index.html`;
+        //     return;
+        // } else 
+        if (currentUrl.endsWith("/sign-in.html")) {
+            console.log("hello from second");
+            
             window.location.href = `${baseUrl}/index.html`;
+            return;
         }
+
     } else {
-        if (protectedPages.some((page) => currentUrl.startsWith(page)) && !currentUrl.endsWith("sign-in.html")) {
-            window.location.href = `${baseUrl}/pages/sign-in.html`;
-        }   
+        if (protectedPages.some((page) => currentUrl.startsWith(page))) {
+            console.log("hello from 3");
+
+            window.location.href = `${baseUrl}/sign-in.html`;
+            return;
+        }
     }
 }

@@ -1,4 +1,4 @@
-import backUrl from "./config";
+import dbUrl from "./config";
 
 export default function toggleEmployeeView(): void {
     const gridRadio = document.getElementById("grid") as HTMLInputElement;
@@ -9,15 +9,9 @@ export default function toggleEmployeeView(): void {
     ) as HTMLElement;
 
     const storedUserRole = localStorage.getItem("currentUserRole") || sessionStorage.getItem("currentUserRole");
+    const storedUserId = localStorage.getItem("currentUserId") || sessionStorage.getItem("currentUserId");
 
     const settingsTab = document.getElementById("settings") as HTMLElement;
-
-    if (storedUserRole === "admin") {
-        settingsTab.style.display = "inline-block";
-    } else {
-        settingsTab.style.display = "none";
-    }
-
 
     const basicLabel = document.getElementById("basic-label") as HTMLElement;
     const advancedLabel = document.getElementById(
@@ -47,17 +41,26 @@ export default function toggleEmployeeView(): void {
         id: string;
         first_name: string;
         last_name: string;
+        role: string;
         user_avatar: string;
         department: string;
         room: string;
     };
 
     const loadGridView = (filteredData: Employee[] | null = null): void => {
-        fetch(`${backUrl}`)
+        fetch(`${dbUrl}`)
             .then((response) => response.json())
             .then((data: Employee[]) => {
                 gridView.innerHTML = "";
                 const employees = filteredData || data;
+
+                const currentUser = employees.find(person => person.id === storedUserId);
+
+                if (currentUser?.role !== "admin") {
+                    if (settingsTab) {
+                        settingsTab.style.display = "none";
+                    }
+                }
 
                 if (employees.length === 0) {
                     gridView.style.display = "flex";
@@ -76,7 +79,7 @@ export default function toggleEmployeeView(): void {
                     gridView.style.display = "grid";
 
                     employeeDiv.innerHTML = `
-                    <a href="../pages/users.html?id=${person.id}" class="employee-link">
+                    <a href="../users.html?id=${person.id}" class="employee-link">
                         <div class="image-center">
                             <img src="${person.user_avatar}" alt="${person.first_name} ${person.last_name}" width="120px" height="120px"/>
                             <p class="employee-name">${person.first_name} ${person.last_name}</p>
@@ -104,7 +107,7 @@ export default function toggleEmployeeView(): void {
     };
 
     const loadListView = (filteredData: Employee[] | null = null): void => {
-        fetch(`${backUrl}`)
+        fetch(`${dbUrl}`)
             .then((response) => response.json())
             .then((data: Employee[]) => {
                 listView.innerHTML = "";
@@ -151,7 +154,7 @@ export default function toggleEmployeeView(): void {
                     employeeItem.classList.add("employee-list");
 
                     employeeItem.innerHTML = `
-                    <a href="../pages/users.html?id=${person.id}" class="list-employee-view">
+                    <a href="../users.html?id=${person.id}" class="list-employee-view">
                     <div class="person-image-name">
                     <img src="${person.user_avatar}" alt="${person.first_name} ${person.last_name}" width="60px" height="60px" />
                     <p class="employee-name">${person.first_name} ${person.last_name}</p>
@@ -194,7 +197,7 @@ export default function toggleEmployeeView(): void {
         event.preventDefault();
         const searchQuery = searchInput.value.toLowerCase();
 
-        fetch(`${backUrl}`)
+        fetch(`${dbUrl}`)
             .then((response) => response.json())
             .then((data: Employee[]) => {
                 const filteredData = data.filter((person) => {

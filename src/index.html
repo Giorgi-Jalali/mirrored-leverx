@@ -9,6 +9,10 @@
             import auth from "./scripts/auth.ts";
             auth();
         </script>
+        <script type="module">
+            import protectHomePage from "./scripts/protectHomePage.ts";
+            protectHomePage();
+        </script>
         <script type="module" >
             import toggleEmployeeView from "./scripts/toggleEmployeeView.ts";
             toggleEmployeeView();
@@ -34,7 +38,7 @@
                 <a href="index.html" class="home-link-wrap">
                     <p class="active-tab">Address Book</p>
                 </a>
-                <a href="../pages/settings.html" class="home-link-wrap" id="settings">
+                <a href="../settings.html" class="home-link-wrap" id="settings">
                     <p>Settings</p>
                 </a>
             </div>
@@ -50,7 +54,7 @@
                     <p>SUPPORT</p>
                 </a>
 
-                <a href="./pages/users.html?id=1" class="nav-link" id="user-profile-link">
+                <a href="./users.html?id=1" class="nav-link" id="user-profile-link">
                     <img
                         alt="Profile icon"
                         width="30px"
@@ -91,7 +95,7 @@
                             height="20px"
                             class="search"
                         />
-                        <form action="pages/404.html" method="GET">
+                        <form action="./404.html" method="GET">
                             <input
                                 type="text"
                                 class="search-input"

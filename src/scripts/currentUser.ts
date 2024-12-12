@@ -1,4 +1,4 @@
-import backUrl from "./config";
+import dbUrl from "./config";
 
 document.addEventListener("DOMContentLoaded", async () => {
     const email = localStorage.getItem("userEmail") || sessionStorage.getItem("userEmail");
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 
 
-                userLink.href = `../pages/users.html?id=${user.id}`;
+                userLink.href = `../users.html?id=${user.id}`;
 
                 userName.textContent = `${user.first_name} ${user.last_name}`;
                 userImage.src = "." + user.user_avatar || "../assets/Sophia.png";
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadAll(): Promise<any[]> {
-    const response = await fetch(`${backUrl}`);
+    const response = await fetch(`${dbUrl}`);
     if (!response.ok) {
         throw new Error("Failed to load users data.");
     }
