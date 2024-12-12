@@ -1,56 +1,57 @@
 {
   "users": [
     {
-        "_id": 1,
-        "role": "admin",
-        "isRemoteWork": true,
-        "password": "1234",
-        "passwordHash": "$2b$05$GRUMVCHj0CIXwu7nBEjRMe0L0uIv43Xy0EsklN4JWQGozhZ8iyUE2",
-        "user_avatar": "./assets/Sophia.png",
-        "first_name": "Sophia",
-        "last_name": "Thompson",
-        "first_native_name": "Sophia",
-        "last_native_name": "Thompson",
-        "middle_native_name": "G.",
-        "department": "Web & Mobile",
-        "building": "Pilsudskiego 65 (Poland)",
-        "room": "1404",
-        "date_birth": {
-            "year": 1901,
-            "month": 1,
-            "day": 1
+      "_id": 1,
+      "role": "admin",
+      "isRemoteWork": true,
+      "password": "1234",
+      "passwordHash": "$2b$05$GRUMVCHj0CIXwu7nBEjRMe0L0uIv43Xy0EsklN4JWQGozhZ8iyUE2",
+      "user_avatar": "./assets/Sophia.png",
+      "first_name": "Sophia",
+      "last_name": "Thompson",
+      "first_native_name": "Sophia",
+      "last_native_name": "Thompson",
+      "middle_native_name": "G.",
+      "department": "Web & Mobile",
+      "building": "Pilsudskiego 65 (Poland)",
+      "room": "1404",
+      "date_birth": {
+        "year": 1901,
+        "month": 1,
+        "day": 1
+      },
+      "desk_number": 20,
+      "manager": {
+        "id": null,
+        "first_name": null,
+        "last_name": null
+      },
+      "phone": "+12931293129",
+      "email": "sophia@sophia.com",
+      "skype": "live:.cid.21asd41jd1m132",
+      "cnumber": "C5336116",
+      "citizenship": "Georgia",
+      "visa": [
+        {
+          "issuing_country": "Poland",
+          "type": "National visa type D",
+          "start_date": 1652158800000,
+          "end_date": 1683608400000
         },
-        "desk_number": 20,
-        "manager": {
-            "id": null,
-            "first_name": null,
-            "last_name": null
+        {
+          "issuing_country": "Georgia",
+          "type": "National visa type D",
+          "start_date": 1952558800000,
+          "end_date": 2683108400000
         },
-        "phone": "+12931293129",
-        "email": "sophia@sophia.com",
-        "skype": "live:.cid.21asd41jd1m132",
-        "cnumber": "C5336116",
-        "citizenship": "Georgia",
-        "visa": [
-            {
-                "issuing_country": "Poland",
-                "type": "National visa type D",
-                "start_date": 1652158800000,
-                "end_date": 1683608400000
-            },
-            {
-                "issuing_country": "Georgia",
-                "type": "National visa type D",
-                "start_date": 1952558800000,
-                "end_date": 2683108400000
-            },
-            {
-                "issuing_country": "Spain",
-                "type": "National visa type J",
-                "start_date": 1952558800000,
-                "end_date": 2184311220002
-            }
-        ]
+        {
+          "issuing_country": "Spain",
+          "type": "National visa type J",
+          "start_date": 1952558800000,
+          "end_date": 2184311220002
+        }
+      ],
+      "id": "68fd"
     },
     {
       "id": "2",

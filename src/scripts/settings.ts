@@ -21,9 +21,6 @@ export default function settings() {
             .then(data => {
                 const employees: Employee[] = data;
 
-                console.log("json-server: ", employees);
-
-
                 employees.forEach(person => {
                     const employeeList = document.createElement("li");
                     employeeList.classList.add("roles-header");
@@ -110,6 +107,7 @@ export default function settings() {
                     settingsEmployees.appendChild(employeeList);
 
                     document.querySelectorAll(`input[name="address-book-role-${person.id}"]`).forEach((input) => {
+
                         const inputElement = input as HTMLInputElement;
                         inputElement.addEventListener("change", (event) => {
                             if (storedUserId !== person.id && inputElement.checked) {
@@ -119,7 +117,7 @@ export default function settings() {
                                     role: updatedRole,
                                 };
 
-                                updateRoleInDb(updatedEmployee);
+                                updateRole(updatedEmployee);
                             }
                         });
                     });
@@ -127,14 +125,14 @@ export default function settings() {
             });
     }
 
-    function updateRoleInDb(updatedEmployee: Employee): void {
+    function updateRole(updatedEmployee: Employee): void {
 
         fetch(`${backUrl}${updatedEmployee.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ role: updatedEmployee.role }),
+            body: JSON.stringify({ ...updatedEmployee, role: updatedEmployee.role }),
         })
         .then(response => response.json())
         .then(updated => {
