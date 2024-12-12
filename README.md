@@ -14,14 +14,14 @@
 
 ### How to launch the app
 
-Browser extension - "Cross Domain - CORS"
+Browser extension - "Cross Domain - CORS" (without it there is a CORS error)
 
 - npm i
 
 It needs two terminals
 
 - npm run dev
-- npm run serve (for json-server)
+- npm run server (for json-server)
 
 
 ### How to test
@@ -55,4 +55,4 @@ Users should be able to:
 
 ## Author
 
-- [Giorgi Jalali]
+- Giorgi Jalali
