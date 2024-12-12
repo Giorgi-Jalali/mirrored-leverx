@@ -16,16 +16,12 @@ export default function auth() {
 
     if (storedEmail) {
         if (currentUrl.endsWith("/sign-in.html")) {
-            console.log("hello from second");
-            
             window.location.href = `${baseUrl}/index.html`;
             return;
         }
 
     } else {
         if (protectedPages.some((page) => currentUrl.startsWith(page))) {
-            console.log("hello from 3");
-
             window.location.href = `${baseUrl}/sign-in.html`;
             return;
         }

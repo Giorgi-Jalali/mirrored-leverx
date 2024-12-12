@@ -12,21 +12,20 @@ export default function protectHomePage() {
     const baseUrl = window.location.origin;
 
     const protectedPages = protectedPaths.map(path => `${baseUrl}${path}`);
+    
+    if (!protectedPaths.some(path => currentPath.startsWith(path))) {
+        window.location.href = `${baseUrl}/index.html`;
+    }
 
     if (storedEmail) {
-        if (!protectedPaths.some(path => currentPath.includes(path))) {
+        if (!protectedPaths.some(path => currentPath.startsWith(path))) {
             window.location.href = `${baseUrl}/index.html`;
             return;
         }
     } else {
         if (protectedPages.some((page) => currentPath.startsWith(page))) {
-            console.log("Redirecting to sign-in...");
             window.location.href = `${baseUrl}/sign-in.html`;
             return;
         }
-    }
-
-    if (!protectedPaths.some(path => currentPath.includes(path))) {
-        window.location.href = `${baseUrl}/index.html`;
     }
 }
