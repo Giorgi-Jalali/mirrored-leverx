@@ -26,6 +26,7 @@ interface Employee {
     role: string;
     first_name: string;
     last_name: string;
+    user_avatar: string;
     first_native_name: string;
     last_native_name: string;
     middle_native_name: string;
@@ -100,7 +101,7 @@ export default function loadEmployeeProfile(): void {
                 <div class="back">
                     <img src="../assets/less.png" alt="Back arrow" width="15px" height="15px"/>
                 </div>
-                <img src="../assets/${employee.first_name}.png" alt="${
+                <img src=${"." + employee.user_avatar} alt="${
             employee.first_name
         } ${employee.last_name}" width="120px" height="120px"/>
                 
@@ -257,9 +258,7 @@ export default function loadEmployeeProfile(): void {
                 cnumber: (document.querySelector("#c-number") as HTMLInputElement).value,
             };
 
-            const employeeIndex = Number(employeeId) - 1;
-
-            fetch(`${backUrl}${employeeIndex}`, {
+            fetch(`${backUrl}${employeeId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
