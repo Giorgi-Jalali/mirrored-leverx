@@ -4,6 +4,7 @@
 
 - [Overview](#overview)
   - [How to launch the app](#how-to-launch-the-app)
+  - [How to test](#how-to-test)
   - [The challenge](#the-challenge)
 - [My process](#my-process)
   - [Technical Requirements](#technical-requirements)
@@ -12,6 +13,8 @@
 ## Overview
 
 ### How to launch the app
+
+Browser extension - "Cross Domain - CORS"
 
 - npm i
 
@@ -24,9 +27,11 @@ It needs two terminals
 ### How to test
 
 - Admin - sophia@sophia.com - password: 1234
+- Admin - mitchell@mitchell.com - password: 12345
 - HR - james@james.com - password: 123
 - Employee with manager - olivia@olivia.com - password: abc
-- Employee without manager - mitchell@mitchell.com - password: 12345
+- Employee with manager - ethan@ethan.com - password: ggg
+- Employee without manager - benjamin@benjamin.com - password: 1212
 
 
 ### The challenge
@@ -50,4 +55,4 @@ Users should be able to:
 
 ## Author
 
-- LinkedIn - [Giorgi Jalali](https://www.linkedin.com/in/giorgi-jalali-0336b8225/)
+- [Giorgi Jalali]
