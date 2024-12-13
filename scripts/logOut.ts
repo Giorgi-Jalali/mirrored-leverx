@@ -1,13 +1,8 @@
 export default function logOut(event: MouseEvent): void {
     event.preventDefault();
 
-    const localHash = localStorage.getItem("userEmail");
-    const sessionHash = sessionStorage.getItem("userEmail");
+    localStorage.removeItem("userEmail");
+    sessionStorage.removeItem("userEmail");
 
-    if (localHash || sessionHash) {
-        localStorage.removeItem("userEmail");
-        sessionStorage.removeItem("userEmail");
-        
-        window.location.href = "./pages/sign-in.html";
-    }
+    window.location.href = "../pages/sign-in.html";
 }
