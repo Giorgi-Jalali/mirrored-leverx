@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
+  // mode: "production",
   entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
@@ -25,58 +26,24 @@ module.exports = {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(ico|png|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name][ext]',
+        },
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
     }),
   ],
   devServer: {
     static: './dist',
-    port: 3001,
+    port: 3000,
     open: true,
   },
 };
-
-
-
-// const path = require("path");
-// const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-// module.exports = {
-//     mode: "development",
-//     // mode: "production",
-//     entry: "./src/index.tsx",
-//     output: {
-//         filename: "bundle.js",
-//         path: path.resolve(__dirname, "dist"),
-//         clean: true,
-//     },
-//     resolve: {
-//         extensions: [".js", ".ts", ".tsx"],
-//     },
-//     module: {
-//         rules: [
-//             {
-//                 test: /\.tsx?$/,
-//                 use: "ts-loader",
-//                 exclude: /node_modules/,
-//             },
-//             {
-//                 test: /\.scss$/,
-//                 use: ["style-loader", "css-loader", "sass-loader"],
-//             },
-//         ],
-//     },
-//     plugins: [
-//         new HtmlWebpackPlugin({
-//             template: "./src/index.html",
-//         }),
-//     ],
-//     devServer: {
-//         static: "./dist",
-//         port: 3001,
-//         open: true,
-//     },
-// };

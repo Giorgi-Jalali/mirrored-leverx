@@ -3,14 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build2": "vite build",
-    "serve": "vite preview",
     "start3": "webpack serve",
     "build3": "webpack",
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "server": "json-server --watch ./src/db.json --port 3000"
+    "server": "json-server --watch ./src/db.json --port 3001"
   },
   "author": "",
   "license": "ISC",
@@ -31,7 +28,6 @@
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.7.2",
-    "vite": "^6.0.3",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.2.0"

@@ -1,0 +1,59 @@
+import React from "react";
+
+type Employee = {
+    id: string;
+    first_name: string;
+    last_name: string;
+    role: string;
+    user_avatar: string;
+    department: string;
+    room: string;
+  };
+
+
+type GridViewProps = {
+    employees: Employee[];
+  };
+  
+  const GridView: React.FC<GridViewProps> = ({ employees }) => {
+    if (employees.length === 0) {
+      return (
+        <div className="not-found">
+          <img src="../assets/404.png" alt="not found" width="400px" height="225px" />
+        </div>
+      );
+    }
+  
+    return (
+      <ul className="section-body" style={{ display: "grid" }}>
+        {employees.map((person) => (
+          <li key={person.id} className="employee">
+            <a href={`../users.html?id=${person.id}`} className="employee-link">
+              <div className="image-center">
+                <img
+                  src={person.user_avatar}
+                  alt={`${person.first_name} ${person.last_name}`}
+                  width="120px"
+                  height="120px"
+                />
+                <p className="employee-name">{`${person.first_name} ${person.last_name}`}</p>
+              </div>
+              <div className="line"></div>
+              <div className="employee-job">
+                <div className="person-job">
+                  <img src="./assets/suitcase.png" alt="Job icon" width="20px" height="20px" />
+                  <p>{person.department}</p>
+                </div>
+                <div className="person-job">
+                  <img src="./assets/door.png" alt="Room icon" width="20px" height="20px" />
+                  <p>{person.room}</p>
+                </div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
+  export default GridView;
