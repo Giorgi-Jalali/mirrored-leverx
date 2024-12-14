@@ -1,16 +1,15 @@
 
 
 @use "../abstracts/var";
-@use "../base/typography";
 
-main {
+.sign-in-main {
     background-color: var.$white;
     width: 25em;
     box-shadow: var.$card-box-shadow;
     border-radius: 2em;
     border: 1px solid var.$input-border;
     padding: 2em;
-    margin: 0 auto;
+    margin: 10% auto;
 }
 
 form {

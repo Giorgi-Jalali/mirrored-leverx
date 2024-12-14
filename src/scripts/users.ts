@@ -1,16 +1,8 @@
-import dbUrl from "./config";
+import {dbUrl} from "../components/App";
 import infoContainer from "./infoContainer";
 
 const storedUserRole = localStorage.getItem("currentUserRole") || sessionStorage.getItem("currentUserRole");
 const storedUserId = localStorage.getItem("currentUserId") || sessionStorage.getItem("currentUserId");
-
-async function loadAll(): Promise<any[]> {
-    const response = await fetch(`${dbUrl}`);
-    if (!response.ok) {
-        throw new Error("Failed to load users data.");
-    }
-    return await response.json();
-}
 
 // Define types for employee and manager
 interface Manager {

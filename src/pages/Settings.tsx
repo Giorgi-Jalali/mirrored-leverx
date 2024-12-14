@@ -43,7 +43,7 @@ const Settings: React.FC<ISettingsProps> = ({ employees }) => {
 
     if (updatedEmployee) {
       const updatedData = { ...updatedEmployee, role: newRole };
-      fetch(`${dbUrl}/${employeeId}`, {
+      fetch(`${dbUrl}${employeeId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

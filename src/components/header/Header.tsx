@@ -6,6 +6,21 @@ import question from "../../assets/question.png";
 import logOut from "../../assets/logout.png";
 
 export default function Header() {
+
+    const handleLogout = (event: MouseEvent): void => {
+        event.preventDefault();
+
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("currentUserRole");
+    localStorage.removeItem("currentUserId");
+
+    sessionStorage.removeItem("userEmail");
+    sessionStorage.removeItem("currentUserRole");
+    sessionStorage.removeItem("currentUserId");
+
+    // window.location.href = `${window.location.origin}/sign-in.html`;
+      };
+
     return (
         <header>
             <Link to="/" className="home-link-wrap">
@@ -40,7 +55,7 @@ export default function Header() {
                 </Link>
 
                 <Link
-                    to="./users/?id=1"
+                    to="./user/1"
                     className="nav-link"
                     id="user-profile-link"
                 >
@@ -54,7 +69,7 @@ export default function Header() {
                     <p id="user-name"></p>
                 </Link>
 
-                <Link to="#logout" className="nav-link" id="logout-button">
+                <Link to="#logout" className="nav-link" id="logout-button"  onClick={handleLogout}>
                     <img
                         src={logOut}
                         alt="Logout icon"

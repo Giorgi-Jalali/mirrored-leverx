@@ -14,7 +14,7 @@
 }
 
 
-main {
+.user-main {
     width: 90%;
     max-width: 1920px;
     display: flex;
@@ -28,7 +28,7 @@ main {
     margin: 25% 50%;
 }
 
-aside {
+.user-aside {
     position: relative;
     background-color: var.$white;
     flex: 1;
@@ -88,7 +88,7 @@ aside {
     }
 }
 
-section {
+.user-section {
     background-color: var.$white;
     color: var.$gray;
     flex: 2;
