@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import "../sass/base/_base.scss";
+import "../sass/base/_typography.scss";
+
+
 import Home from '../pages/Home';
 import Users from '../pages/Users';
 import Settings from '../pages/Settings';
@@ -18,10 +22,11 @@ type Employee = {
   room: string;
 };
 
+export const dbUrl = "http://localhost:3001/users";
+
 const UserProfile = ({ id }: { id: string }) => <h1>User Profile: {id}</h1>;
 
 const App: React.FC = () => {
-  const dbUrl = "http://localhost:3001/users";
 
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -42,7 +47,7 @@ const App: React.FC = () => {
       <Header />
       <Routes>
         <Route 
-          path="/" 
+          path="/home" 
           element={
             <Home 
               employees={employees} 
@@ -52,7 +57,8 @@ const App: React.FC = () => {
           } 
         />
         <Route path="/users" element={<Users />} />
-        <Route path="/settings" element={<Settings />} />
+        {/* <Route path="/settings" element={<Settings employees={employees} />} /> */}
+        <Route path="/" element={<Settings employees={employees} />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/users/:id" element={<UserProfile id={''} />} />
       </Routes>

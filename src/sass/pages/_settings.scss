@@ -1,15 +1,8 @@
-@use "../vendors/normalize";
+
 
 @use "../abstracts/var";
-@use "../layout/header";
-@use "../base/typography";
 
-body {
-    font-family: var.$font-family;
-    background-color: var.$background-color;
-}
-
-main {
+.settings-main {
     width: 90%;
     max-width: 1920px;
     display: flex;
@@ -38,26 +31,23 @@ main {
     gap: 3em;
 }
 
-.left-header {
-    width: 60%;
-    display: flex;
-    align-items: center;
-    gap: 3em;
+.settings-left-header {
+    width: 40%;
+    position: relative;
+    border-radius: 1em;
+
 }
 
-.column-header {
+.settings-right-header {
+    width: 40%;
+
     display: flex;
     align-items: center;
     gap: 2em;
 }
 
-.basic-content {
-    width: 50%;
-    position: relative;
-    border-radius: 1em;
-}
 
-.search {
+.settings-search {
     position: absolute;
     left: 0.6em;
     top: 0.6em;
@@ -80,14 +70,6 @@ main {
     opacity: 0.3;
 }
 
-.right-header {
-    width: 40%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 3em;
-}
-
 .roles-list {
     background-color: var.$white;
     padding: 2em;
@@ -95,14 +77,16 @@ main {
 }
 
 .basic-content-list {
-    width: 50%;
+    width: 40%;
     display: flex;
     align-items: center;
     gap: 1em;
 }
 
 .role-container {
+    width: 40%;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -135,6 +119,10 @@ main {
         color: var.$white;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
+}
+
+.checked-color {
+    color: var.$white;
 }
 
 .roles-footer {

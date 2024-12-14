@@ -1,0 +1,60 @@
+@use "../../abstracts/var";
+
+.basic-content {
+  background-color: var.$white;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.basic-content button {
+  width: 100%;
+  padding: 10px;
+  background-color: var.$button-bg-color;
+  color: var.$white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.basic-content button:hover {
+  background-color: var.$button-hover-bg-color;
+}
+
+.basic-content input,
+.advanced-content input,
+.advanced-content select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid var.$input-border;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.basic-content input {
+  padding: 10px 40px;
+}
+
+.search {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 10px 140px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background-color: var.$search-input;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  }

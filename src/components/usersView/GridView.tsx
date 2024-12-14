@@ -1,5 +1,10 @@
 import React from "react";
 
+
+import suitcase from "../../assets/suitcase.png";
+import door from "../../assets/door.png";
+import notFound from "../../assets/404.png";
+
 type Employee = {
     id: string;
     first_name: string;
@@ -19,7 +24,7 @@ type GridViewProps = {
     if (employees.length === 0) {
       return (
         <div className="not-found">
-          <img src="../assets/404.png" alt="not found" width="400px" height="225px" />
+          <img src={notFound} alt="not found" width="400px" height="225px" />
         </div>
       );
     }
@@ -41,11 +46,11 @@ type GridViewProps = {
               <div className="line"></div>
               <div className="employee-job">
                 <div className="person-job">
-                  <img src="./assets/suitcase.png" alt="Job icon" width="20px" height="20px" />
+                  <img src={suitcase} alt="Job icon" width="20px" height="20px" />
                   <p>{person.department}</p>
                 </div>
                 <div className="person-job">
-                  <img src="./assets/door.png" alt="Room icon" width="20px" height="20px" />
+                  <img src={door} alt="Room icon" width="20px" height="20px" />
                   <p>{person.room}</p>
                 </div>
               </div>

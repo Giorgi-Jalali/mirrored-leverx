@@ -1,13 +1,7 @@
-@use "../vendors/normalize";
+
 
 @use "../abstracts/var";
 @use "../base/typography";
-
-body {
-    font-family: var.$font-family;
-    background-color: var.$background-color;
-    padding-top: 8rem;
-}
 
 main {
     background-color: var.$white;

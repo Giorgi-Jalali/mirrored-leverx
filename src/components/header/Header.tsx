@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../sass/layout/_header.scss";
-import questionIcon from "/src/assets/question.png";
-import logoutIcon from "/src/assets/logout.png";
+
+import question from "../../assets/question.png";
+import logOut from "../../assets/logout.png";
 
 export default function Header() {
     return (
@@ -30,7 +31,7 @@ export default function Header() {
             <nav>
                 <Link to="#support" className="nav-link">
                     <img
-                        src={questionIcon}
+                        src={question}
                         alt="Support icon"
                         width="30px"
                         height="30px"
@@ -44,7 +45,7 @@ export default function Header() {
                     id="user-profile-link"
                 >
                     <img
-                        src={questionIcon}
+                        src={question}
                         alt="Profile icon"
                         width="30px"
                         height="30px"
@@ -55,7 +56,7 @@ export default function Header() {
 
                 <Link to="#logout" className="nav-link" id="logout-button">
                     <img
-                        src={logoutIcon}
+                        src={logOut}
                         alt="Logout icon"
                         width="30px"
                         height="30px"

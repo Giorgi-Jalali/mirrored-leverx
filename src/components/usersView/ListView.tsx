@@ -1,5 +1,13 @@
 import React from "react";
 
+import notFound from "../../assets/404.png";
+import camera from "../../assets/camera.png";
+import manName from "../../assets/man-name.png";
+import suitcase from "../../assets/suitcase.png";
+import door from "../../assets/door.png";
+
+
+
 type Employee = {
     id: string;
     first_name: string;
@@ -18,7 +26,7 @@ type Employee = {
     if (employees.length === 0) {
       return (
         <div className="not-found">
-          <img src="../assets/404.png" alt="not found" width="400px" height="225px" />
+          <img src={notFound} alt="not found" width="400px" height="225px" />
         </div>
       );
     }
@@ -28,21 +36,21 @@ type Employee = {
         <div className="list-header">
           <div className="photo-name">
             <div className="photo">
-              <img src="./assets/camera.png" alt="Photo icon" width="15px" height="15px" />
+              <img src={camera} alt="Photo icon" width="15px" height="15px" />
               <p>Photo</p>
             </div>
             <div className="photo">
-              <img src="./assets/man-name.png" alt="Name icon" width="15px" height="15px" />
+              <img src={manName} alt="Name icon" width="15px" height="15px" />
               <p>Name</p>
             </div>
           </div>
           <div className="dep-room">
             <div className="photo">
-              <img src="./assets/suitcase.png" alt="Job icon" width="15px" height="15px" />
+              <img src={suitcase} alt="Job icon" width="15px" height="15px" />
               <p>Department</p>
             </div>
             <div className="photo">
-              <img src="./assets/door.png" alt="Room icon" width="15px" height="15px" />
+              <img src={door} alt="Room icon" width="15px" height="15px" />
               <p>Room</p>
             </div>
           </div>
