@@ -7,6 +7,8 @@ import logOut from "../../assets/logout.png";
 import notFound from "../../assets/not-found.png";
 import SignIn from "../../pages/SignIn";
 
+import HeaderButton from "./HeaderButton";
+
 interface Manager {
   id: string;
   first_name: string;
@@ -72,52 +74,43 @@ const Header: React.FC<HeaderProps> = ({ currentUser, setIsAuthenticated }) => {
         </Link>
         {storedUserRole === "admin" && (
           <Link
-          to="../settings"
-          className={`home-link-wrap ${
-            location.pathname === "/settings" ? "active-tab" : ""
-          }`}
-          id="settings"
-        >
-          <p>Settings</p>
-        </Link>
+            to="../settings"
+            className={`home-link-wrap ${
+              location.pathname === "/settings" ? "active-tab" : ""
+            }`}
+            id="settings"
+          >
+            <p>Settings</p>
+          </Link>
         )}
-        
       </div>
 
       <nav>
-        <Link to="#support" className="nav-link">
-          <img src={question} alt="Support icon" width="30px" height="30px" />
-          <p>SUPPORT</p>
-        </Link>
-
-        <Link
-          to={`./user/${currentUser?.id}`}
-          className="nav-link"
-          id="user-profile-link"
-        >
-          <img
-            src={currentUser?.user_avatar}
-            alt={`${currentUser?.first_name} ${currentUser?.last_name}`}
-            width="30px"
-            height="30px"
-            id="user-image"
-          />
-          <p id="user-name">{`${currentUser?.first_name} ${currentUser?.last_name}`}</p>
-        </Link>
-
-        <Link
-          to="#logout"
-          className="nav-link"
-          id="logout-button"
-          onClick={handleLogout}
-        >
-          <img src={logOut} alt="Logout icon" width="30px" height="30px" />
-          <p>LOGOUT</p>
-        </Link>
-        <Link to="./not-found-page" className="nav-link" id="logout-button">
-          <img src={notFound} alt="not found icon" width="30px" height="30px" />
-          <p>404</p>
-        </Link>
+        <HeaderButton
+          imgSrc={question}
+          imgAlt={"support"}
+          txt={"SUPPORT"}
+          path={"#support"}
+        />
+        <HeaderButton
+          imgSrc={currentUser?.user_avatar}
+          imgAlt={`${currentUser?.first_name} ${currentUser?.last_name}`}
+          txt={`${currentUser?.first_name} ${currentUser?.last_name}`}
+          path={`./user/${currentUser?.id}`}
+        />
+        <HeaderButton
+          imgSrc={logOut}
+          imgAlt={"#logout"}
+          txt={"LOGOUT"}
+          path={"#logout"}
+          clickHandler={handleLogout}
+        />
+        <HeaderButton
+          imgSrc={notFound}
+          imgAlt={"not found"}
+          txt={"404"}
+          path={"./not-found-page"}
+        />
       </nav>
     </header>
   );
