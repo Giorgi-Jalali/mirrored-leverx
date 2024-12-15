@@ -67,7 +67,6 @@ const User: React.FC = () => {
     fetch(`${dbUrl}1`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setUser(data);
         setUpdatedUser(data);
       })

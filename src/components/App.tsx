@@ -45,6 +45,7 @@ export const dbUrl = "http://localhost:3001/users/";
 
 const App: React.FC = () => {
   const [employees, setEmployees] = useState<Employee[]>([]);
+  const [currentUser, setCurrentUser] = useState<Employee | undefined>();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
@@ -64,13 +65,15 @@ const App: React.FC = () => {
           localStorage.getItem("userEmail") || sessionStorage.getItem("userEmail");
 
         if (storedEmail) {
-          const currentUser = data.find((employee) => employee.email === storedEmail);
+          const foundUser = data.find((employee) => employee.email === storedEmail);
 
-          if (currentUser) {
-            localStorage.setItem("currentUserRole", currentUser.role);
-            localStorage.setItem("currentUserId", currentUser.id);
-            sessionStorage.setItem("currentUserRole", currentUser.role);
-            sessionStorage.setItem("currentUserId", currentUser.id);
+          if (foundUser) {
+            setCurrentUser(foundUser);
+
+            localStorage.setItem("currentUserRole", foundUser.role);
+            localStorage.setItem("currentUserId", foundUser.id);
+            sessionStorage.setItem("currentUserRole", foundUser.role);
+            sessionStorage.setItem("currentUserId", foundUser.id);
           }
         }
       })
@@ -81,14 +84,14 @@ const App: React.FC = () => {
     setSearchQuery(query);
   };
 
-  // if (!isAuthenticated) {
-  //   return <SignIn />;
-  // }
+  if (!isAuthenticated) {
+    return <SignIn />;
+  }
 
   return (
     <Router>
       <>
-        <Header />
+        <Header currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} />
         <Routes>
           <Route
             path="/home"
