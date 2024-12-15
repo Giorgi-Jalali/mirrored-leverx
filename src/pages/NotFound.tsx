@@ -6,7 +6,7 @@ const NotFoundPage: React.FC = () => {
   return (
     <main className="not-found-page">
       <img
-        src="../assets/404.png"
+        src="/assets/404.png"
         alt="not found"
         width="400px"
         height="225px"

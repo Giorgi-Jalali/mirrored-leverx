@@ -17,13 +17,38 @@ interface Employee {
 
 interface ISettingsProps {
   employees: Employee[];
+  searchQuery: string;
+  handleSearch: (query: string) => void;
 }
 
-const Settings: React.FC<ISettingsProps> = ({ employees }) => {
+const Settings: React.FC<ISettingsProps> = ({
+  employees,
+  searchQuery,
+  handleSearch,
+}) => {
   const [storedUserId, setStoredUserId] = useState<string | null>(null);
   const [selectedRoles, setSelectedRoles] = useState<{
     [key: string]: string;
   }>({});
+  const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
+    
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredEmployees(employees);
+    } else {
+      const lowerCaseQuery = searchQuery.toLowerCase();
+      const filtered = employees.filter((person) => {
+        const fullName = `${person.first_name} ${person.last_name}`.toLowerCase();
+        return (
+          person.id.includes(lowerCaseQuery) ||
+          person.first_name.toLowerCase().includes(lowerCaseQuery) ||
+          person.last_name.toLowerCase().includes(lowerCaseQuery) ||
+          fullName.includes(lowerCaseQuery)
+        );
+      });
+      setFilteredEmployees(filtered);
+    }
+  }, [employees, searchQuery]);
 
   useEffect(() => {
     const userId =
@@ -32,14 +57,16 @@ const Settings: React.FC<ISettingsProps> = ({ employees }) => {
     setStoredUserId(userId);
 
     const initialRoles: { [key: string]: string } = {};
-    employees.forEach((employee) => {
+    filteredEmployees.forEach((employee) => {
       initialRoles[employee.id] = employee.role;
     });
     setSelectedRoles(initialRoles);
-  }, [employees]);
+  }, [filteredEmployees]);
 
   const handleRoleChange = (employeeId: string, newRole: string) => {
-    const updatedEmployee = employees.find((emp) => emp.id === employeeId);
+    const updatedEmployee = filteredEmployees.find((emp) => emp.id === employeeId);
+
+    
 
     if (updatedEmployee) {
       const updatedData = { ...updatedEmployee, role: newRole };
@@ -52,7 +79,7 @@ const Settings: React.FC<ISettingsProps> = ({ employees }) => {
       })
         .then((response) => response.json())
         .then((updated) => {
-          console.log("Role updated successfully:", updated);
+          alert("Role updated successfully:");
           setSelectedRoles((prev) => ({
             ...prev,
             [employeeId]: newRole,
@@ -76,11 +103,20 @@ const Settings: React.FC<ISettingsProps> = ({ employees }) => {
             height="20px"
             className="settings-search"
           />
-          <form action="./404.html" method="GET">
+          <form
+            action="./404.html"
+            method="GET"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch(searchQuery);
+            }}
+          >
             <input
               type="text"
               className="search-input"
               placeholder="Type to search"
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
               required
             />
           </form>
@@ -91,7 +127,7 @@ const Settings: React.FC<ISettingsProps> = ({ employees }) => {
         </div>
       </div>
       <div id="settings-Employees">
-        {employees.map((person) => {
+        {filteredEmployees.map((person) => {
           const isCurrentUser = person.id === storedUserId;
 
           return (

@@ -4,6 +4,7 @@ import "../../sass/layout/_header.scss";
 
 import question from "../../assets/question.png";
 import logOut from "../../assets/logout.png";
+import notFound from "../../assets/not-found.png";
 import SignIn from "../../pages/SignIn";
 
 interface Manager {
@@ -26,12 +27,16 @@ interface Employee {
 }
 
 interface HeaderProps {
-    currentUser: Employee | undefined;
-    setIsAuthenticated: (bool: boolean) => void;
+  currentUser: Employee | undefined;
+  setIsAuthenticated: (bool: boolean) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ currentUser, setIsAuthenticated }) => {
   const location = useLocation();
+
+  const storedUserRole =
+    localStorage.getItem("currentUserRole") ||
+    sessionStorage.getItem("currentUserRole");
 
   const handleLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -57,30 +62,39 @@ const Header: React.FC<HeaderProps> = ({ currentUser, setIsAuthenticated }) => {
       </Link>
 
       <div className="tabs">
-        <Link to="/" 
-        className={`home-link-wrap ${location.pathname !== "/settings" ? "active-tab" : ""}`}
+        <Link
+          to="/"
+          className={`home-link-wrap ${
+            location.pathname !== "/settings" ? "active-tab" : ""
+          }`}
         >
           <p>Address Book</p>
         </Link>
-        <Link to="../settings" 
-        className={`home-link-wrap ${location.pathname === "/settings" ? "active-tab" : ""}`}
-        id="settings">
+        {storedUserRole === "admin" && (
+          <Link
+          to="../settings"
+          className={`home-link-wrap ${
+            location.pathname === "/settings" ? "active-tab" : ""
+          }`}
+          id="settings"
+        >
           <p>Settings</p>
         </Link>
+        )}
+        
       </div>
 
       <nav>
         <Link to="#support" className="nav-link">
-          <img
-            src={question}
-            alt="Support icon"
-            width="30px"
-            height="30px"
-          />
+          <img src={question} alt="Support icon" width="30px" height="30px" />
           <p>SUPPORT</p>
         </Link>
 
-        <Link to={`./user/${currentUser?.id}`} className="nav-link" id="user-profile-link">
+        <Link
+          to={`./user/${currentUser?.id}`}
+          className="nav-link"
+          id="user-profile-link"
+        >
           <img
             src={currentUser?.user_avatar}
             alt={`${currentUser?.first_name} ${currentUser?.last_name}`}
@@ -91,14 +105,18 @@ const Header: React.FC<HeaderProps> = ({ currentUser, setIsAuthenticated }) => {
           <p id="user-name">{`${currentUser?.first_name} ${currentUser?.last_name}`}</p>
         </Link>
 
-        <Link to="#logout" className="nav-link" id="logout-button" onClick={handleLogout}>
-          <img
-            src={logOut}
-            alt="Logout icon"
-            width="30px"
-            height="30px"
-          />
+        <Link
+          to="#logout"
+          className="nav-link"
+          id="logout-button"
+          onClick={handleLogout}
+        >
+          <img src={logOut} alt="Logout icon" width="30px" height="30px" />
           <p>LOGOUT</p>
+        </Link>
+        <Link to="./not-found-page" className="nav-link" id="logout-button">
+          <img src={notFound} alt="not found icon" width="30px" height="30px" />
+          <p>404</p>
         </Link>
       </nav>
     </header>

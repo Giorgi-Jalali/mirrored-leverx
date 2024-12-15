@@ -100,7 +100,7 @@ const App: React.FC = () => {
         <Header currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} />
         <Routes>
           <Route
-            path="/home"
+            path="/"
             element={
               <Home
                 employees={employees}
@@ -111,7 +111,11 @@ const App: React.FC = () => {
           />
           <Route
             path="/settings"
-            element={<Settings employees={employees} />}
+            element={<Settings 
+              employees={employees}
+              searchQuery={searchQuery}
+              handleSearch={handleSearch}
+              />}
           />
           <Route path="*" element={<NotFound />} />
           <Route path="/user/:id" element={<User />} />
