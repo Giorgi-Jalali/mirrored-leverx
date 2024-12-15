@@ -16,12 +16,18 @@
 
 Browser extension - "Cross Domain - CORS" (without it there is a CORS error)
 
-- npm i
+- yarn i
 
 It needs two terminals
 
-- npm run dev
-- npm run server (for json-server)
+- yarn start
+- yarn run server (for json-server)
+
+Production
+
+- yarn build
+- yarn start-pro
+- yarn run server (for json-server)
 
 
 ### How to test
@@ -52,6 +58,7 @@ Users should be able to:
 - [Vite](https://vite.dev/) - The Build Tool for the Web
 - [Typescript](https://www.typescriptlang.org/) - For types.
 - [JSON Server](https://www.npmjs.com/package/json-server) - For data
+- [React](https://reactjs.org/) - JS library
 
 ## Author
 
