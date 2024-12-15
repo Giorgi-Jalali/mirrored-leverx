@@ -1,0 +1,13 @@
+@use "../../abstracts/var";
+
+
+.not-found {
+    background-color: var.$white;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    padding: 70px;
+    border-radius: 20px;
+  }

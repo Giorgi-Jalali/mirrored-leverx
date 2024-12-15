@@ -18,6 +18,7 @@ import manName from "../assets/man-name.png";
 import mobile from "../assets/mobile.png";
 import email from "../assets/email.png";
 import skype from "../assets/skype.png";
+import { Link } from "react-router-dom";
 
 interface IManager {
   id: string;
@@ -50,7 +51,7 @@ interface IUser {
 }
 
 const User: React.FC = () => {
-  // const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>();
   const [user, setUser] = useState<IUser | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [updatedUser, setUpdatedUser] = useState<IUser | null>(null);
@@ -63,16 +64,14 @@ const User: React.FC = () => {
     sessionStorage.getItem("currentUserId");
 
   useEffect(() => {
-    // fetch(`${dbUrl}${id}`)
-    fetch(`${dbUrl}1`)
+    fetch(`${dbUrl}${id}`)
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
         setUpdatedUser(data);
       })
       .catch((error) => console.error("Error fetching user:", error));
-    // }, [id]);
-  }, []);
+    }, [id]);
 
   const handleEditClick = () => {
     setEditMode(true);
@@ -115,9 +114,9 @@ const User: React.FC = () => {
   return (
     <div className="user-main">
       <div className="user-aside">
-        <div className="back">
+        <Link to="/" className="back">
           <img src={less} alt="Back arrow" width="15px" height="15px" />
-        </div>
+        </Link>
         <img
           src={user.user_avatar}
           alt={user.first_name + user.last_name}

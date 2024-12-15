@@ -4,6 +4,7 @@ import React from "react";
 import suitcase from "../../assets/suitcase.png";
 import door from "../../assets/door.png";
 import notFound from "../../assets/404.png";
+import { Link } from "react-router-dom";
 
 type Employee = {
     id: string;
@@ -33,7 +34,7 @@ type GridViewProps = {
       <ul className="section-body" style={{ display: "grid" }}>
         {employees.map((person) => (
           <li key={person.id} className="employee">
-            <a href={`../users.html?id=${person.id}`} className="employee-link">
+            <Link to={`../user/${person.id}`} className="employee-link">
               <div className="image-center">
                 <img
                   src={person.user_avatar}
@@ -54,7 +55,7 @@ type GridViewProps = {
                   <p>{person.room}</p>
                 </div>
               </div>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

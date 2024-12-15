@@ -5,6 +5,7 @@ import camera from "../../assets/camera.png";
 import manName from "../../assets/man-name.png";
 import suitcase from "../../assets/suitcase.png";
 import door from "../../assets/door.png";
+import { Link } from "react-router-dom";
 
 
 
@@ -57,7 +58,7 @@ type Employee = {
         </div>
         {employees.map((person) => (
           <li key={person.id} className="employee-list">
-            <a href={`../users.html?id=${person.id}`} className="list-employee-view">
+            <Link to={`../user/${person.id}`} className="list-employee-view">
               <div className="person-image-name">
                 <img
                   src={person.user_avatar}
@@ -71,7 +72,7 @@ type Employee = {
                 <p className="department">{person.department}</p>
                 <p>{person.room}</p>
               </div>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

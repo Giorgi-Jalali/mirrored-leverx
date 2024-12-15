@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../../sass/layout/_header.scss";
 
 import question from "../../assets/question.png";
@@ -31,6 +31,8 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ currentUser, setIsAuthenticated }) => {
+  const location = useLocation();
+
   const handleLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
@@ -55,10 +57,14 @@ const Header: React.FC<HeaderProps> = ({ currentUser, setIsAuthenticated }) => {
       </Link>
 
       <div className="tabs">
-        <Link to="/" className="home-link-wrap">
-          <p className="active-tab">Address Book</p>
+        <Link to="/" 
+        className={`home-link-wrap ${location.pathname !== "/settings" ? "active-tab" : ""}`}
+        >
+          <p>Address Book</p>
         </Link>
-        <Link to="../settings" className="home-link-wrap" id="settings">
+        <Link to="../settings" 
+        className={`home-link-wrap ${location.pathname === "/settings" ? "active-tab" : ""}`}
+        id="settings">
           <p>Settings</p>
         </Link>
       </div>

@@ -14,7 +14,7 @@ const AdvancedSearch = () => {
                 id="name"
                 name="name"
                 placeholder="John Smith"
-                required
+                
               />
 
               <label htmlFor="email" className="label-class">
@@ -25,7 +25,7 @@ const AdvancedSearch = () => {
                 id="email"
                 name="email"
                 placeholder="johnsmith@leverx.com"
-                required
+                
               />
 
               <label htmlFor="phone" className="label-class">
@@ -36,7 +36,7 @@ const AdvancedSearch = () => {
                 id="phone"
                 name="phone"
                 placeholder="Phone number"
-                required
+                
               />
 
               <label htmlFor="skype" className="label-class">
@@ -52,7 +52,7 @@ const AdvancedSearch = () => {
               <label htmlFor="building" className="label-class">
                 Building
               </label>
-              <select id="building" name="building" required>
+              <select id="building" name="building" >
                 <option value="">Any</option>
                 <option value="building-65">Pilsudskiego 65 (Poland)</option>
                 <option value="building-66">Pilsudskiego 66 (Poland)</option>
@@ -70,7 +70,7 @@ const AdvancedSearch = () => {
               <label htmlFor="department" className="label-class">
                 Department
               </label>
-              <select id="department" name="department" required>
+              <select id="department" name="department" >
                 <option value="">Any</option>
                 <option value="web">Web & Mobile</option>
                 <option value="cybersecurity">

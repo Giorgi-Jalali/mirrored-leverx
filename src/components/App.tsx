@@ -48,11 +48,13 @@ const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<Employee | undefined>();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const storedEmail =
       localStorage.getItem("userEmail") || sessionStorage.getItem("userEmail");
     setIsAuthenticated(!!storedEmail);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -84,6 +86,10 @@ const App: React.FC = () => {
     setSearchQuery(query);
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   if (!isAuthenticated) {
     return <SignIn />;
   }
@@ -94,7 +100,7 @@ const App: React.FC = () => {
         <Header currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} />
         <Routes>
           <Route
-            path="/home"
+            path="/"
             element={
               <Home
                 employees={employees}
@@ -108,8 +114,8 @@ const App: React.FC = () => {
             element={<Settings employees={employees} />}
           />
           <Route path="*" element={<NotFound />} />
-          {/* <Route path="/user/:id" element={<User />} /> */}
-          <Route path="/" element={<User />} />
+          <Route path="/user/:id" element={<User />} />
+          {/* <Route path="/" element={<User />} /> */}
           {/* Default redirect to Home */}
           <Route path="/" element={<Navigate to="/home" />} />
         </Routes>
