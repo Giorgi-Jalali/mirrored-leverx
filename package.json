@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start3": "webpack serve",
-    "build3": "webpack",
     "start": "webpack serve --mode development",
     "start-pro": "webpack serve --mode production",
     "build": "webpack --mode production",
