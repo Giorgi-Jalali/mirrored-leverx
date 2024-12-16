@@ -1,10 +1,10 @@
 import React from "react";
 
-import notFound from "../../assets/404.png";
-import camera from "../../assets/camera.png";
-import manName from "../../assets/man-name.png";
-import suitcase from "../../assets/suitcase.png";
-import door from "../../assets/door.png";
+import notFound from "/public/assets/404.png";
+import camera from "/public/assets/camera.png";
+import manName from "/public/assets/man-name.png";
+import suitcase from "/public/assets/suitcase.png";
+import door from "/public/assets/door.png";
 import { Link } from "react-router-dom";
 
 

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../../sass/layout/_header.scss";
 
-import question from "../../assets/question.png";
-import logOut from "../../assets/logout.png";
-import notFound from "../../assets/not-found.png";
+import question from "/public/assets/question.png";
+import logOut from "/public/assets/logout.png";
+import notFound from "/public/assets/not-found.png";
 
 import HeaderButton from "./HeaderButton";
 

@@ -2,7 +2,7 @@ import React from "react";
 
 import "../../sass/components/searchContainer/_basic-search.scss";
 
-import searchIcon from "/src/assets/search.png";
+import searchIcon from "/public/assets/search.png";
 
 interface IbasicSearchProps {
   searchQuery: string;

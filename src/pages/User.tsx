@@ -5,19 +5,19 @@ import "../sass/pages/_user.scss";
 
 import InfoContainer from "../components/user/InfoContainer";
 
-import less from "../assets/less.png";
-import copy from "../assets/copy.png";
-import cNumber from "../assets/c-number.png";
-import pen from "../assets/pen.png";
-import suitcase from "../assets/suitcase.png";
-import building from "../assets/building.png";
-import door from "../assets/door.png";
-import number from "../assets/number.png";
-import date from "../assets/date.png";
-import manName from "../assets/man-name.png";
-import mobile from "../assets/mobile.png";
-import email from "../assets/email.png";
-import skype from "../assets/skype.png";
+import less from "/public/assets/less.png";
+import copy from "/public/assets/copy.png";
+import cNumber from "/public/assets/c-number.png";
+import pen from "/public/assets/pen.png";
+import suitcase from "/public/assets/suitcase.png";
+import building from "/public/assets/building.png";
+import door from "/public/assets/door.png";
+import number from "/public/assets/number.png";
+import date from "/public/assets/date.png";
+import manName from "/public/assets/man-name.png";
+import mobile from "/public/assets/mobile.png";
+import email from "/public/assets/email.png";
+import skype from "/public/assets/skype.png";
 import { Link } from "react-router-dom";
 
 interface IManager {

@@ -1,9 +1,9 @@
 import React from "react";
 
 
-import suitcase from "../../assets/suitcase.png";
-import door from "../../assets/door.png";
-import notFound from "../../assets/404.png";
+import suitcase from "/public/assets/suitcase.png";
+import door from "/public/assets/door.png";
+import notFound from "/public/assets/404.png";
 import { Link } from "react-router-dom";
 
 type Employee = {

@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  // mode: "production",
   entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
@@ -42,7 +41,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: './dist',
+    static: path.resolve(__dirname, 'public'),
     port: 3000,
     open: true,
   },

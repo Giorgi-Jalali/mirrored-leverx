@@ -2,9 +2,9 @@ import React from "react";
 
 import "../../sass/pages/_user.scss";
 
-import earth from "../../assets/earth.png";
-import v from "../../assets/v.png";
-import validity from "../../assets/validity.png";
+import earth from "/public/assets/earth.png";
+import v from "/public/assets/v.png";
+import validity from "/public/assets/validity.png";
 
 interface Visa {
   type: string;

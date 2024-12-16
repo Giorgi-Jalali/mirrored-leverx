@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import GridView from "./GridView";
 import ListView from "./ListView";
 
-import gridIcon from "/src/assets/grid.png";
-import listIcon from "/src/assets/list.png";
+import gridIcon from "/public/assets/grid.png";
+import listIcon from "/public/assets/list.png";
 
 type Employee = {
   id: string;
