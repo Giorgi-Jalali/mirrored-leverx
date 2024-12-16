@@ -80,9 +80,9 @@ const ViewContainer: React.FC<ViewContainerProps> = ({ employees, searchQuery })
       </div>
       <div className="views">
         {viewType === "grid" ? (
-          <GridView employees={filteredEmployees} />
+          <GridView employees={filteredEmployees} searchQuery={searchQuery} />
         ) : (
-          <ListView employees={filteredEmployees} />
+          <ListView employees={filteredEmployees} searchQuery={searchQuery} />
         )}
       </div>
     </section>

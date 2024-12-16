@@ -19,10 +19,11 @@ type Employee = {
 
 type GridViewProps = {
     employees: Employee[];
+    searchQuery: string;
   };
   
-  const GridView: React.FC<GridViewProps> = ({ employees }) => {
-    if (employees.length === 0) {
+  const GridView: React.FC<GridViewProps> = ({ employees, searchQuery }) => {
+    if (searchQuery && employees.length === 0) {
       return (
         <div className="not-found">
           <img src={notFound} alt="not found" width="400px" height="225px" />

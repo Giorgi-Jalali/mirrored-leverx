@@ -21,10 +21,11 @@ type Employee = {
 
   type ListViewProps = {
     employees: Employee[];
+    searchQuery: string;
   };
   
-  const ListView: React.FC<ListViewProps> = ({ employees }) => {
-    if (employees.length === 0) {
+  const ListView: React.FC<ListViewProps> = ({ employees, searchQuery }) => {
+    if (searchQuery && employees.length === 0) {
       return (
         <div className="not-found">
           <img src={notFound} alt="not found" width="400px" height="225px" />
