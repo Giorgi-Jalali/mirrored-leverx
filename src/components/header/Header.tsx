@@ -5,7 +5,6 @@ import "../../sass/layout/_header.scss";
 import question from "../../assets/question.png";
 import logOut from "../../assets/logout.png";
 import notFound from "../../assets/not-found.png";
-import SignIn from "../../pages/SignIn";
 
 import HeaderButton from "./HeaderButton";
 
