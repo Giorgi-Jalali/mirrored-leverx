@@ -16,7 +16,7 @@
 
 Browser extension - "Cross Domain - CORS" (without it there is a CORS error)
 
-- yarn i
+- yarn install
 
 It needs two terminals
 
