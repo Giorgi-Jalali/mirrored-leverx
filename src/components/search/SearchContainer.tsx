@@ -7,15 +7,7 @@ import "../../sass/layout/_aside.scss";
 import BasicSearch from "./BasicSearch";
 import AdvancedSearch from "./AdvancedSearch";
 
-interface SearchContainerProps {
-  searchQuery: string;
-  handleSearch: (query: string) => void;
-}
-
-const SearchContainer: React.FC<SearchContainerProps> = ({
-  searchQuery,
-  handleSearch,
-}) => {
+const SearchContainer: React.FC = () => {
   const [isBasicSearch, setIsBasicSearch] = useState(true);
 
   return (
@@ -50,7 +42,7 @@ const SearchContainer: React.FC<SearchContainerProps> = ({
 
       <div className="content">
         {isBasicSearch && (
-          <BasicSearch searchQuery={searchQuery} handleSearch={handleSearch} />
+          <BasicSearch />
         )}
 
         {!isBasicSearch && <AdvancedSearch />}

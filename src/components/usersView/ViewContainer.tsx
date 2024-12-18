@@ -5,6 +5,8 @@ import ListView from "./ListView";
 
 import gridIcon from "/public/assets/grid.png";
 import listIcon from "/public/assets/list.png";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 type Employee = {
   id: string;
@@ -18,12 +20,15 @@ type Employee = {
 
 interface ViewContainerProps {
   employees: Employee[];
-  searchQuery: string;
 }
 
-const ViewContainer: React.FC<ViewContainerProps> = ({ employees, searchQuery }) => {
+
+
+const ViewContainer: React.FC<ViewContainerProps> = ({ employees }) => {
   const [viewType, setViewType] = useState<"grid" | "list">("grid");
   const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
+  
+  const searchQuery = useSelector((state: RootState) => state.search.query);
 
   useEffect(() => {
     if (searchQuery.trim() === "") {

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../sass/pages/_settings.scss";
-import { dbUrl } from "../components/App";
+import { dbUrl } from "../App";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { updateSearchQuery } from "../redux/slices/search/searchSlice";
 
 interface Employee {
   id: string;
@@ -17,28 +20,30 @@ interface Employee {
 
 interface ISettingsProps {
   employees: Employee[];
-  searchQuery: string;
-  handleSearch: (query: string) => void;
 }
 
-const Settings: React.FC<ISettingsProps> = ({
-  employees,
-  searchQuery,
-  handleSearch,
-}) => {
+const Settings: React.FC<ISettingsProps> = ({ employees }) => {
   const [storedUserId, setStoredUserId] = useState<string | null>(null);
   const [selectedRoles, setSelectedRoles] = useState<{
     [key: string]: string;
   }>({});
   const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
-    
+
+  const searchQuery = useSelector((state: RootState) => state.search.query);
+  const dispatch = useDispatch();
+
+  const handleSearch = (query: string) => {
+    dispatch(updateSearchQuery(query));
+  };
+
   useEffect(() => {
     if (searchQuery.trim() === "") {
       setFilteredEmployees(employees);
     } else {
       const lowerCaseQuery = searchQuery.toLowerCase();
       const filtered = employees.filter((person) => {
-        const fullName = `${person.first_name} ${person.last_name}`.toLowerCase();
+        const fullName =
+          `${person.first_name} ${person.last_name}`.toLowerCase();
         return (
           person.id.includes(lowerCaseQuery) ||
           person.first_name.toLowerCase().includes(lowerCaseQuery) ||
@@ -64,9 +69,9 @@ const Settings: React.FC<ISettingsProps> = ({
   }, [filteredEmployees]);
 
   const handleRoleChange = (employeeId: string, newRole: string) => {
-    const updatedEmployee = filteredEmployees.find((emp) => emp.id === employeeId);
-
-    
+    const updatedEmployee = filteredEmployees.find(
+      (emp) => emp.id === employeeId
+    );
 
     if (updatedEmployee) {
       const updatedData = { ...updatedEmployee, role: newRole };

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 import "../sass/pages/_sign-in.scss";
-import { dbUrl } from "../components/App";
+import { dbUrl } from "../App";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");

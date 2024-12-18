@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { dbUrl } from "../components/App";
+import { dbUrl } from "../App";
 import "../sass/pages/_user.scss";
 
 import InfoContainer from "../components/user/InfoContainer";

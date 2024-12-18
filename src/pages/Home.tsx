@@ -18,15 +18,13 @@ type Employee = {
 
 interface IHomeProps {
   employees: Employee[];
-  searchQuery: string;
-  handleSearch: (query: string) => void;
 }
 
-const Home: React.FC<IHomeProps> = ({ employees, searchQuery, handleSearch }) => {
+const Home: React.FC<IHomeProps> = ({ employees }) => {
   return (
     <div className="home-main">
-      <SearchContainer searchQuery={searchQuery} handleSearch={handleSearch} />
-      <ViewContainer employees={employees} searchQuery={searchQuery} />
+      <SearchContainer />
+      <ViewContainer employees={employees} />
     </div>
   );
 };
