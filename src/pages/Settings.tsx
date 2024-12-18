@@ -4,19 +4,8 @@ import { dbUrl } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { updateSearchQuery } from "../redux/slices/search/searchSlice";
-
-interface Employee {
-  id: string;
-  role: string;
-  user_avatar: string;
-  first_name: string;
-  last_name: string;
-  first_native_name: string;
-  last_native_name: string;
-  middle_native_name: string;
-  department: string;
-  room: string;
-}
+import { Employee } from "../types/EmployeeTypes";
+import useFilteredEmployees from "../hooks/useFilteredEmployees";
 
 interface ISettingsProps {
   employees: Employee[];
@@ -27,33 +16,16 @@ const Settings: React.FC<ISettingsProps> = ({ employees }) => {
   const [selectedRoles, setSelectedRoles] = useState<{
     [key: string]: string;
   }>({});
-  const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
 
   const searchQuery = useSelector((state: RootState) => state.search.query);
+  const filteredEmployees = useFilteredEmployees(employees);
+
   const dispatch = useDispatch();
 
   const handleSearch = (query: string) => {
     dispatch(updateSearchQuery(query));
   };
 
-  useEffect(() => {
-    if (searchQuery.trim() === "") {
-      setFilteredEmployees(employees);
-    } else {
-      const lowerCaseQuery = searchQuery.toLowerCase();
-      const filtered = employees.filter((person) => {
-        const fullName =
-          `${person.first_name} ${person.last_name}`.toLowerCase();
-        return (
-          person.id.includes(lowerCaseQuery) ||
-          person.first_name.toLowerCase().includes(lowerCaseQuery) ||
-          person.last_name.toLowerCase().includes(lowerCaseQuery) ||
-          fullName.includes(lowerCaseQuery)
-        );
-      });
-      setFilteredEmployees(filtered);
-    }
-  }, [employees, searchQuery]);
 
   useEffect(() => {
     const userId =
