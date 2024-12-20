@@ -5,16 +5,14 @@ import "../sass/pages/_home.scss";
 import SearchContainer from "../components/search/SearchContainer";
 import ViewContainer from "../components/usersView/ViewContainer";
 import { IEmployee } from "../types/EmployeeTypes";
+import { useGetEmployeesQuery } from "../services/employeeApi";
 
-interface IHomeProps {
-  employees: IEmployee[] | undefined;
-}
-
-const Home: React.FC<IHomeProps> = ({ employees }) => {
+const Home: React.FC = () => {
+  
   return (
     <div className="home-main">
       <SearchContainer />
-      <ViewContainer employees={employees} />
+      <ViewContainer />
     </div>
   );
 };

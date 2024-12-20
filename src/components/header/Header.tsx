@@ -8,14 +8,13 @@ import notFound from "/public/assets/not-found.png";
 
 import HeaderButton from "./HeaderButton";
 import { useAuth } from "../../hooks/useAuth";
-import { IEmployee } from "../../types/EmployeeTypes";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
-interface IHeaderProps {
-  currentUser: IEmployee | undefined;
-}
-
-const Header: React.FC<IHeaderProps> = ({ currentUser }) => {
+const Header: React.FC = () => {
   const location = useLocation();
+
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
 
   const { setIsAuthenticated } = useAuth();
 
@@ -23,19 +22,20 @@ const Header: React.FC<IHeaderProps> = ({ currentUser }) => {
     localStorage.getItem("currentUserRole") ||
     sessionStorage.getItem("currentUserRole");
 
-  const handleLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-
-    localStorage.removeItem("userEmail");
-    localStorage.removeItem("currentUserRole");
-    localStorage.removeItem("currentUserId");
-
-    sessionStorage.removeItem("userEmail");
-    sessionStorage.removeItem("currentUserRole");
-    sessionStorage.removeItem("currentUserId");
-
-    setIsAuthenticated(false);
-  };
+    const handleLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+    
+      localStorage.removeItem("userEmail");
+      localStorage.removeItem("currentUserRole");
+      localStorage.removeItem("currentUserId");
+    
+      sessionStorage.removeItem("userEmail");
+      sessionStorage.removeItem("currentUserRole");
+      sessionStorage.removeItem("currentUserId");
+    
+      setIsAuthenticated(false);
+    };
+    
 
   return (
     <header>
@@ -78,7 +78,7 @@ const Header: React.FC<IHeaderProps> = ({ currentUser }) => {
         <HeaderButton
           imgSrc={currentUser?.user_avatar}
           imgAlt={`${currentUser?.first_name} ${currentUser?.last_name}`}
-          txt={currentUser ? `${currentUser.first_name} ${currentUser.last_name}` : ""}
+          txt={`${currentUser?.first_name} ${currentUser?.last_name}`}
           path={`./user/${currentUser?.id}`}
         />
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
-import { updateSearchQuery } from "../../redux/slices/search/searchSlice";
+import { updateSearchQuery } from "../../redux/slices/searchSlice";
 
 import "../../sass/components/searchContainer/_basic-search.scss";
 

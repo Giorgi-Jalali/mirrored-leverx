@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import "../sass/pages/_settings.scss";
 import { dbUrl } from "../App";
 import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from '../redux/store';
 import { RootState } from "../redux/store";
-import { updateSearchQuery } from "../redux/slices/search/searchSlice";
+import { updateSearchQuery } from "../redux/slices/searchSlice";
 import { IEmployee } from "../types/EmployeeTypes";
 import useFilteredEmployees from "../hooks/useFilteredEmployees";
+import { employeeApi, useGetEmployeesQuery, useUpdateEmployeeRoleMutation } from "../services/employeeApi";
 
-interface ISettingsProps {
-  employees: IEmployee[] | undefined;
-}
+const Settings: React.FC = () => {
+  const { data: employees, isLoading, isError } = useGetEmployeesQuery();
+  const [updateEmployeeRole] = useUpdateEmployeeRoleMutation();
 
-const Settings: React.FC<ISettingsProps> = ({ employees }) => {
   const [storedUserId, setStoredUserId] = useState<string | null>(null);
   const [selectedRoles, setSelectedRoles] = useState<{
     [key: string]: string;
@@ -20,12 +21,11 @@ const Settings: React.FC<ISettingsProps> = ({ employees }) => {
   const searchQuery = useSelector((state: RootState) => state.search.query);
   const filteredEmployees = useFilteredEmployees(employees || []);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSearch = (query: string) => {
     dispatch(updateSearchQuery(query));
   };
-
 
   useEffect(() => {
     const userId =
@@ -41,32 +41,31 @@ const Settings: React.FC<ISettingsProps> = ({ employees }) => {
   }, [filteredEmployees]);
 
   const handleRoleChange = (employeeId: string, newRole: string) => {
-    const updatedEmployee = filteredEmployees.find(
-      (emp) => emp.id === employeeId
-    );
-
-    if (updatedEmployee) {
-      const updatedData = { ...updatedEmployee, role: newRole };
-      fetch(`${dbUrl}${employeeId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
+    updateEmployeeRole({ id: employeeId, role: newRole })
+      .unwrap()
+      .then((updatedEmployeeFromDb) => {
+        alert("Role updated successfully.");
+  
+        setSelectedRoles((prev) => ({
+          ...prev,
+          [employeeId]: newRole,
+        }));
+  
+        dispatch(
+          employeeApi.util.updateQueryData('getEmployees', undefined, (draft) => {
+            const employeeIndex = draft.findIndex((emp) => emp.id === employeeId);
+            if (employeeIndex >= 0) {
+              draft[employeeIndex] = { ...draft[employeeIndex], role: newRole };
+            }
+          })
+        );
       })
-        .then((response) => response.json())
-        .then((updated) => {
-          alert("Role updated successfully:");
-          setSelectedRoles((prev) => ({
-            ...prev,
-            [employeeId]: newRole,
-          }));
-        })
-        .catch((error) => {
-          console.error("Error updating role:", error);
-        });
-    }
+      .catch((error) => {
+        console.error("Error updating role:", error);
+      });
   };
+  
+  
 
   return (
     <div className="settings-main">

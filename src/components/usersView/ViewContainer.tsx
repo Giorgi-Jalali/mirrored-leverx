@@ -9,22 +9,30 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
 import useFilteredEmployees from "../../hooks/useFilteredEmployees";
-import { IEmployee } from "../../types/EmployeeTypes";
+import { useGetEmployeesQuery } from "../../services/employeeApi";
 
-interface IViewContainerProps {
-  employees: IEmployee[] | undefined;
-}
-
-const ViewContainer: React.FC<IViewContainerProps> = ({ employees }) => {
+const ViewContainer: React.FC = () => {
   const [viewType, setViewType] = useState<"grid" | "list">("grid");
 
   const searchQuery = useSelector((state: RootState) => state.search.query);
+
+  const { data: employees, isLoading, isError } = useGetEmployeesQuery();
+
+  
 
   const filteredEmployees = useFilteredEmployees(employees || []);
 
   const handleToggleView = (view: "grid" | "list") => {
     setViewType(view);
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  
+  if (isError || !employees) {
+    return <div>Error loading employees</div>;
+  }
 
   return (
     <section>

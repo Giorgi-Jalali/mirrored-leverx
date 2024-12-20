@@ -9,6 +9,7 @@ const SignIn: React.FC = () => {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
 
+
   const loadUsers = async (): Promise<any[]> => {
     const response = await fetch(`${dbUrl}`);
     if (!response.ok) {
@@ -61,6 +62,7 @@ const SignIn: React.FC = () => {
       const checkData = await checkRequest.json();
 
       if (checkData.ok) {
+
         setIsAuthenticated(true);
 
 
@@ -70,7 +72,8 @@ const SignIn: React.FC = () => {
           sessionStorage.setItem("userEmail", email);
         }
 
-        alert("Login successful!");
+        // alert("Login successful!");
+        window.location.href = "/";
       } else {
         alert("Invalid password.");
       }
