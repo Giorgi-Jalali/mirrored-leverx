@@ -5,17 +5,11 @@ import "../../sass/pages/_user.scss";
 import earth from "/public/assets/earth.png";
 import v from "/public/assets/v.png";
 import validity from "/public/assets/validity.png";
+import { IEmployee } from "../../types/EmployeeTypes";
 
-interface Visa {
-  type: string;
-  issuing_country: string;
-  start_date: number;
-  end_date: number;
-}
-
-interface InfoContainerProps {
+interface IInfoContainerProps {
   editMode: boolean;
-  updatedUser: IUser | null;
+  updatedUser: IEmployee | null;
   handleSaveClick: () => void;
   handleInputChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -23,50 +17,14 @@ interface InfoContainerProps {
   handleEditClick: () => void;
 }
 
-interface Employee {
-  citizenship: string;
-  visa?: Visa[];
-}
-
-interface IManager {
-    id: string;
-    first_name: string;
-    last_name: string;
-  }
-  
-  interface IUser {
-    visa?: Visa[];
-    id: string;
-    password: string;
-    passwordHash: string;
-    role: string;
-    first_name: string;
-    last_name: string;
-    user_avatar: string;
-    first_native_name: string;
-    last_native_name: string;
-    middle_native_name: string;
-    department: string;
-    building: string;
-    room: string;
-    desk_number: string;
-    date_birth: { day: number; month: number; year: number };
-    manager: IManager;
-    phone: string;
-    email: string;
-    skype: string;
-    cnumber: string;
-    citizenship: string;
-  }
-
-const InfoContainer: React.FC<InfoContainerProps> = ({
+const InfoContainer: React.FC<IInfoContainerProps> = ({
   updatedUser,
   editMode,
   handleSaveClick,
   handleInputChange,
   handleEditClick,
 }) => {
-  const renderVisaInfo = (updatedUser: IUser | null) => {
+  const renderVisaInfo = (updatedUser: IEmployee | null) => {
     const visaArray = updatedUser?.visa || [];
     return (
       <>
@@ -102,7 +60,7 @@ const InfoContainer: React.FC<InfoContainerProps> = ({
     );
   };
 
-  const renderVisaList = (updatedUser: IUser | null) => {
+  const renderVisaList = (updatedUser: IEmployee | null) => {
     const visaArray = updatedUser?.visa || [];
     return (
       <>

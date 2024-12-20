@@ -9,13 +9,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
 import useFilteredEmployees from "../../hooks/useFilteredEmployees";
-import { Employee } from "../../types/EmployeeTypes";
+import { IEmployee } from "../../types/EmployeeTypes";
 
-interface ViewContainerProps {
-  employees: Employee[];
+interface IViewContainerProps {
+  employees: IEmployee[];
 }
 
-const ViewContainer: React.FC<ViewContainerProps> = ({ employees }) => {
+const ViewContainer: React.FC<IViewContainerProps> = ({ employees }) => {
   const [viewType, setViewType] = useState<"grid" | "list">("grid");
 
   const searchQuery = useSelector((state: RootState) => state.search.query);

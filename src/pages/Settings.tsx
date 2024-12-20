@@ -4,11 +4,11 @@ import { dbUrl } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { updateSearchQuery } from "../redux/slices/search/searchSlice";
-import { Employee } from "../types/EmployeeTypes";
+import { IEmployee } from "../types/EmployeeTypes";
 import useFilteredEmployees from "../hooks/useFilteredEmployees";
 
 interface ISettingsProps {
-  employees: Employee[];
+  employees: IEmployee[];
 }
 
 const Settings: React.FC<ISettingsProps> = ({ employees }) => {

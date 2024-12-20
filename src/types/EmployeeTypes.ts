@@ -1,10 +1,17 @@
-export interface Manager {
+export interface IManager {
     id: string;
     first_name: string;
     last_name: string;
   }
+
+  interface IVisa {
+    type: string;
+    issuing_country: string;
+    start_date: number;
+    end_date: number;
+  }
   
-  export interface Employee {
+  export interface IEmployee {
     id: string;
     password: string;
     passwordHash: string;
@@ -20,11 +27,12 @@ export interface Manager {
     room: string;
     desk_number: string;
     date_birth: { day: number; month: number; year: number };
-    manager: Manager;
+    manager: IManager;
     phone: string;
     email: string;
     skype: string;
     cnumber: string;
     citizenship: string;
+    visa?: IVisa[];
   }
   

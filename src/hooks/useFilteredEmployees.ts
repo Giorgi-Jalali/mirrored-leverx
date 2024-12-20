@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { Employee } from "../types/EmployeeTypes";
+import { IEmployee } from "../types/EmployeeTypes";
 
-const useFilteredEmployees = (employees: Employee[]) => {
+const useFilteredEmployees = (employees: IEmployee[]) => {
   const searchQuery = useSelector((state: RootState) => state.search.query);
 
-  const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
+  const [filteredEmployees, setFilteredEmployees] = useState<IEmployee[]>([]);
 
   useEffect(() => {
     if (searchQuery.trim() === "") {

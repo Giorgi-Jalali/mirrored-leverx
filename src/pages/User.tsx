@@ -19,42 +19,13 @@ import mobile from "/public/assets/mobile.png";
 import email from "/public/assets/email.png";
 import skype from "/public/assets/skype.png";
 import { Link } from "react-router-dom";
-
-interface IManager {
-  id: string;
-  first_name: string;
-  last_name: string;
-}
-
-interface IUser {
-  id: string;
-  password: string;
-  passwordHash: string;
-  role: string;
-  first_name: string;
-  last_name: string;
-  user_avatar: string;
-  first_native_name: string;
-  last_native_name: string;
-  middle_native_name: string;
-  department: string;
-  building: string;
-  room: string;
-  desk_number: string;
-  date_birth: { day: number; month: number; year: number };
-  manager: IManager;
-  phone: string;
-  email: string;
-  skype: string;
-  cnumber: string;
-  citizenship: string;
-}
+import { IEmployee } from "../types/EmployeeTypes";
 
 const User: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [user, setUser] = useState<IUser | null>(null);
+  const [user, setUser] = useState<IEmployee | null>(null);
   const [editMode, setEditMode] = useState(false);
-  const [updatedUser, setUpdatedUser] = useState<IUser | null>(null);
+  const [updatedUser, setUpdatedUser] = useState<IEmployee | null>(null);
 
   const storedUserRole =
     localStorage.getItem("currentUserRole") ||

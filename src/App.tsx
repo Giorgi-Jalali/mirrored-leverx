@@ -17,15 +17,15 @@ import SignIn from "./pages/SignIn";
 import Header from "./components/header/Header";
 
 import { fetchEmployees } from "./services/employeeService";
-import { Employee } from "./types/EmployeeTypes";
+import { IEmployee } from "./types/EmployeeTypes";
 
 import { useAuth } from "./hooks/useAuth";
 
 export const dbUrl = "http://localhost:3001/users/";
 
 const App: React.FC = () => {
-  const [employees, setEmployees] = useState<Employee[]>([]);
-  const [currentUser, setCurrentUser] = useState<Employee | undefined>();
+  const [employees, setEmployees] = useState<IEmployee[]>([]);
+  const [currentUser, setCurrentUser] = useState<IEmployee | undefined>();
   const [loading, setLoading] = useState<boolean>(true);
   
   const { isAuthenticated } = useAuth();

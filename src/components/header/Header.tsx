@@ -8,31 +8,13 @@ import notFound from "/public/assets/not-found.png";
 
 import HeaderButton from "./HeaderButton";
 import { useAuth } from "../../hooks/useAuth";
+import { IEmployee } from "../../types/EmployeeTypes";
 
-interface Manager {
-  id: string;
-  first_name: string;
-  last_name: string;
+interface IHeaderProps {
+  currentUser: IEmployee | undefined;
 }
 
-interface Employee {
-  id: string;
-  role: string;
-  first_name: string;
-  last_name: string;
-  user_avatar: string;
-  department: string;
-  phone: string;
-  email: string;
-  citizenship: string;
-  manager: Manager;
-}
-
-interface HeaderProps {
-  currentUser: Employee | undefined;
-}
-
-const Header: React.FC<HeaderProps> = ({ currentUser }) => {
+const Header: React.FC<IHeaderProps> = ({ currentUser }) => {
   const location = useLocation();
 
     const { setIsAuthenticated } = useAuth();
