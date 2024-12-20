@@ -19,20 +19,21 @@ import Header from "./components/header/Header";
 import { fetchEmployees } from "./services/employeeService";
 import { Employee } from "./types/EmployeeTypes";
 
+import { useAuth } from "./hooks/useAuth";
+
 export const dbUrl = "http://localhost:3001/users/";
 
 const App: React.FC = () => {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [currentUser, setCurrentUser] = useState<Employee | undefined>();
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
+  
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
-    const storedEmail =
-      localStorage.getItem("userEmail") || sessionStorage.getItem("userEmail");
-    setIsAuthenticated(!!storedEmail);
     setLoading(false);
   }, []);
+
 
   useEffect(() => {
     const loadEmployees = async () => {
@@ -63,7 +64,7 @@ const App: React.FC = () => {
     };
 
     loadEmployees();
-  }, []);
+  }, [isAuthenticated]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -77,9 +78,7 @@ const App: React.FC = () => {
     <Router>
       <Header
         currentUser={currentUser}
-        setIsAuthenticated={setIsAuthenticated}
       />
-
       <Routes>
         <Route path="/" element={<Home employees={employees} />} />
         <Route path="/settings" element={<Settings employees={employees} />} />

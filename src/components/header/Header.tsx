@@ -7,6 +7,7 @@ import logOut from "/public/assets/logout.png";
 import notFound from "/public/assets/not-found.png";
 
 import HeaderButton from "./HeaderButton";
+import { useAuth } from "../../hooks/useAuth";
 
 interface Manager {
   id: string;
@@ -29,11 +30,13 @@ interface Employee {
 
 interface HeaderProps {
   currentUser: Employee | undefined;
-  setIsAuthenticated: (bool: boolean) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ currentUser, setIsAuthenticated }) => {
+const Header: React.FC<HeaderProps> = ({ currentUser }) => {
   const location = useLocation();
+
+    const { setIsAuthenticated } = useAuth();
+  
 
   const storedUserRole =
     localStorage.getItem("currentUserRole") ||

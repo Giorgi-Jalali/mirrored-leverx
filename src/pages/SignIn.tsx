@@ -1,41 +1,44 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-
+import { useAuth } from "../hooks/useAuth";
 import "../sass/pages/_sign-in.scss";
 import { dbUrl } from "../App";
 
-const SignIn = () => {
+const SignIn: React.FC = () => {
+  const { setIsAuthenticated } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
 
-//   const navigate = useNavigate();
-
   const loadUsers = async (): Promise<any[]> => {
     const response = await fetch(`${dbUrl}`);
     if (!response.ok) {
-      throw new Error("Failed to load users data.");
+      throw new Error("Failed to load user data.");
     }
     return await response.json();
   };
 
-  const signIn = async () => {
+  const validateInputs = (): boolean => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!emailRegex.test(email)) {
       alert("Please enter a valid email address.");
-      return;
+      return false;
     }
 
     if (password.length < 2) {
       alert("Password must be at least 2 characters long.");
-      return;
+      return false;
     }
+
+    return true;
+  };
+
+  const signIn = async () => {
+    if (!validateInputs()) return;
 
     try {
       const users = await loadUsers();
-      const user = users.find((u: any) => u.email === email);
+      const user = users.find((user: any) => user.email === email);
 
       if (!user) {
         alert("User not found. Please sign up.");
@@ -58,6 +61,9 @@ const SignIn = () => {
       const checkData = await checkRequest.json();
 
       if (checkData.ok) {
+        setIsAuthenticated(true);
+
+
         if (remember) {
           localStorage.setItem("userEmail", email);
         } else {
@@ -65,18 +71,13 @@ const SignIn = () => {
         }
 
         alert("Login successful!");
-        window.location.href = "../";
       } else {
         alert("Invalid password.");
       }
     } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to connect to bcrypt API.");
+      console.error("Error during login:", error);
+      alert("An error occurred while processing your login.");
     }
-  };
-
-  const handleSignInClick = () => {
-    signIn();
   };
 
   return (
@@ -85,7 +86,7 @@ const SignIn = () => {
         id="sign-in-form"
         onSubmit={(e) => {
           e.preventDefault();
-          handleSignInClick();
+          signIn();
         }}
       >
         <label htmlFor="email">Email</label>
