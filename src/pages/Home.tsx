@@ -7,7 +7,7 @@ import ViewContainer from "../components/usersView/ViewContainer";
 import { IEmployee } from "../types/EmployeeTypes";
 
 interface IHomeProps {
-  employees: IEmployee[];
+  employees: IEmployee[] | undefined;
 }
 
 const Home: React.FC<IHomeProps> = ({ employees }) => {

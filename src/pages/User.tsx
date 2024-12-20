@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { dbUrl } from "../App";
+import { useGetUserByIdQuery, useUpdateUserMutation } from "../services/userApi";
 import "../sass/pages/_user.scss";
 
 import InfoContainer from "../components/user/InfoContainer";
@@ -23,9 +23,11 @@ import { IEmployee } from "../types/EmployeeTypes";
 
 const User: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [user, setUser] = useState<IEmployee | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [updatedUser, setUpdatedUser] = useState<IEmployee | null>(null);
+  
+  const { data: user, error, isLoading } = useGetUserByIdQuery(id || "");
+  const [updateUser] = useUpdateUserMutation();
 
   const storedUserRole =
     localStorage.getItem("currentUserRole") ||
@@ -34,15 +36,11 @@ const User: React.FC = () => {
     localStorage.getItem("currentUserId") ||
     sessionStorage.getItem("currentUserId");
 
-  useEffect(() => {
-    fetch(`${dbUrl}${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setUser(data);
-        setUpdatedUser(data);
-      })
-      .catch((error) => console.error("Error fetching user:", error));
-    }, [id]);
+    useEffect(() => {
+      if (user) {
+        setUpdatedUser(user);
+      }
+    }, [user]);
 
   const handleEditClick = () => {
     setEditMode(true);
@@ -57,24 +55,15 @@ const User: React.FC = () => {
     }
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
     if (updatedUser) {
-      fetch(`${dbUrl}${updatedUser.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedUser),
-      })
-        .then((response) => response.json())
-        .then(() => {
-          alert("User information updated successfully!");
-          setEditMode(false);
-          setUser(updatedUser);
-        })
-        .catch((error) => {
-          console.error("Error updating user:", error);
-        });
+      try {
+        await updateUser(updatedUser).unwrap();
+        alert("User information updated successfully!");
+        setEditMode(false);
+      } catch (error) {
+        console.error("Error updating user:", error);
+      }
     }
   };
 

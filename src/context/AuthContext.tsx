@@ -14,9 +14,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return !!storedEmail;
   });
 
-  useEffect(() => {
-    console.log("Auth state updated:", isAuthenticated);
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   console.log("Auth state updated:", isAuthenticated);
+  // }, [isAuthenticated]);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>

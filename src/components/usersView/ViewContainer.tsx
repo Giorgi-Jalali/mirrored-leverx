@@ -12,7 +12,7 @@ import useFilteredEmployees from "../../hooks/useFilteredEmployees";
 import { IEmployee } from "../../types/EmployeeTypes";
 
 interface IViewContainerProps {
-  employees: IEmployee[];
+  employees: IEmployee[] | undefined;
 }
 
 const ViewContainer: React.FC<IViewContainerProps> = ({ employees }) => {
@@ -20,7 +20,7 @@ const ViewContainer: React.FC<IViewContainerProps> = ({ employees }) => {
 
   const searchQuery = useSelector((state: RootState) => state.search.query);
 
-  const filteredEmployees = useFilteredEmployees(employees);
+  const filteredEmployees = useFilteredEmployees(employees || []);
 
   const handleToggleView = (view: "grid" | "list") => {
     setViewType(view);

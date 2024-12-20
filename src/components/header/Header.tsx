@@ -17,8 +17,7 @@ interface IHeaderProps {
 const Header: React.FC<IHeaderProps> = ({ currentUser }) => {
   const location = useLocation();
 
-    const { setIsAuthenticated } = useAuth();
-  
+  const { setIsAuthenticated } = useAuth();
 
   const storedUserRole =
     localStorage.getItem("currentUserRole") ||
@@ -79,9 +78,10 @@ const Header: React.FC<IHeaderProps> = ({ currentUser }) => {
         <HeaderButton
           imgSrc={currentUser?.user_avatar}
           imgAlt={`${currentUser?.first_name} ${currentUser?.last_name}`}
-          txt={`${currentUser?.first_name} ${currentUser?.last_name}`}
+          txt={currentUser ? `${currentUser.first_name} ${currentUser.last_name}` : ""}
           path={`./user/${currentUser?.id}`}
         />
+
         <HeaderButton
           imgSrc={logOut}
           imgAlt={"#logout"}

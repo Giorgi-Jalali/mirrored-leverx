@@ -8,7 +8,7 @@ import { IEmployee } from "../types/EmployeeTypes";
 import useFilteredEmployees from "../hooks/useFilteredEmployees";
 
 interface ISettingsProps {
-  employees: IEmployee[];
+  employees: IEmployee[] | undefined;
 }
 
 const Settings: React.FC<ISettingsProps> = ({ employees }) => {
@@ -18,7 +18,7 @@ const Settings: React.FC<ISettingsProps> = ({ employees }) => {
   }>({});
 
   const searchQuery = useSelector((state: RootState) => state.search.query);
-  const filteredEmployees = useFilteredEmployees(employees);
+  const filteredEmployees = useFilteredEmployees(employees || []);
 
   const dispatch = useDispatch();
 

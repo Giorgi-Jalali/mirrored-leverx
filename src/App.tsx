@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { useGetEmployeesQuery } from "./services/employeeApi";
 
 import "./sass/base/_base.scss";
 import "./sass/base/_typography.scss";
@@ -16,7 +17,6 @@ import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
 import Header from "./components/header/Header";
 
-import { fetchEmployees } from "./services/employeeService";
 import { IEmployee } from "./types/EmployeeTypes";
 
 import { useAuth } from "./hooks/useAuth";
@@ -24,49 +24,34 @@ import { useAuth } from "./hooks/useAuth";
 export const dbUrl = "http://localhost:3001/users/";
 
 const App: React.FC = () => {
-  const [employees, setEmployees] = useState<IEmployee[]>([]);
+  const { data: employees, error, isLoading } = useGetEmployeesQuery();
   const [currentUser, setCurrentUser] = useState<IEmployee | undefined>();
-  const [loading, setLoading] = useState<boolean>(true);
-  
+
   const { isAuthenticated } = useAuth();
 
   useEffect(() => {
-    setLoading(false);
-  }, []);
+    if (employees) {
+      const storedEmail =
+        localStorage.getItem("userEmail") || sessionStorage.getItem("userEmail");
 
+      if (storedEmail && !currentUser) {
+        const foundUser = employees.find(
+          (employee) => employee.email === storedEmail
+        );
 
-  useEffect(() => {
-    const loadEmployees = async () => {
-      try {
-        const data = await fetchEmployees();
-        setEmployees(data);
+        if (foundUser) {
+          setCurrentUser(foundUser);
 
-        const storedEmail =
-          localStorage.getItem("userEmail") ||
-          sessionStorage.getItem("userEmail");
-
-        if (storedEmail) {
-          const foundUser = data.find(
-            (employee) => employee.email === storedEmail
-          );
-
-          if (foundUser) {
-            setCurrentUser(foundUser);
-            localStorage.setItem("currentUserRole", foundUser.role);
-            localStorage.setItem("currentUserId", foundUser.id);
-            sessionStorage.setItem("currentUserRole", foundUser.role);
-            sessionStorage.setItem("currentUserId", foundUser.id);
-          }
+          localStorage.setItem("currentUserRole", foundUser.role);
+          localStorage.setItem("currentUserId", foundUser.id);
+          sessionStorage.setItem("currentUserRole", foundUser.role);
+          sessionStorage.setItem("currentUserId", foundUser.id);
         }
-      } catch (error) {
-        console.error("Error fetching employees:", error);
       }
-    };
+    }
+  }, [employees, currentUser]);
 
-    loadEmployees();
-  }, [isAuthenticated]);
-
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -76,15 +61,13 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <Header
-        currentUser={currentUser}
-      />
+      <Header currentUser={currentUser} />
       <Routes>
         <Route path="/" element={<Home employees={employees} />} />
         <Route path="/settings" element={<Settings employees={employees} />} />
-        <Route path="*" element={<NotFound />} />
         <Route path="/user/:id" element={<User />} />
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/home" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
