@@ -1,13 +1,12 @@
-/* eslint-disable no-undef */
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = {
+export default {
   mode: 'development',
   entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(process.cwd(), 'dist'),
     clean: true,
   },
   resolve: {
@@ -42,7 +41,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: path.resolve(__dirname, 'public'),
+    static: path.resolve(process.cwd(), 'public'),
     port: 3000,
     open: true,
   },

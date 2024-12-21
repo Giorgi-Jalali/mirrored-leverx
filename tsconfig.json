@@ -112,6 +112,6 @@
   // "include": ["src/**/*.ts"],
   // "include": ["src/**/*.ts", "eslint.config.mjs", "src/**/*"],
   "include": ["src/**/*", "global.d.ts"],
-  // "exclude": ["dist", "node_modules", "eslint.config.mjs", "global.d.ts", "webpack.config.js"],
-  "exclude": ["dist", "dist/bundle.js", "node_modules", "eslint.config.mjs", "webpack.config.js"],
+  // "exclude": ["dist", "node_modules", "eslint.config.mjs", "global.d.ts", "webpack.config.mjs"],
+  "exclude": ["dist", "dist/bundle.js", "node_modules", "eslint.config.mjs", "webpack.config.mjs"],
 }

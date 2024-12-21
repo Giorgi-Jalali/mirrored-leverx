@@ -1,34 +1,26 @@
 import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
+import tseslint from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+import reactPlugin from "eslint-plugin-react";
 
-/** @type {import('eslint').Linter.Config[]} */
+/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
-    ignores: ["dist/**", "eslint.config.mjs", "global.d.ts", "webpack.config.js"],
+    ignores: ["dist/**", "eslint.config.mjs", "global.d.ts", "webpack.config.mjs"],
     languageOptions: {
       globals: globals.browser,
-      parser: "@typescript-eslint/parser",
+      parser: tsParser,
       parserOptions: {
         project: "./tsconfig.json",
         sourceType: "module",
         ecmaFeatures: { jsx: true },
       },
     },
-  },
-
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReact.configs.recommended,
-
-  {
-    plugins: ["@typescript-eslint", "react"],
-    extends: [
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react/recommended",
-    ],
+    plugins: {
+      "@typescript-eslint": tseslint,
+      react: reactPlugin,
+    },
     rules: {
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
