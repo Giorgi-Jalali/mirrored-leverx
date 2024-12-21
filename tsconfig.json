@@ -110,6 +110,8 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   // "include": ["src/**/*.ts"],
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"],
+  // "include": ["src/**/*.ts", "eslint.config.mjs", "src/**/*"],
+  "include": ["src/**/*", "global.d.ts"],
+  // "exclude": ["dist", "node_modules", "eslint.config.mjs", "global.d.ts", "webpack.config.js"],
+  "exclude": ["dist", "dist/bundle.js", "node_modules", "eslint.config.mjs", "webpack.config.js"],
 }

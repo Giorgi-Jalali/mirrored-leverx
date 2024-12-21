@@ -12,7 +12,7 @@ const NotFoundPage: React.FC = () => {
         height="225px"
         className="image404"
       />
-      <p>Sorry, we can't find that page! It might be an old link or maybe it was moved.</p>
+      <p>Sorry, we can&apos;t find that page! It might be an old link or maybe it was moved.</p>
       <Link to="/">
         <button className="not-found-button">GO TO THE HOME PAGE</button>
       </Link>

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import "../sass/pages/_sign-in.scss";
-import { dbUrl } from "../App";
+import { useLoadUsersQuery, useCheckPasswordMutation } from "../services/signInApi";
+import { IEmployee } from "src/types/EmployeeTypes";
 
 const SignIn: React.FC = () => {
   const { setIsAuthenticated } = useAuth();
@@ -9,14 +10,8 @@ const SignIn: React.FC = () => {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
 
-
-  const loadUsers = async (): Promise<any[]> => {
-    const response = await fetch(`${dbUrl}`);
-    if (!response.ok) {
-      throw new Error("Failed to load user data.");
-    }
-    return await response.json();
-  };
+  const { data: users = [], isLoading, isError } = useLoadUsersQuery();
+  const [checkPassword] = useCheckPasswordMutation();
 
   const validateInputs = (): boolean => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -37,34 +32,31 @@ const SignIn: React.FC = () => {
   const signIn = async () => {
     if (!validateInputs()) return;
 
+    if (isLoading) {
+      alert("Loading user data...");
+      return;
+    }
+
+    if (isError) {
+      alert("Failed to load user data. Please try again later.");
+      return;
+    }
+
+    const user = users.find((user: IEmployee) => user.email === email);
+
+    if (!user) {
+      alert("User not found. Please sign up.");
+      return;
+    }
+
     try {
-      const users = await loadUsers();
-      const user = users.find((user: any) => user.email === email);
+      const isPasswordValid = await checkPassword({
+        password,
+        hash: user.passwordHash,
+      }).unwrap();
 
-      if (!user) {
-        alert("User not found. Please sign up.");
-        return;
-      }
-
-      const checkRequest = await fetch(
-        "https://www.toptal.com/developers/bcrypt/api/check-password.json",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: `password=${encodeURIComponent(password)}&hash=${encodeURIComponent(
-            user.passwordHash
-          )}`,
-        }
-      );
-
-      const checkData = await checkRequest.json();
-
-      if (checkData.ok) {
-
+      if (isPasswordValid) {
         setIsAuthenticated(true);
-
 
         if (remember) {
           localStorage.setItem("userEmail", email);
@@ -72,7 +64,6 @@ const SignIn: React.FC = () => {
           sessionStorage.setItem("userEmail", email);
         }
 
-        // alert("Login successful!");
         window.location.href = "/";
       } else {
         alert("Invalid password.");

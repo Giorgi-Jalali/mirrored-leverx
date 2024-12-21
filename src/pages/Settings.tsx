@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "../sass/pages/_settings.scss";
-import { dbUrl } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from '../redux/store';
 import { RootState } from "../redux/store";
 import { updateSearchQuery } from "../redux/slices/searchSlice";
-import { IEmployee } from "../types/EmployeeTypes";
 import useFilteredEmployees from "../hooks/useFilteredEmployees";
 import { employeeApi, useGetEmployeesQuery, useUpdateEmployeeRoleMutation } from "../services/employeeApi";
 
 const Settings: React.FC = () => {
-  const { data: employees, isLoading, isError } = useGetEmployeesQuery();
+  const { data: employees } = useGetEmployeesQuery();
   const [updateEmployeeRole] = useUpdateEmployeeRoleMutation();
 
   const [storedUserId, setStoredUserId] = useState<string | null>(null);
@@ -43,7 +41,7 @@ const Settings: React.FC = () => {
   const handleRoleChange = (employeeId: string, newRole: string) => {
     updateEmployeeRole({ id: employeeId, role: newRole })
       .unwrap()
-      .then((updatedEmployeeFromDb) => {
+      .then(() => {
         alert("Role updated successfully.");
   
         setSelectedRoles((prev) => ({

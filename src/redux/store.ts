@@ -3,7 +3,7 @@ import searchReducer from "./slices/searchSlice";
 import currentUserReducer from "./slices/currentUserSlice";
 import { employeeApi } from "../services/employeeApi";
 import { userApi } from "../services/userApi";
-import { authApi } from "../services/authApi";
+import { signInApi } from "../services/signInApi";
 
 export const store = configureStore({
   reducer: {
@@ -11,13 +11,13 @@ export const store = configureStore({
     user: currentUserReducer,
     [employeeApi.reducerPath]: employeeApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
-    [authApi.reducerPath]: authApi.reducer,
+    [signInApi.reducerPath]: signInApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       employeeApi.middleware,
       userApi.middleware,
-      authApi.middleware,
+      signInApi.middleware,
     ),
 });
 

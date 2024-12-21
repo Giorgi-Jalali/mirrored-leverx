@@ -26,7 +26,7 @@ const User: React.FC = () => {
   const [editMode, setEditMode] = useState(false);
   const [updatedUser, setUpdatedUser] = useState<IEmployee | null>(null);
   
-  const { data: user, error, isLoading } = useGetUserByIdQuery(id || "");
+  const { data: user, } = useGetUserByIdQuery(id || "");
   const [updateUser] = useUpdateUserMutation();
 
   const storedUserRole =

@@ -20,9 +20,7 @@ interface IInfoContainerProps {
 const InfoContainer: React.FC<IInfoContainerProps> = ({
   updatedUser,
   editMode,
-  handleSaveClick,
   handleInputChange,
-  handleEditClick,
 }) => {
   const renderVisaInfo = (updatedUser: IEmployee | null) => {
     const visaArray = updatedUser?.visa || [];

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, createContext } from "react";
 
 interface IAuthContextType {
   isAuthenticated: boolean;
@@ -13,10 +13,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       localStorage.getItem("userEmail") || sessionStorage.getItem("userEmail");
     return !!storedEmail;
   });
-
-  // useEffect(() => {
-  //   console.log("Auth state updated:", isAuthenticated);
-  // }, [isAuthenticated]);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
