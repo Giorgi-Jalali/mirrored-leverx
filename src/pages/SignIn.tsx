@@ -5,6 +5,8 @@ import "../sass/pages/_sign-in.scss";
 import { useLoadUsersQuery, useCheckPasswordMutation } from "../services/signInApi";
 import { IEmployee } from "src/types/EmployeeTypes";
 import { useSnackbar } from "../hooks/useSnackbar";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../redux/slices/currentUserSlice";
 
 const SignIn: React.FC = () => {
   const { setIsAuthenticated } = useAuth();
@@ -13,6 +15,7 @@ const SignIn: React.FC = () => {
   const [remember, setRemember] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { data: users = [], isLoading, isError } = useLoadUsersQuery();
   const [checkPassword] = useCheckPasswordMutation();
@@ -69,6 +72,9 @@ const SignIn: React.FC = () => {
         } else {
           sessionStorage.setItem("userEmail", email);
         }
+
+        dispatch(setCurrentUser(user));
+
         navigate("/");
         showSnackbar("Login successful!");
       } else {

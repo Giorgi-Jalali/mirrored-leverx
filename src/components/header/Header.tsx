@@ -8,8 +8,9 @@ import notFound from "/public/assets/not-found.png";
 
 import HeaderButton from "./HeaderButton";
 import { useAuth } from "../../hooks/useAuth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { clearCurrentUser } from "../../redux/slices/currentUserSlice";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -17,6 +18,7 @@ const Header: React.FC = () => {
   const currentUser = useSelector((state: RootState) => state.user.currentUser);
 
   const { setIsAuthenticated } = useAuth();
+  const dispatch = useDispatch();
 
     const handleLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
@@ -24,6 +26,7 @@ const Header: React.FC = () => {
       localStorage.removeItem("userEmail");
       sessionStorage.removeItem("userEmail");
     
+      dispatch(clearCurrentUser());
       setIsAuthenticated(false);
     };
     
