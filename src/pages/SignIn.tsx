@@ -3,6 +3,7 @@ import { useAuth } from "../hooks/useAuth";
 import "../sass/pages/_sign-in.scss";
 import { useLoadUsersQuery, useCheckPasswordMutation } from "../services/signInApi";
 import { IEmployee } from "src/types/EmployeeTypes";
+import { useSnackbar } from "../hooks/useSnackbar";
 
 const SignIn: React.FC = () => {
   const { setIsAuthenticated } = useAuth();
@@ -13,16 +14,18 @@ const SignIn: React.FC = () => {
   const { data: users = [], isLoading, isError } = useLoadUsersQuery();
   const [checkPassword] = useCheckPasswordMutation();
 
+  const { showSnackbar } = useSnackbar();
+
   const validateInputs = (): boolean => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!emailRegex.test(email)) {
-      alert("Please enter a valid email address.");
+      showSnackbar("Please enter a valid email address.");
       return false;
     }
 
     if (password.length < 2) {
-      alert("Password must be at least 2 characters long.");
+      showSnackbar("Password must be at least 2 characters long.");
       return false;
     }
 
@@ -33,19 +36,19 @@ const SignIn: React.FC = () => {
     if (!validateInputs()) return;
 
     if (isLoading) {
-      alert("Loading user data...");
+      showSnackbar("Loading user data...");
       return;
     }
 
     if (isError) {
-      alert("Failed to load user data. Please try again later.");
+      showSnackbar("Failed to load user data. Please try again later.");
       return;
     }
 
     const user = users.find((user: IEmployee) => user.email === email);
 
     if (!user) {
-      alert("User not found. Please sign up.");
+      showSnackbar("User not found. Please sign up.");
       return;
     }
 
@@ -63,14 +66,14 @@ const SignIn: React.FC = () => {
         } else {
           sessionStorage.setItem("userEmail", email);
         }
-
         window.location.href = "/";
+        showSnackbar("Login successful!");
       } else {
-        alert("Invalid password.");
+        showSnackbar("Invalid password.");
       }
     } catch (error) {
       console.error("Error during login:", error);
-      alert("An error occurred while processing your login.");
+      showSnackbar("An error occurred while processing your login.");
     }
   };
 

@@ -20,6 +20,7 @@ import email from "/public/assets/email.png";
 import skype from "/public/assets/skype.png";
 import { Link } from "react-router-dom";
 import { IEmployee } from "../types/EmployeeTypes";
+import { useSnackbar } from "../hooks/useSnackbar";
 
 const User: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -28,6 +29,8 @@ const User: React.FC = () => {
   
   const { data: user, } = useGetUserByIdQuery(id || "");
   const [updateUser] = useUpdateUserMutation();
+
+  const { showSnackbar } = useSnackbar();
 
   const storedUserRole =
     localStorage.getItem("currentUserRole") ||
@@ -59,7 +62,7 @@ const User: React.FC = () => {
     if (updatedUser) {
       try {
         await updateUser(updatedUser).unwrap();
-        alert("User information updated successfully!");
+        showSnackbar("User information updated successfully!");
         setEditMode(false);
       } catch (error) {
         console.error("Error updating user:", error);
@@ -328,9 +331,7 @@ const User: React.FC = () => {
             <InfoContainer
               editMode={editMode}
               updatedUser={updatedUser}
-              handleSaveClick={handleSaveClick}
               handleInputChange={handleInputChange}
-              handleEditClick={handleEditClick}
             />
           </div>
         </div>

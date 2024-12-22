@@ -6,6 +6,7 @@ import { RootState } from "../redux/store";
 import { updateSearchQuery } from "../redux/slices/searchSlice";
 import useFilteredEmployees from "../hooks/useFilteredEmployees";
 import { employeeApi, useGetEmployeesQuery, useUpdateEmployeeRoleMutation } from "../services/employeeApi";
+import { useSnackbar } from "../hooks/useSnackbar";
 
 const Settings: React.FC = () => {
   const { data: employees } = useGetEmployeesQuery();
@@ -20,6 +21,8 @@ const Settings: React.FC = () => {
   const filteredEmployees = useFilteredEmployees(employees || []);
 
   const dispatch = useDispatch<AppDispatch>();
+
+  const { showSnackbar } = useSnackbar();
 
   const handleSearch = (query: string) => {
     dispatch(updateSearchQuery(query));
@@ -42,7 +45,7 @@ const Settings: React.FC = () => {
     updateEmployeeRole({ id: employeeId, role: newRole })
       .unwrap()
       .then(() => {
-        alert("Role updated successfully.");
+        showSnackbar("Role updated successfully.");
   
         setSelectedRoles((prev) => ({
           ...prev,

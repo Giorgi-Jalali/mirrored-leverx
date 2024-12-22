@@ -41,11 +41,7 @@ const SearchContainer: React.FC = () => {
       </div>
 
       <div className="content">
-        {isBasicSearch && (
-          <BasicSearch />
-        )}
-
-        {!isBasicSearch && <AdvancedSearch />}
+        {isBasicSearch ? <BasicSearch /> : <AdvancedSearch />}
       </div>
     </aside>
   );

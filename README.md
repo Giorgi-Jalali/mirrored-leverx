@@ -20,14 +20,14 @@ Browser extension - "Cross Domain - CORS" (without it there is a CORS error)
 
 It needs two terminals
 
-- yarn start
 - yarn run server (for json-server)
+- yarn start
 
 Production
 
 - yarn build
-- yarn start-pro
 - yarn run server (for json-server)
+- yarn start-pro
 
 
 ### How to test
@@ -55,10 +55,11 @@ Users should be able to:
 
 - [Plain HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - Markup Language
 - [Sass/SCSS](https://sass-lang.com/) - For styles
-- [Vite](https://vite.dev/) - The Build Tool for the Web
+- [Webpack](https://webpack.js.org/) - The Build Tool for the Web
 - [Typescript](https://www.typescriptlang.org/) - For types.
 - [JSON Server](https://www.npmjs.com/package/json-server) - For data
 - [React](https://reactjs.org/) - JS library
+- [Redux Toolkit](https://redux-toolkit.js.org/) - State management, including API calls with RTK Query
 
 ## Author
 

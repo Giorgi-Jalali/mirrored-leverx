@@ -10,6 +10,11 @@ export interface IManager {
     start_date: number;
     end_date: number;
   }
+
+  export type TViewProps = {
+    employees: IEmployee[];
+    searchQuery: string;
+  };
   
   export interface IEmployee {
     id: string;

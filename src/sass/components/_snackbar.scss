@@ -1,0 +1,17 @@
+@use "../abstracts/var";
+
+.snackbar {
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var.$snackbar-bg;
+    color: var.$white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    z-index: 1000;
+    opacity: 0.9;
+  }
+  
+  

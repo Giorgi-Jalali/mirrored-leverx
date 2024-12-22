@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import "./styles/main.scss";
 
 import { AuthProvider } from "./context/AuthContext";
+import { SnackbarProvider } from "./context/SnackbarContext";
 import App from "./App";
 
 import { store } from "./redux/store";
@@ -14,7 +15,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <AuthProvider>
-        <App />
+        <SnackbarProvider>
+          <App />
+        </SnackbarProvider>
       </AuthProvider>
     </Provider>
   </React.StrictMode>

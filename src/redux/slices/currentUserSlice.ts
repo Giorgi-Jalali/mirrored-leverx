@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IEmployee } from "src/types/EmployeeTypes";
 
-interface UserState {
+interface IUserState {
   currentUser: IEmployee | undefined;
 }
 
-const initialState: UserState = {
+const initialState: IUserState = {
   currentUser: undefined,
 };
 

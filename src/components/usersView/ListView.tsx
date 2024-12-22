@@ -6,25 +6,9 @@ import manName from "/public/assets/man-name.png";
 import suitcase from "/public/assets/suitcase.png";
 import door from "/public/assets/door.png";
 import { Link } from "react-router-dom";
-
-
-
-type Employee = {
-    id: string;
-    first_name: string;
-    last_name: string;
-    role: string;
-    user_avatar: string;
-    department: string;
-    room: string;
-  };
-
-  type ListViewProps = {
-    employees: Employee[];
-    searchQuery: string;
-  };
+import { TViewProps } from "../../types/EmployeeTypes";
   
-  const ListView: React.FC<ListViewProps> = ({ employees, searchQuery }) => {
+  const ListView: React.FC<TViewProps> = ({ employees, searchQuery }) => {
     if (searchQuery && employees.length === 0) {
       return (
         <div className="not-found">
@@ -34,7 +18,7 @@ type Employee = {
     }
   
     return (
-      <ul className="section-body-list" style={{ display: "flex" }}>
+      <ul className="section-body-list" >
         <div className="list-header">
           <div className="photo-name">
             <div className="photo">

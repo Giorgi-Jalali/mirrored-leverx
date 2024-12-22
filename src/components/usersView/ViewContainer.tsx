@@ -11,25 +11,29 @@ import { RootState } from "../../redux/store";
 import useFilteredEmployees from "../../hooks/useFilteredEmployees";
 import { useGetEmployeesQuery } from "../../services/employeeApi";
 
+const GRID_VIEW = "grid";
+const LIST_VIEW = "list";
+const VIEW_TOGGLE = "view-toggle";
+const TOGGLE = "toggle";
+
+type TViewType = typeof GRID_VIEW | typeof LIST_VIEW;
+
 const ViewContainer: React.FC = () => {
-  const [viewType, setViewType] = useState<"grid" | "list">("grid");
+  const [viewType, setViewType] = useState<TViewType>(GRID_VIEW);
 
   const searchQuery = useSelector((state: RootState) => state.search.query);
-
   const { data: employees, isLoading, isError } = useGetEmployeesQuery();
-
-  
 
   const filteredEmployees = useFilteredEmployees(employees || []);
 
-  const handleToggleView = (view: "grid" | "list") => {
+  const handleToggleView = (view: TViewType) => {
     setViewType(view);
   };
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  
+
   if (isError || !employees) {
     return <div>Error loading employees</div>;
   }
@@ -40,33 +44,33 @@ const ViewContainer: React.FC = () => {
         {filteredEmployees.length} employees displayed
       </p>
       <div className="controls">
-        <div className="view-toggle">
+        <div className={VIEW_TOGGLE}>
           <input
             type="radio"
-            id="grid"
-            name="view-toggle"
-            className="toggle"
-            checked={viewType === "grid"}
-            onChange={() => handleToggleView("grid")}
+            id={GRID_VIEW}
+            name={VIEW_TOGGLE}
+            className={TOGGLE}
+            checked={viewType === GRID_VIEW}
+            onChange={() => handleToggleView(GRID_VIEW)}
           />
-          <label htmlFor="grid" className="grid-icon">
+          <label htmlFor={GRID_VIEW} className="grid-icon">
             <img src={gridIcon} alt="Grid View" width="20px" height="20px" />
           </label>
           <input
             type="radio"
-            id="list"
-            name="view-toggle"
-            className="toggle"
-            checked={viewType === "list"}
-            onChange={() => handleToggleView("list")}
+            id={LIST_VIEW}
+            name={VIEW_TOGGLE}
+            className={TOGGLE}
+            checked={viewType === LIST_VIEW}
+            onChange={() => handleToggleView(LIST_VIEW)}
           />
-          <label htmlFor="list" className="list-icon">
+          <label htmlFor={LIST_VIEW} className="list-icon">
             <img src={listIcon} alt="List View" width="20px" height="20px" />
           </label>
         </div>
       </div>
       <div className="views">
-        {viewType === "grid" ? (
+        {viewType === GRID_VIEW ? (
           <GridView employees={filteredEmployees} searchQuery={searchQuery} />
         ) : (
           <ListView employees={filteredEmployees} searchQuery={searchQuery} />

@@ -8,13 +8,11 @@ import validity from "/public/assets/validity.png";
 import { IEmployee } from "../../types/EmployeeTypes";
 
 interface IInfoContainerProps {
-  editMode: boolean;
   updatedUser: IEmployee | null;
-  handleSaveClick: () => void;
+  editMode: boolean;
   handleInputChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
-  handleEditClick: () => void;
 }
 
 const InfoContainer: React.FC<IInfoContainerProps> = ({
