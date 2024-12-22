@@ -3,10 +3,11 @@ import "../sass/pages/_settings.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from '../redux/store';
 import { RootState } from "../redux/store";
-import { updateSearchQuery } from "../redux/slices/searchSlice";
 import useFilteredEmployees from "../hooks/useFilteredEmployees";
 import { employeeApi, useGetEmployeesQuery, useUpdateEmployeeRoleMutation } from "../services/employeeApi";
 import { useSnackbar } from "../hooks/useSnackbar";
+import { updateSearchField } from '../redux/slices/advancedSearchSlice';
+
 
 const Settings: React.FC = () => {
   const { data: employees } = useGetEmployeesQuery();
@@ -17,16 +18,20 @@ const Settings: React.FC = () => {
     [key: string]: string;
   }>({});
 
-  const searchQuery = useSelector((state: RootState) => state.search.query);
   const filteredEmployees = useFilteredEmployees(employees || []);
-
+  
+  const { name } = useSelector((state: RootState) => state.advancedSearch);
   const dispatch = useDispatch<AppDispatch>();
 
   const { showSnackbar } = useSnackbar();
 
-  const handleSearch = (query: string) => {
-    dispatch(updateSearchQuery(query));
-  };
+  const handleInputChange = (field: string, value: string) => {
+      dispatch(updateSearchField({ field, value }));
+    };
+  
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+    };
 
   useEffect(() => {
     const userId =
@@ -83,17 +88,14 @@ const Settings: React.FC = () => {
           <form
             action="./404.html"
             method="GET"
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSearch(searchQuery);
-            }}
+            onSubmit={handleSubmit}
           >
             <input
               type="text"
               className="search-input"
               placeholder="Type to search"
-              value={searchQuery}
-              onChange={(e) => handleSearch(e.target.value)}
+              value={name}
+              onChange={(e) => handleInputChange("name", e.target.value)}
               required
             />
           </form>

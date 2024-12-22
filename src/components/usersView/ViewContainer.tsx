@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-
-import GridView from "./GridView";
-import ListView from "./ListView";
-
-import gridIcon from "/public/assets/grid.png";
-import listIcon from "/public/assets/list.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-
-import useFilteredEmployees from "../../hooks/useFilteredEmployees";
 import { useGetEmployeesQuery } from "../../services/employeeApi";
+import GridView from "./GridView";
+import ListView from "./ListView";
+import gridIcon from "/public/assets/grid.png";
+import listIcon from "/public/assets/list.png";
+import useFilteredEmployees from "../../hooks/useFilteredEmployees";
 
 const GRID_VIEW = "grid";
 const LIST_VIEW = "list";
@@ -21,8 +18,13 @@ type TViewType = typeof GRID_VIEW | typeof LIST_VIEW;
 const ViewContainer: React.FC = () => {
   const [viewType, setViewType] = useState<TViewType>(GRID_VIEW);
 
-  const searchQuery = useSelector((state: RootState) => state.search.query);
+
+  const { name, email, phone, skype, building, room, department } = useSelector(
+    (state: RootState) => state.advancedSearch
+  );
+
   const { data: employees, isLoading, isError } = useGetEmployeesQuery();
+
 
   const filteredEmployees = useFilteredEmployees(employees || []);
 
@@ -71,9 +73,9 @@ const ViewContainer: React.FC = () => {
       </div>
       <div className="views">
         {viewType === GRID_VIEW ? (
-          <GridView employees={filteredEmployees} searchQuery={searchQuery} />
+          <GridView employees={filteredEmployees} searchQuery={{ name, email, phone, skype, building, room, department }} />
         ) : (
-          <ListView employees={filteredEmployees} searchQuery={searchQuery} />
+          <ListView employees={filteredEmployees} searchQuery={{ name, email, phone, skype, building, room, department }} />
         )}
       </div>
     </section>

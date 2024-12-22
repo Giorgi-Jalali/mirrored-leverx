@@ -26,9 +26,9 @@
         "first_name": null,
         "last_name": null
       },
-      "phone": "+12931293129",
+      "phone": "+123",
       "email": "sophia@sophia.com",
-      "skype": "live:.cid.21asd41jd1m132",
+      "skype": "sophia-skype",
       "cnumber": "C5336116",
       "citizenship": "Georgia",
       "visa": [
@@ -78,9 +78,9 @@
         "first_name": null,
         "last_name": null
       },
-      "phone": "+12931293129",
+      "phone": "+234",
       "email": "james@james.com",
-      "skype": "live:.cid.21asd41jd1m132",
+      "skype": "james-skype",
       "cnumber": "C5336116",
       "citizenship": "Georgia",
       "visa": [
@@ -118,9 +118,9 @@
         "first_name": "James",
         "last_name": "Harris"
       },
-      "phone": "+12931293129",
+      "phone": "+345",
       "email": "olivia@olivia.com",
-      "skype": "live:.cid.21asd41jd1m132",
+      "skype": "olivia-skype",
       "cnumber": "C5336116",
       "citizenship": "Georgia",
       "visa": [
@@ -158,7 +158,7 @@
         "first_name": "James",
         "last_name": "Harris"
       },
-      "phone": "+12931293129",
+      "phone": "+567",
       "email": "ethan@ethan.com",
       "skype": "live:.cid.21asd41jd1m132",
       "cnumber": "C5336116",

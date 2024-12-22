@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import searchReducer from "./slices/searchSlice";
+import advancedSearchReducer from "./slices/advancedSearchSlice";
 import currentUserReducer from "./slices/currentUserSlice";
 import { employeeApi } from "../services/employeeApi";
 import { userApi } from "../services/userApi";
@@ -7,7 +7,7 @@ import { signInApi } from "../services/signInApi";
 
 export const store = configureStore({
   reducer: {
-    search: searchReducer,
+    advancedSearch: advancedSearchReducer,
     user: currentUserReducer,
     [employeeApi.reducerPath]: employeeApi.reducer,
     [userApi.reducerPath]: userApi.reducer,

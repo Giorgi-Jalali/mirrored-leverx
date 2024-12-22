@@ -13,7 +13,15 @@ export interface IManager {
 
   export type TViewProps = {
     employees: IEmployee[];
-    searchQuery: string;
+    searchQuery: {
+      name: string;
+      email: string;
+      phone: string;
+      skype: string;
+      building: string;
+      room: string;
+      department: string;
+    };
   };
   
   export interface IEmployee {

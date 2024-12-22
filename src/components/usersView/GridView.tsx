@@ -1,5 +1,4 @@
 import React from "react";
-
 import suitcase from "/public/assets/suitcase.png";
 import door from "/public/assets/door.png";
 import notFound from "/public/assets/404.png";
@@ -7,7 +6,10 @@ import { Link } from "react-router-dom";
 import { TViewProps } from "../../types/EmployeeTypes";
 
 const GridView: React.FC<TViewProps> = ({ employees, searchQuery }) => {
-  if (searchQuery && employees.length === 0) {
+  if (
+    employees.length === 0 &&
+    Object.values(searchQuery).some((field) => field !== "")
+  ) {
     return (
       <div className="not-found">
         <img src={notFound} alt="not found" width="400px" height="225px" />
@@ -16,7 +18,7 @@ const GridView: React.FC<TViewProps> = ({ employees, searchQuery }) => {
   }
 
   return (
-    <ul className="section-body" >
+    <ul className="section-body">
       {employees.map((person) => (
         <li key={person.id} className="employee">
           <Link to={`../user/${person.id}`} className="employee-link">
