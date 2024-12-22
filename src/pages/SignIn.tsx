@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import "../sass/pages/_sign-in.scss";
 import { useLoadUsersQuery, useCheckPasswordMutation } from "../services/signInApi";
@@ -10,6 +11,8 @@ const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
+
+  const navigate = useNavigate();
 
   const { data: users = [], isLoading, isError } = useLoadUsersQuery();
   const [checkPassword] = useCheckPasswordMutation();
@@ -66,7 +69,7 @@ const SignIn: React.FC = () => {
         } else {
           sessionStorage.setItem("userEmail", email);
         }
-        window.location.href = "/";
+        navigate("/");
         showSnackbar("Login successful!");
       } else {
         showSnackbar("Invalid password.");

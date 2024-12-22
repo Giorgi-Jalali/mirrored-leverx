@@ -21,6 +21,8 @@ import skype from "/public/assets/skype.png";
 import { Link } from "react-router-dom";
 import { IEmployee } from "../types/EmployeeTypes";
 import { useSnackbar } from "../hooks/useSnackbar";
+import { RootState } from "src/redux/store";
+import { useSelector } from "react-redux";
 
 const User: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -32,12 +34,7 @@ const User: React.FC = () => {
 
   const { showSnackbar } = useSnackbar();
 
-  const storedUserRole =
-    localStorage.getItem("currentUserRole") ||
-    sessionStorage.getItem("currentUserRole");
-  const storedUserId =
-    localStorage.getItem("currentUserId") ||
-    sessionStorage.getItem("currentUserId");
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
 
     useEffect(() => {
       if (user) {
@@ -142,8 +139,8 @@ const User: React.FC = () => {
           <p>Copy link</p>
         </div>
 
-        {storedUserRole === "admin" ||
-        (storedUserRole === "hr" && user?.manager?.id == storedUserId) ? (
+        {currentUser?.role === "admin" ||
+        (currentUser?.role === "hr" && user?.manager?.id == currentUser?.id) ? (
           <div className="edit" onClick={handleEditClick}>
             <img src={pen} alt="Edit icon" width="25px" height="25px" />
             <p>Edit</p>
@@ -335,8 +332,8 @@ const User: React.FC = () => {
             />
           </div>
         </div>
-        {storedUserRole === "admin" ||
-        (storedUserRole === "hr" && user?.manager?.id == storedUserId) ? (
+        {currentUser?.role === "admin" ||
+        (currentUser?.role === "hr" && user?.manager?.id == currentUser?.id) ? (
           <button onClick={handleSaveClick}>Save</button>
         ) : (
           ""

@@ -18,20 +18,11 @@ const Header: React.FC = () => {
 
   const { setIsAuthenticated } = useAuth();
 
-  const storedUserRole =
-    localStorage.getItem("currentUserRole") ||
-    sessionStorage.getItem("currentUserRole");
-
     const handleLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
     
       localStorage.removeItem("userEmail");
-      localStorage.removeItem("currentUserRole");
-      localStorage.removeItem("currentUserId");
-    
       sessionStorage.removeItem("userEmail");
-      sessionStorage.removeItem("currentUserRole");
-      sessionStorage.removeItem("currentUserId");
     
       setIsAuthenticated(false);
     };
@@ -55,7 +46,7 @@ const Header: React.FC = () => {
         >
           <p>Address Book</p>
         </Link>
-        {storedUserRole === "admin" && (
+        {currentUser?.role === "admin" && (
           <Link
             to="../settings"
             className={`home-link-wrap ${

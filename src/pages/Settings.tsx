@@ -16,10 +16,11 @@ const Settings: React.FC = () => {
   const { data: employees } = useGetEmployeesQuery();
   const [updateEmployeeRole] = useUpdateEmployeeRoleMutation();
 
-  const [storedUserId, setStoredUserId] = useState<string | null>(null);
   const [selectedRoles, setSelectedRoles] = useState<{
     [key: string]: string;
   }>({});
+
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
 
   const filteredEmployees = useFilteredEmployees(employees || []);
 
@@ -37,10 +38,6 @@ const Settings: React.FC = () => {
   };
 
   useEffect(() => {
-    const userId =
-      localStorage.getItem("currentUserId") ||
-      sessionStorage.getItem("currentUserId");
-    setStoredUserId(userId);
 
     const initialRoles: { [key: string]: string } = {};
     filteredEmployees.forEach((employee) => {
@@ -113,7 +110,7 @@ const Settings: React.FC = () => {
       </div>
       <div id="settings-Employees">
         {filteredEmployees.map((person) => {
-          const isCurrentUser = person.id === storedUserId;
+          const isCurrentUser = person.id === currentUser?.id;
 
           return (
             <div key={person.id} className="roles-header">
