@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "../sass/pages/_settings.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from '../redux/store';
+import { AppDispatch } from "../redux/store";
 import { RootState } from "../redux/store";
 import useFilteredEmployees from "../hooks/useFilteredEmployees";
-import { employeeApi, useGetEmployeesQuery, useUpdateEmployeeRoleMutation } from "../services/employeeApi";
+import {
+  employeeApi,
+  useGetEmployeesQuery,
+  useUpdateEmployeeRoleMutation,
+} from "../services/employeeApi";
 import { useSnackbar } from "../hooks/useSnackbar";
-import { updateSearchField } from '../redux/slices/advancedSearchSlice';
-
+import { updateSearchField } from "../redux/slices/advancedSearchSlice";
 
 const Settings: React.FC = () => {
   const { data: employees } = useGetEmployeesQuery();
@@ -19,19 +22,19 @@ const Settings: React.FC = () => {
   }>({});
 
   const filteredEmployees = useFilteredEmployees(employees || []);
-  
+
   const { name } = useSelector((state: RootState) => state.advancedSearch);
   const dispatch = useDispatch<AppDispatch>();
 
   const { showSnackbar } = useSnackbar();
 
   const handleInputChange = (field: string, value: string) => {
-      dispatch(updateSearchField({ field, value }));
-    };
-  
-    const handleSubmit = (e: React.FormEvent) => {
-      e.preventDefault();
-    };
+    dispatch(updateSearchField({ field, value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
 
   useEffect(() => {
     const userId =
@@ -51,27 +54,34 @@ const Settings: React.FC = () => {
       .unwrap()
       .then(() => {
         showSnackbar("Role updated successfully.");
-  
+
         setSelectedRoles((prev) => ({
           ...prev,
           [employeeId]: newRole,
         }));
-  
+
         dispatch(
-          employeeApi.util.updateQueryData('getEmployees', undefined, (draft) => {
-            const employeeIndex = draft.findIndex((emp) => emp.id === employeeId);
-            if (employeeIndex >= 0) {
-              draft[employeeIndex] = { ...draft[employeeIndex], role: newRole };
+          employeeApi.util.updateQueryData(
+            "getEmployees",
+            undefined,
+            (draft) => {
+              const employeeIndex = draft.findIndex(
+                (emp) => emp.id === employeeId
+              );
+              if (employeeIndex >= 0) {
+                draft[employeeIndex] = {
+                  ...draft[employeeIndex],
+                  role: newRole,
+                };
+              }
             }
-          })
+          )
         );
       })
       .catch((error) => {
         console.error("Error updating role:", error);
       });
   };
-  
-  
 
   return (
     <div className="settings-main">
@@ -85,11 +95,7 @@ const Settings: React.FC = () => {
             height="20px"
             className="settings-search"
           />
-          <form
-            action="./404.html"
-            method="GET"
-            onSubmit={handleSubmit}
-          >
+          <form action="./404.html" method="GET" onSubmit={handleSubmit}>
             <input
               type="text"
               className="search-input"
@@ -144,7 +150,7 @@ const Settings: React.FC = () => {
                       htmlFor={`${role}-${person.id}`}
                       className={`role-label ${
                         selectedRoles[person.id] === role ? "checked" : ""
-                      }`}
+                      } ${isCurrentUser ? "disabled-role" : ""}`}
                     >
                       {role}
                     </label>
