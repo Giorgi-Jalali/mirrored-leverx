@@ -1,5 +1,5 @@
 import React, { createContext, useState, ReactNode } from "react";
-import "../sass/components/_snackbar.scss";
+import "../sass/components/snackbar/_snackbar.scss";
 
 type SnackbarContextType = {
   showSnackbar: (message: string) => void;

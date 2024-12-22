@@ -71,7 +71,7 @@ const User: React.FC = () => {
   };
 
   if (!user) {
-    return <p>Loading...</p>;
+    return <div>Loading...</div>;
   }
 
   return (
