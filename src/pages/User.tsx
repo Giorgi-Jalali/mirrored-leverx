@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useGetUserByIdQuery, useUpdateUserMutation } from "../services/userApi";
+import {
+  useGetUserByIdQuery,
+  useUpdateUserMutation,
+} from "../services/userApi";
 import "../sass/pages/_user.scss";
 
 import InfoContainer from "../components/user/InfoContainer";
@@ -28,19 +31,24 @@ const User: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [editMode, setEditMode] = useState(false);
   const [updatedUser, setUpdatedUser] = useState<IEmployee | null>(null);
-  
-  const { data: user, } = useGetUserByIdQuery(id || "");
+
+  const { data: user, refetch } = useGetUserByIdQuery(id || "");
   const [updateUser] = useUpdateUserMutation();
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
+
+  useEffect(() => {
+    if (id) {
+      refetch();
+    }
+  }, [id, refetch]);
 
   const { showSnackbar } = useSnackbar();
 
-  const currentUser = useSelector((state: RootState) => state.user.currentUser);
-
-    useEffect(() => {
-      if (user) {
-        setUpdatedUser(user);
-      }
-    }, [user]);
+  useEffect(() => {
+    if (user) {
+      setUpdatedUser(user);
+    }
+  }, [user]);
 
   const handleEditClick = () => {
     setEditMode(true);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useGetEmployeesQuery } from "../../services/employeeApi";
@@ -23,7 +23,7 @@ const ViewContainer: React.FC = () => {
     (state: RootState) => state.advancedSearch
   );
 
-  const { data: employees, isLoading, isError } = useGetEmployeesQuery();
+  const { data: employees, isLoading, isError, refetch } = useGetEmployeesQuery();
 
 
   const filteredEmployees = useFilteredEmployees(employees || []);
@@ -31,6 +31,10 @@ const ViewContainer: React.FC = () => {
   const handleToggleView = (view: TViewType) => {
     setViewType(view);
   };
+
+  useEffect(() => {
+    refetch();
+  }, [refetch])
 
   if (isLoading) {
     return <div>Loading...</div>;

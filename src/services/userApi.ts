@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IEmployee } from '../types/EmployeeTypes';
+import { employeeApi } from './employeeApi';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -14,6 +15,15 @@ export const userApi = createApi({
         method: 'PUT',
         body: user,
       }),
+      onQueryStarted: async (args, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+
+          dispatch(employeeApi.util.invalidateTags([{ type: 'Employee' }]));
+        } catch (error) {
+          console.error('Error updating user:', error);
+        }
+      },
     }),
   }),
 });
