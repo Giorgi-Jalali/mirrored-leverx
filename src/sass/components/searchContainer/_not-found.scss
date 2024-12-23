@@ -1,13 +1,11 @@
 @use "../../abstracts/var";
-
+@use "../../abstracts/mixins" as mixins;
 
 .not-found {
-    background-color: var.$white;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50px;
-    padding: 70px;
-    border-radius: 20px;
-  }
+  background-color: var.$white;
+  height: 400px;
+  @include mixins.flex-center(column, center, center);
+  margin: 50px;
+  padding: 70px;
+  border-radius: 20px;
+}

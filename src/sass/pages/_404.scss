@@ -1,9 +1,9 @@
 @use "../abstracts/var";
+@use "../abstracts/mixins" as mixins;
+
 
 .not-found-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include mixins.flex-center(column, center, center);
   gap: 3em;
 }
 

@@ -116,7 +116,7 @@ const InfoContainer: React.FC<IInfoContainerProps> = ({
 
   return (
     <>
-      <div className="info-left-citizenship">{renderVisaList(updatedUser)}</div>
+      <div className="info-left">{renderVisaList(updatedUser)}</div>
       <div className="info-right">{renderVisaInfo(updatedUser)}</div>
     </>
   );

@@ -1,13 +1,11 @@
-@use "../abstracts/var";
+@use "../abstracts/var" as var;
+@use "../abstracts/mixins" as mixins;
 
 header {
     background-color: var.$header-bg-color;
     color: var.$white;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
+    @include mixins.flex-center;
     padding: 1.5em 4em;
 }
 
@@ -15,6 +13,10 @@ header {
     color: var.$white;
     text-decoration: none;
     cursor: pointer;
+
+    &:hover {
+        color: var.$link-hover-text-color;
+    }
 }
 
 .home-link {
@@ -22,20 +24,18 @@ header {
     background-color: var.$link-bg-color;
     border-radius: 1em;
     padding: 1.5em;
-    transition: all 0.3s ease;
-}
-
-.home-link p,
-.home-link h1 {
-    margin: 0;
+    @include mixins.transition(all, 0.3s, ease);
 
     &:hover {
-        color: var.$link-hover-text-color;
+        background-color: var.$link-hover-bg-color;
     }
-}
 
-.home-link:hover {
-    background-color: var.$link-hover-bg-color;
+    p, h1 {
+        margin: 0;
+        &:hover {
+            color: var.$link-hover-text-color;
+        }
+    }
 }
 
 h1 {
@@ -43,10 +43,8 @@ h1 {
 }
 
 .tabs {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
+    @include mixins.flex-center(row, space-around, center);
+    
     p {
         padding: 1em 1.5em;
         margin: 0 1rem;
@@ -60,29 +58,25 @@ h1 {
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include mixins.flex-center(row, space-between, center);
     gap: 1.25rem;
 }
 
 .nav-link {
     background-color: var.$link-bg-color;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include mixins.flex-center(row, space-between, center);
     gap: 0.5em;
     padding: 1em 1.5em;
     border-radius: 2em;
     cursor: pointer;
-    transition: all 0.3s ease;
     border: none;
     text-decoration: none;
+    @include mixins.transition(all, 0.3s, ease);
 
     img {
         width: 1.75em;
         height: 1.75em;
-        transition: transform 0.3s ease;
+        @include mixins.transition(transform, 0.3s, ease);
     }
 
     p {
@@ -90,7 +84,7 @@ nav {
         font-size: 0.8rem;
         color: var.$white;
         font-weight: bold;
-        transition: color 0.3s ease;
+        @include mixins.transition(color, 0.3s, ease);
     }
 
     &:hover {
