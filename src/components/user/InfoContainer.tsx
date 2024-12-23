@@ -7,6 +7,7 @@ import v from "/public/assets/v.png";
 import validity from "/public/assets/validity.png";
 import { IEmployee } from "../../types/EmployeeTypes";
 import InfoInput from "./InfoInput";
+import { formatDateRange } from "../../utils/formatDateRange";
 
 interface IInfoContainerProps {
   updatedUser: IEmployee | null;
@@ -32,23 +33,36 @@ const InfoContainer: React.FC<IInfoContainerProps> = ({
           disabled={!editMode}
         />
         {visaArray.map((visa, index) => {
-          const formattedDateRange = formatDateRange(
-            visa.start_date,
-            visa.end_date
-          );
+
+          const startFormatted = new Date(visa.start_date)
+            .toISOString()
+            .split("T")[0];
+          const endFormatted = new Date(visa.end_date)
+            .toISOString()
+            .split("T")[0];
+
           return (
-            <div key={index}>
+            <div key={index} className="info-right">
               <p>
                 {visa.type} ({visa.issuing_country})
               </p>
+
+              <div className="date-inputs">
               <InfoInput
                 type="date"
+                id={`start-date-${index}`}
+                value={startFormatted}
                 onChange={handleInputChange}
-                value={formattedDateRange}
-                id={`date-${index}`}
                 disabled={!editMode}
               />
-              <p>{formattedDateRange}</p>
+              <InfoInput
+                type="date"
+                id={`end-date-${index}`}
+                value={endFormatted}
+                onChange={handleInputChange}
+                disabled={!editMode}
+              />
+              </div>
             </div>
           );
         })}
@@ -65,13 +79,12 @@ const InfoContainer: React.FC<IInfoContainerProps> = ({
           <p>Citizenship</p>
         </div>
         {visaArray.map((visa, index) => {
-          const visaNumber = `Visa ${index + 1}`;
           const validityText = formatDateRange(visa.start_date, visa.end_date);
           return (
             <React.Fragment key={index}>
               <div className="info-list">
                 <img src={v} alt="visa icon" width="20px" height="20px" />
-                <p>{visaNumber}</p>
+                <p>Visa {index + 1}</p>
               </div>
               <div className="info-list">
                 <img
@@ -87,25 +100,6 @@ const InfoContainer: React.FC<IInfoContainerProps> = ({
         })}
       </>
     );
-  };
-
-  const formatDateRange = (
-    startTimestamp: number,
-    endTimestamp: number
-  ): string => {
-    const startDate = new Date(startTimestamp);
-    const endDate = new Date(endTimestamp);
-
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    };
-
-    const startFormatted = startDate.toLocaleDateString("en-GB", options);
-    const endFormatted = endDate.toLocaleDateString("en-GB", options);
-
-    return `${startFormatted} - ${endFormatted}`;
   };
 
   return (

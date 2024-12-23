@@ -11,7 +11,7 @@ const TravelInfo: React.FC<IUserInfo> = ({
     <div>
       <h3>TRAVEL INFO</h3>
       <div className="line"></div>
-      <div className="info-container">
+      <div className="info-container-travel">
         <InfoContainer
           editMode={editMode}
           updatedUser={updatedUser}

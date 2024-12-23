@@ -48,20 +48,67 @@ const User: React.FC = () => {
     if (updatedUser) {
       const { id, value } = e.target;
   
-      if (id === 'date_birth' && value) {
-        const [year, month, day] = value.split('-');
+      // Handle date_birth case
+      if (id === "date_birth" && value) {
+        const [year, month, day] = value.split("-");
         setUpdatedUser({
           ...updatedUser,
-          [id]: { year: parseInt(year), month: parseInt(month), day: parseInt(day) },
+          [id]: { year: parseInt(year, 10), month: parseInt(month, 10), day: parseInt(day, 10) },
         });
-      } else {
-        setUpdatedUser({
-          ...updatedUser,
-          [id]: value,
-        });
+        return;
       }
+  
+      // Handle visa date updates
+      const idParts = id.split("-");
+      if (idParts[0] === "start" || idParts[0] === "end") {
+        const visaIndex = parseInt(idParts[2], 10); // Extract the visa index
+        const field = `${idParts[0]}_date`; // Determine whether it's start_date or end_date
+  
+        const updatedVisa = updatedUser?.visa?.map((visa, index) =>
+          index === visaIndex
+            ? {
+                ...visa,
+                [field]: new Date(value).getTime(), // Convert the input value to timestamp
+              }
+            : visa
+        );
+  
+        setUpdatedUser({
+          ...updatedUser,
+          visa: updatedVisa,
+        });
+        return;
+      }
+  
+      // Fallback for other fields
+      setUpdatedUser({
+        ...updatedUser,
+        [id]: value,
+      });
     }
   };
+  
+
+  // const handleInputChange = (
+  //   e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  // ) => {
+  //   if (updatedUser) {
+  //     const { id, value } = e.target;
+  
+  //     if (id === 'date_birth' && value) {
+  //       const [year, month, day] = value.split('-');
+  //       setUpdatedUser({
+  //         ...updatedUser,
+  //         [id]: { year: parseInt(year), month: parseInt(month), day: parseInt(day) },
+  //       });
+  //     } else {
+  //       setUpdatedUser({
+  //         ...updatedUser,
+  //         [id]: value,
+  //       });
+  //     }
+  //   }
+  // };
   
 
   const handleSaveClick = async () => {
