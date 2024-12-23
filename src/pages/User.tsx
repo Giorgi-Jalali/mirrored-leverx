@@ -25,7 +25,6 @@ const User: React.FC = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-
   const { data: user, isError, refetch } = useGetUserByIdQuery(id || "");
   const [updateUser] = useUpdateUserMutation();
   const currentUser = useSelector((state: RootState) => state.user.currentUser);
@@ -47,69 +46,68 @@ const User: React.FC = () => {
   ) => {
     if (updatedUser) {
       const { id, value } = e.target;
-  
-      // Handle date_birth case
-      if (id === "date_birth" && value) {
-        const [year, month, day] = value.split("-");
-        setUpdatedUser({
-          ...updatedUser,
-          [id]: { year: parseInt(year, 10), month: parseInt(month, 10), day: parseInt(day, 10) },
-        });
-        return;
-      }
-  
-      // Handle visa date updates
+
       const idParts = id.split("-");
-      if (idParts[0] === "start" || idParts[0] === "end") {
-        const visaIndex = parseInt(idParts[2], 10); // Extract the visa index
-        const field = `${idParts[0]}_date`; // Determine whether it's start_date or end_date
-  
+      if (idParts[0] === "visa") {
+        const field = idParts[1];
+        const visaIndex = parseInt(idParts[2], 10);
+
         const updatedVisa = updatedUser?.visa?.map((visa, index) =>
           index === visaIndex
             ? {
                 ...visa,
-                [field]: new Date(value).getTime(), // Convert the input value to timestamp
+                [field]: value,
               }
             : visa
         );
-  
+
         setUpdatedUser({
           ...updatedUser,
           visa: updatedVisa,
         });
         return;
       }
-  
-      // Fallback for other fields
+
+      if (id === "date_birth" && value) {
+        const [year, month, day] = value.split("-");
+        setUpdatedUser({
+          ...updatedUser,
+          [id]: {
+            year: parseInt(year, 10),
+            month: parseInt(month, 10),
+            day: parseInt(day, 10),
+          },
+        });
+        return;
+      }
+
+      const idDateParts = id.split("-");
+      if (idDateParts[0] === "start" || idDateParts[0] === "end") {
+        const visaIndex = parseInt(idDateParts[2], 10);
+        const field = `${idDateParts[0]}_date`;
+
+        const updatedVisa = updatedUser?.visa?.map((visa, index) =>
+          index === visaIndex
+            ? {
+                ...visa,
+                [field]: new Date(value).getTime(),
+              }
+            : visa
+        );
+
+        setUpdatedUser({
+          ...updatedUser,
+          visa: updatedVisa,
+        });
+        return;
+      }
+
       setUpdatedUser({
         ...updatedUser,
         [id]: value,
       });
     }
   };
-  
-
-  // const handleInputChange = (
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  // ) => {
-  //   if (updatedUser) {
-  //     const { id, value } = e.target;
-  
-  //     if (id === 'date_birth' && value) {
-  //       const [year, month, day] = value.split('-');
-  //       setUpdatedUser({
-  //         ...updatedUser,
-  //         [id]: { year: parseInt(year), month: parseInt(month), day: parseInt(day) },
-  //       });
-  //     } else {
-  //       setUpdatedUser({
-  //         ...updatedUser,
-  //         [id]: value,
-  //       });
-  //     }
-  //   }
-  // };
-  
 
   const handleSaveClick = async () => {
     if (updatedUser) {
