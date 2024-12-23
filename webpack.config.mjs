@@ -44,5 +44,11 @@ export default {
     static: path.resolve(process.cwd(), 'public'),
     port: 3000,
     open: true,
+    historyApiFallback: {
+      index: '/',
+      rewrites: [
+        { from: /^(\/.*)$/, to: '/' }
+      ],
+    },
   },
 };

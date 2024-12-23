@@ -48,4 +48,14 @@ export interface IManager {
     citizenship: string;
     visa?: IVisa[];
   }
+
+
+  export interface IUserInfo {
+    updatedUser: IEmployee | null;
+    handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+    editMode: boolean;
+    user?: IEmployee;
+    currentUser?: IEmployee;
+    handleEditClick?: () => void;
+}
   

@@ -4,7 +4,6 @@ import "../../sass/layout/_header.scss";
 
 import question from "/public/assets/question.png";
 import logOut from "/public/assets/logout.png";
-import notFound from "/public/assets/not-found.png";
 
 import HeaderButton from "./HeaderButton";
 import { useAuth } from "../../hooks/useAuth";
@@ -82,12 +81,6 @@ const Header: React.FC = () => {
           txt={"LOGOUT"}
           path={"#logout"}
           clickHandler={handleLogout}
-        />
-        <HeaderButton
-          imgSrc={notFound}
-          imgAlt={"not found"}
-          txt={"404"}
-          path={"./not-found-page"}
         />
       </nav>
     </header>

@@ -6,6 +6,7 @@ import "../../sass/layout/_aside.scss";
 
 import BasicSearch from "./BasicSearch";
 import AdvancedSearch from "./AdvancedSearch";
+import RadioInput from "./RadioInput";
 
 const SearchContainer: React.FC = () => {
   const [isBasicSearch, setIsBasicSearch] = useState(true);
@@ -13,31 +14,19 @@ const SearchContainer: React.FC = () => {
   return (
     <aside>
       <div>
-        <input
-          type="radio"
+      <RadioInput
           id="basic"
-          name="toggle"
+          label="Basic Search"
           checked={isBasicSearch}
-          onChange={() => setIsBasicSearch(true)}
+          onChange={(value) => setIsBasicSearch(value)}
         />
-        <label htmlFor="basic" id="basic-label">
-          Basic Search
-        </label>
-
-        <input
-          type="radio"
+        <RadioInput
           id="advanced"
-          name="toggle"
+          label="Advanced Search"
           checked={!isBasicSearch}
-          onChange={() => setIsBasicSearch(false)}
-        />
-        <label
-          htmlFor="advanced"
-          id="advanced-label"
+          onChange={(value) => setIsBasicSearch(!value)}
           className="advanced-label"
-        >
-          Advanced Search
-        </label>
+        />
       </div>
 
       <div className="content">
