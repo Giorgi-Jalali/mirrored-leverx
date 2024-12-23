@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../sass/pages/_404.scss";
+import Button from "../components/button/Button";
 
 const NotFoundPage: React.FC = () => {
   return (
@@ -14,7 +15,7 @@ const NotFoundPage: React.FC = () => {
       />
       <p>Sorry, we can&apos;t find that page! It might be an old link or maybe it was moved.</p>
       <Link to="/">
-        <button className="not-found-button">GO TO THE HOME PAGE</button>
+        <Button className="not-found-button" text="GO TO THE HOME PAGE" />
       </Link>
     </main>
   );

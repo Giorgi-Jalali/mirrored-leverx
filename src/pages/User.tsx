@@ -26,6 +26,7 @@ import { IEmployee } from "../types/EmployeeTypes";
 import { useSnackbar } from "../hooks/useSnackbar";
 import { RootState } from "src/redux/store";
 import { useSelector } from "react-redux";
+import Button from "../components/button/Button";
 
 const User: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -342,7 +343,7 @@ const User: React.FC = () => {
         </div>
         {currentUser?.role === "admin" ||
         (currentUser?.role === "hr" && user?.manager?.id == currentUser?.id) ? (
-          <button onClick={handleSaveClick}>Save</button>
+          <Button onClick={handleSaveClick} text="Save" />
         ) : (
           ""
         )}

@@ -11,6 +11,7 @@ import {
 } from "../services/employeeApi";
 import { useSnackbar } from "../hooks/useSnackbar";
 import { updateSearchField } from "../redux/slices/advancedSearchSlice";
+import SearchForm from "../components/search/SearchForm";
 
 const Settings: React.FC = () => {
   const { data: employees } = useGetEmployeesQuery();
@@ -38,7 +39,6 @@ const Settings: React.FC = () => {
   };
 
   useEffect(() => {
-
     const initialRoles: { [key: string]: string } = {};
     filteredEmployees.forEach((employee) => {
       initialRoles[employee.id] = employee.role;
@@ -85,23 +85,14 @@ const Settings: React.FC = () => {
       <div className="roles-title">roles & permissions</div>
       <div className="roles-header">
         <div className="settings-left-header">
-          <img
-            src="../assets/search.png"
-            alt="search icon"
-            width="20px"
-            height="20px"
-            className="settings-search"
+          <SearchForm
+            value={name}
+            handleInputChange={(value) => handleInputChange("name", value)}
+            onSubmit={handleSubmit}
+            className="search-input-settings"
+            placeholder="Type to search"
+            imgClassname="settings-search"
           />
-          <form action="./404.html" method="GET" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Type to search"
-              value={name}
-              onChange={(e) => handleInputChange("name", e.target.value)}
-              required
-            />
-          </form>
         </div>
         <div className="settings-right-header">
           <div className="vertical-line"></div>

@@ -7,6 +7,7 @@ import { IEmployee } from "src/types/EmployeeTypes";
 import { useSnackbar } from "../hooks/useSnackbar";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../redux/slices/currentUserSlice";
+import Button from "../components/button/Button";
 
 const SignIn: React.FC = () => {
   const { setIsAuthenticated } = useAuth();
@@ -128,9 +129,7 @@ const SignIn: React.FC = () => {
           <label htmlFor="remember">Remember Me</label>
         </div>
 
-        <button type="submit" id="sign-in-button">
-          Sign In
-        </button>
+        <Button type="submit" text="Sign In" id="sign-in-button"/>
       </form>
     </div>
   );
