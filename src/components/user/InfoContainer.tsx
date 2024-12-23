@@ -6,6 +6,7 @@ import earth from "/public/assets/earth.png";
 import v from "/public/assets/v.png";
 import validity from "/public/assets/validity.png";
 import { IEmployee } from "../../types/EmployeeTypes";
+import InfoInput from "./InfoInput";
 
 interface IInfoContainerProps {
   updatedUser: IEmployee | null;
@@ -24,10 +25,9 @@ const InfoContainer: React.FC<IInfoContainerProps> = ({
     const visaArray = updatedUser?.visa || [];
     return (
       <>
-        <input
-          type="text"
-          value={updatedUser?.citizenship || ""}
+        <InfoInput
           id="citizenship"
+          value={updatedUser?.citizenship || ""}
           onChange={handleInputChange}
           disabled={!editMode}
         />
@@ -41,7 +41,7 @@ const InfoContainer: React.FC<IInfoContainerProps> = ({
               <p>
                 {visa.type} ({visa.issuing_country})
               </p>
-              <input
+              <InfoInput
                 type="date"
                 onChange={handleInputChange}
                 value={formattedDateRange}
