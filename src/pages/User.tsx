@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   useGetUserByIdQuery,
   useUpdateUserMutation,
@@ -18,10 +18,11 @@ import UserAside from "../components/user/UserAside";
 
 const User: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [editMode, setEditMode] = useState(false);
   const [updatedUser, setUpdatedUser] = useState<IEmployee | null>(null);
 
-  const { data: user, refetch } = useGetUserByIdQuery(id || "");
+  const { data: user, isError, refetch } = useGetUserByIdQuery(id || "");
   const [updateUser] = useUpdateUserMutation();
   const currentUser = useSelector((state: RootState) => state.user.currentUser);
 
@@ -63,6 +64,11 @@ const User: React.FC = () => {
       }
     }
   };
+
+  if (isError) {
+    navigate("/not-found");
+    return null;
+  }
 
   if (!user) {
     return <div>Loading...</div>;

@@ -1,16 +1,17 @@
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 export default {
-  mode: 'development',
-  entry: './src/index.tsx',
+  mode: "development",
+  entry: "./src/index.tsx",
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(process.cwd(), 'dist'),
+    filename: "bundle.js",
+    path: path.resolve(process.cwd(), "dist"),
+    publicPath: "/",
     clean: true,
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   module: {
     rules: [
@@ -18,36 +19,37 @@ export default {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
         },
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.(ico|png|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: 'assets/[name][ext]',
+          filename: "assets/[name][ext]",
         },
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
-      favicon: './public/favicon.ico',
+      template: "./public/index.html",
+      favicon: "./public/favicon.ico",
     }),
   ],
   devServer: {
-    static: path.resolve(process.cwd(), 'public'),
+    static: path.resolve(process.cwd(), "public"),
     port: 3000,
     open: true,
     historyApiFallback: {
-      index: '/',
+      index: "/index.html",
       rewrites: [
-        { from: /^(\/.*)$/, to: '/' }
+        // { from: /^(\/.*)$/, to: '/' }
+        { from: /./, to: "/index.html" },
       ],
     },
   },
