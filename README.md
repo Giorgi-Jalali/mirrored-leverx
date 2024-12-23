@@ -58,7 +58,9 @@ Users should be able to:
 10. On the user page, admins can edit all users' information. Managers/HR can edit the information of users they manage, while employees have read-only access.  
 11. Edit information by clicking an "edit" button, visible to admins and HR.  
 12. View dates in different formats as implemented.  
-13. Use a "copy" button to copy the URL of a page. Users can open the same page in a new tab if "remember me" was checked during login.  
+13. Use a "copy" button to copy the URL of a page. Users can open the same page in a new tab if "remember me" was checked during login.
+
+- Responsive design is not implemented, only the desktop version is available.
 
 ## My process
 
