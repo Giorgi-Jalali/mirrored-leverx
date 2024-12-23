@@ -47,9 +47,22 @@ const User: React.FC = () => {
   ) => {
     if (updatedUser) {
       const { id, value } = e.target;
-      setUpdatedUser({ ...updatedUser, [id]: value });
+  
+      if (id === 'date_birth' && value) {
+        const [year, month, day] = value.split('-');
+        setUpdatedUser({
+          ...updatedUser,
+          [id]: { year: parseInt(year), month: parseInt(month), day: parseInt(day) },
+        });
+      } else {
+        setUpdatedUser({
+          ...updatedUser,
+          [id]: value,
+        });
+      }
     }
   };
+  
 
   const handleSaveClick = async () => {
     if (updatedUser) {

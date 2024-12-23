@@ -1,55 +1,53 @@
-
-
 @use "../abstracts/var";
 
 .sign-in-main {
-    background-color: var.$white;
-    width: 25em;
-    box-shadow: var.$card-box-shadow;
-    border-radius: 2em;
-    border: 1px solid var.$input-border;
-    padding: 2em;
-    margin: 10% auto;
-}
+  background-color: var.$white;
+  width: 25em;
+  box-shadow: var.$card-box-shadow;
+  border-radius: 2em;
+  border: 1px solid var.$input-border;
+  padding: 2em;
+  margin: 10% auto;
 
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-bottom: 0.5em;
-    font-weight: bold;
-}
-
-input[type="email"],
-input[type="password"] {
+  input[type="email"],
+  input[type="password"] {
     padding: 0.5em;
     margin-bottom: 1.5rem;
     border: 1px solid var.$input-border;
     border-radius: 0.25em;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.5em;
+  font-weight: bold;
 }
 
 .checkbox-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 input[type="checkbox"] {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 button {
-    background: var.$button-bg-color;
-    color: var.$white;
-    border: none;
-    border-radius: 0.25em;
-    padding: 1em;
-    text-transform: uppercase;
-    cursor: pointer;
+  background: var.$button-bg-color;
+  color: var.$white;
+  border: none;
+  border-radius: 0.25em;
+  padding: 1em;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 button:hover {
-    background: var.$button-hover-bg-color;
+  background: var.$button-hover-bg-color;
 }
