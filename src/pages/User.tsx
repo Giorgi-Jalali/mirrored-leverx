@@ -8,13 +8,14 @@ import "../sass/pages/_user.scss";
 
 import { IEmployee } from "../types/EmployeeTypes";
 import { useSnackbar } from "../hooks/useSnackbar";
-import { RootState } from "src/redux/store";
-import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../redux/store";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/button/Button";
 import GeneralInfo from "../components/user/GeneralInfo";
 import Contacts from "../components/user/Contacts";
 import TravelInfo from "../components/user/TravelInfo";
 import UserAside from "../components/user/UserAside";
+import { employeeApi } from "../services/employeeApi";
 
 const User: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,15 +23,12 @@ const User: React.FC = () => {
   const [editMode, setEditMode] = useState(false);
   const [updatedUser, setUpdatedUser] = useState<IEmployee | null>(null);
 
+  const dispatch = useDispatch<AppDispatch>();
+
+
   const { data: user, isError, refetch } = useGetUserByIdQuery(id || "");
   const [updateUser] = useUpdateUserMutation();
   const currentUser = useSelector((state: RootState) => state.user.currentUser);
-
-  useEffect(() => {
-    if (id) {
-      refetch();
-    }
-  }, [id, refetch]);
 
   const { showSnackbar } = useSnackbar();
 
@@ -59,6 +57,8 @@ const User: React.FC = () => {
         await updateUser(updatedUser).unwrap();
         showSnackbar("User information updated successfully!");
         setEditMode(false);
+        dispatch(employeeApi.util.invalidateTags([{ type: "Employee" }]));
+        refetch();
       } catch (error) {
         console.error("Error updating user:", error);
       }

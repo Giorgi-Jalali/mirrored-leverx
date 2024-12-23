@@ -39,6 +39,7 @@ const Settings: React.FC = () => {
   };
 
   useEffect(() => {
+
     const initialRoles: { [key: string]: string } = {};
     filteredEmployees.forEach((employee) => {
       initialRoles[employee.id] = employee.role;
@@ -74,6 +75,8 @@ const Settings: React.FC = () => {
             }
           )
         );
+
+        dispatch(employeeApi.util.invalidateTags([{ type: "Employee", id: employeeId }]));
       })
       .catch((error) => {
         console.error("Error updating role:", error);

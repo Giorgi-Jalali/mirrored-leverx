@@ -12,6 +12,7 @@ const useFilteredEmployees = (employees: IEmployee[]) => {
   const [filteredEmployees, setFilteredEmployees] = useState<IEmployee[]>([]);
 
   useEffect(() => {
+
     if (
       name.trim() === "" &&
       email.trim() === "" &&
