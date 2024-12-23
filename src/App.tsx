@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import "./sass/base/_base.scss";
-import "./sass/base/_typography.scss";
 
 import Home from "./pages/Home";
 import User from "./pages/User";

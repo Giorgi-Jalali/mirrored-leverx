@@ -29,6 +29,10 @@ Production
 - yarn run server (for json-server)
 - yarn start-pro
 
+Eslint Check
+
+- yarn lint
+
 
 ### How to test
 

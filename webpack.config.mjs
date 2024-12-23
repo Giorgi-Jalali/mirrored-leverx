@@ -41,6 +41,9 @@ export default {
       favicon: "./public/favicon.ico",
     }),
   ],
+  performance: {
+    hints: false,
+  },
   devServer: {
     static: path.resolve(process.cwd(), "public"),
     port: 3000,
@@ -48,7 +51,6 @@ export default {
     historyApiFallback: {
       index: "/index.html",
       rewrites: [
-        // { from: /^(\/.*)$/, to: '/' }
         { from: /./, to: "/index.html" },
       ],
     },

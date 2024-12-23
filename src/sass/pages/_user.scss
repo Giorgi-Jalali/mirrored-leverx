@@ -2,7 +2,6 @@
 
 @use "../abstracts/var";
 @use "../layout/header";
-@use "../base/typography";
 
 @mixin space-between {
     display: flex;
