@@ -162,7 +162,7 @@ const User: React.FC = () => {
         />
         {currentUser?.role === "admin" ||
         (currentUser?.role === "hr" && user?.manager?.id == currentUser?.id) ? (
-          <Button onClick={handleSaveClick} text="Save" />
+          <Button onClick={handleSaveClick} text="Save" className={!editMode ? "disabled" : ""} />
         ) : (
           ""
         )}

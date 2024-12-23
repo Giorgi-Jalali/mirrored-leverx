@@ -6,6 +6,7 @@ import copy from "/public/assets/copy.png";
 
 import pen from "/public/assets/pen.png";
 import { Link } from "react-router-dom";
+import { useSnackbar } from "../../hooks/useSnackbar";
 
 const UserAside: React.FC<IUserInfo> = ({
   updatedUser,
@@ -15,6 +16,21 @@ const UserAside: React.FC<IUserInfo> = ({
   currentUser,
   handleEditClick,
 }) => {
+  
+  const { showSnackbar } = useSnackbar();
+
+  const handleCopyClick = () => {
+    const currentUrl = window.location.href;
+    navigator.clipboard.writeText(currentUrl).then(
+      () => {
+        showSnackbar("URL copied to clipboard!");
+      },
+      () => {
+        showSnackbar("Failed to copy URL.");
+      }
+    );
+  };
+
   return (
     <div className="user-aside">
       <Link to="/" className="back">
@@ -64,7 +80,7 @@ const UserAside: React.FC<IUserInfo> = ({
         />
       </div>
 
-      <div className="copy">
+      <div className="copy" onClick={handleCopyClick}>
         <img src={copy} alt="Copy icon" width="30px" height="30px" />
         <p>Copy link</p>
       </div>
