@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { RootState } from "../../redux/store";
-
-import "../../sass/components/searchContainer/_advanced-search.scss";
 import { updateSearchField } from "../../redux/slices/advancedSearchSlice";
-
 import Input from "../input/Input";
 import SearchSelect from "./SearchSelect";
 import Button from "../button/Button";
+
+import "../../sass/components/searchContainer/_advanced-search.scss";
 
 const AdvancedSearch: React.FC = () => {
   const dispatch = useDispatch();

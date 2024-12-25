@@ -1,11 +1,12 @@
 import React from "react";
-import InfoInput from "./InfoInput";
-import { IUserInfo } from "../../types/EmployeeTypes";
+import { Link } from "react-router-dom";
+
 import less from "/public/assets/less.png";
 import copy from "/public/assets/copy.png";
-
 import pen from "/public/assets/pen.png";
-import { Link } from "react-router-dom";
+
+import InfoInput from "./InfoInput";
+import { IUserInfo } from "../../types/EmployeeTypes";
 import { useSnackbar } from "../../hooks/useSnackbar";
 
 const UserAside: React.FC<IUserInfo> = ({

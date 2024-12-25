@@ -1,15 +1,15 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import "../../sass/layout/_header.scss";
+import { useDispatch, useSelector } from "react-redux";
 
 import question from "/public/assets/question.png";
 import logOut from "/public/assets/logout.png";
 
 import HeaderButton from "./HeaderButton";
 import { useAuth } from "../../hooks/useAuth";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { clearCurrentUser } from "../../redux/slices/currentUserSlice";
+import "../../sass/layout/_header.scss";
 
 const Header: React.FC = () => {
   const location = useLocation();

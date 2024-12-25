@@ -49,6 +49,10 @@ export interface IManager {
     visa?: IVisa[];
   }
 
+  export interface IPerson {
+    person: IEmployee
+  }
+
 
   export interface IUserInfo {
     updatedUser: IEmployee | null;

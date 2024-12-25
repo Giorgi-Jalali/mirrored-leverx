@@ -4,6 +4,7 @@ import cNumber from "/public/assets/c-number.png";
 import mobile from "/public/assets/mobile.png";
 import email from "/public/assets/email.png";
 import skype from "/public/assets/skype.png";
+
 import InfoInput from "./InfoInput";
 import { IUserInfo } from "../../types/EmployeeTypes";
 

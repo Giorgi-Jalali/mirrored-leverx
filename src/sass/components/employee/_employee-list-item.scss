@@ -1,0 +1,36 @@
+@use "../../abstracts/var";
+@use "../../abstracts/mixins" as mixins;
+
+.employee-list {
+  background-color: var.$white;
+  width: 100%;
+  box-shadow: var.$card-box-shadow;
+  border-radius: 5px;
+
+  @include mixins.flex-center(row, space-between, center);
+  padding: 20px 50px;
+
+  .list-employee-view {
+    width: 100%;
+    @include mixins.flex-center(row, space-between, center);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .person-image-name {
+    width: 50%;
+    @include mixins.flex-center(row, flex-start, center);
+    gap: 50px;
+  }
+
+  .employee-name {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+
+  .dep-room-item {
+    width: 50%;
+    @include mixins.flex-center(row, space-between, center);
+  }
+}

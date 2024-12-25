@@ -1,13 +1,14 @@
 import React from "react";
 
-import "../../sass/pages/_user.scss";
-
 import earth from "/public/assets/earth.png";
 import v from "/public/assets/v.png";
 import validity from "/public/assets/validity.png";
+
 import { IEmployee } from "../../types/EmployeeTypes";
 import InfoInput from "./InfoInput";
 import { formatDateRange } from "../../utils/formatDateRange";
+
+import "../../sass/pages/_user.scss";
 
 interface IInfoContainerProps {
   updatedUser: IEmployee | null;

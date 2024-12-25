@@ -1,29 +1,9 @@
-@use "../vendors/normalize";
-
 @use "../abstracts/var";
 @use "../layout/header";
 @use "../abstracts/mixins" as mixins;
 
 .home-main {
   display: flex;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-label {
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: bold;
-  color: var.$gray;
-  transition: color 0.3s ease;
-}
-
-.advanced-label {
-  position: absolute;
-  right: 20px;
-  font-size: 18px;
 }
 
 input[type="radio"]:checked + label {
@@ -89,89 +69,6 @@ section {
 
 .views {
   width: 100%;
-}
-
-.employee,
-.employee-list {
-  background-color: var.$white;
-  width: 100%;
-  box-shadow: var.$card-box-shadow;
-  border-radius: 5px;
-}
-
-.employee {
-  @include mixins.flex-center(column, flex-start, center);
-  margin: 0 auto;
-  padding: 10px;
-}
-
-.employee-list {
-  @include mixins.flex-center(row, space-between, center);
-  padding: 20px 50px;
-}
-
-.image-center {
-  text-align: center;
-}
-
-.employee-link {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.list-employee-view {
-  width: 100%;
-  @include mixins.flex-center(row, space-between, center);
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.person-image-name {
-  width: 50%;
-  @include mixins.flex-center(row, flex-start, center);
-  gap: 50px;
-}
-
-.dep-room {
-  width: 50%;
-  @include mixins.flex-center(row, space-between, center);
-}
-
-.employee-name {
-  font-size: 18px;
-  margin: 10px 0;
-}
-
-.employee-job {
-  @include mixins.flex-center(row, space-between, center);
-}
-
-.person-job {
-  font-size: 12px;
-  @include mixins.flex-center(row, space-between, center);
-  gap: 5px;
-  padding: 5px;
-}
-
-.list-header {
-  background-color: var.$white;
-  width: 100%;
-  border-radius: 10px;
-  @include mixins.flex-center(row, space-between, center);
-  padding: 20px 50px;
-}
-
-.photo-name {
-  width: 50%;
-  @include mixins.flex-center(row, flex-start, center);
-  gap: 50px;
-}
-
-.photo {
-  @include mixins.flex-center(row, flex-start, center);
-  gap: 5px;
 }
 
 .line {

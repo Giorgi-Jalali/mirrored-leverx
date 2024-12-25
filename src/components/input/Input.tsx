@@ -24,7 +24,7 @@ const Input: React.FC<IInputProps> = ({
   className,
 }) => {
   return (
-    <div className={className ? className : "input-group"}>
+    <div className={className || "input-group"}>
       <label htmlFor={id} className="label-class">
         {label}
       </label>

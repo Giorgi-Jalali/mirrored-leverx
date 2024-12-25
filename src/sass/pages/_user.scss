@@ -1,5 +1,3 @@
-@use "../vendors/normalize";
-
 @use "../abstracts/var";
 @use "../layout/header";
 @use "../abstracts/mixins" as mixins;
@@ -21,8 +19,8 @@
 
 .loader {
   color: var.$header-bg-color;
-  font-size: 28px;
-  margin: 25% 50%;
+  font-size: 2em;
+  margin: 20% 50%;
 }
 
 .user-aside {
@@ -66,7 +64,7 @@
   background-color: var.$input-border;
   border-radius: 15px;
   padding: 5px 10px;
-  font-size: 14px;
+  font-size: 0.9em;
 
   @include space-between;
 
@@ -79,7 +77,6 @@
   background-color: var.$background-color;
   border-radius: 5px;
   padding: 10px 10px;
-  font-size: 16px;
   font-weight: 600;
 
   @include space-between;

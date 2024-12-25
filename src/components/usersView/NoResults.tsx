@@ -1,4 +1,5 @@
 import React from "react";
+
 import notFound from "/public/assets/404.png";
 import { IEmployee } from "../../types/EmployeeTypes";
 

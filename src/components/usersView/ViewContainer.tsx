@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+
+import gridIcon from "/public/assets/grid.png";
+import listIcon from "/public/assets/list.png";
+
 import { RootState } from "../../redux/store";
 import { useGetEmployeesQuery } from "../../services/employeeApi";
 import GridView from "./GridView";
 import ListView from "./ListView";
-import gridIcon from "/public/assets/grid.png";
-import listIcon from "/public/assets/list.png";
 import useFilteredEmployees from "../../hooks/useFilteredEmployees";
 
 const GRID_VIEW = "grid";

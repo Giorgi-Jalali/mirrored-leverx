@@ -1,6 +1,8 @@
 import React from "react";
-import Button from "../button/Button";
+
 import searchIcon from "/public/assets/search.png";
+
+import Button from "../button/Button";
 import Input from "../input/Input";
 
 interface ISearchFormProps {

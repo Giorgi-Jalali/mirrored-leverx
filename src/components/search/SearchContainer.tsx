@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 
-
-import "../../sass/layout/_aside.scss";
-
-
 import BasicSearch from "./BasicSearch";
 import AdvancedSearch from "./AdvancedSearch";
 import RadioInput from "./RadioInput";
+
+import "../../sass/layout/_aside.scss";
 
 const SearchContainer: React.FC = () => {
   const [isBasicSearch, setIsBasicSearch] = useState(true);

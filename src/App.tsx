@@ -1,19 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-import "./sass/base/_base.scss";
-
 import Home from "./pages/Home";
 import User from "./pages/User";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
-import Header from "./components/header/Header";
 
+import Header from "./components/header/Header";
 import { useAuth } from "./hooks/useAuth";
 import { useSessionManager } from "./hooks/useSessionManager";
-
-export const dbUrl = "http://localhost:3001/users/";
+import "./sass/base/_base.scss";
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAuth();

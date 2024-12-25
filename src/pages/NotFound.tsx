@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../sass/pages/_404.scss";
+
 import Button from "../components/button/Button";
+import "../sass/pages/_404.scss";
 
 const NotFoundPage: React.FC = () => {
   return (

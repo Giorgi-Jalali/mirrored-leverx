@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "../sass/pages/_settings.scss";
 import { useDispatch, useSelector } from "react-redux";
+
 import { AppDispatch } from "../redux/store";
 import { RootState } from "../redux/store";
 import useFilteredEmployees from "../hooks/useFilteredEmployees";
@@ -9,9 +9,11 @@ import {
   useGetEmployeesQuery,
   useUpdateEmployeeRoleMutation,
 } from "../services/employeeApi";
-import { useSnackbar } from "../hooks/useSnackbar";
 import { updateSearchField } from "../redux/slices/advancedSearchSlice";
+
+import { useSnackbar } from "../hooks/useSnackbar";
 import SearchForm from "../components/search/SearchForm";
+import "../sass/pages/_settings.scss";
 
 const Settings: React.FC = () => {
   const { data: employees } = useGetEmployeesQuery();

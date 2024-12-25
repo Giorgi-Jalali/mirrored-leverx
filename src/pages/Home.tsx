@@ -1,9 +1,8 @@
 import React from "react";
 
-import "../sass/pages/_home.scss";
-
 import SearchContainer from "../components/search/SearchContainer";
 import ViewContainer from "../components/usersView/ViewContainer";
+import "../sass/pages/_home.scss";
 
 const Home: React.FC = () => {
   

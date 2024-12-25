@@ -1,0 +1,26 @@
+@use "../../abstracts/var";
+@use "../../abstracts/mixins" as mixins;
+
+.list-header {
+  background-color: var.$white;
+  width: 100%;
+  border-radius: 10px;
+  @include mixins.flex-center(row, space-between, center);
+  padding: 20px 50px;
+
+  .photo-name {
+    width: 50%;
+    @include mixins.flex-center(row, flex-start, center);
+    gap: 50px;
+  }
+
+  .photo {
+    @include mixins.flex-center(row, flex-start, center);
+    gap: 5px;
+  }
+
+  .dep-room {
+    width: 50%;
+    @include mixins.flex-center(row, space-between, center);
+  }
+}

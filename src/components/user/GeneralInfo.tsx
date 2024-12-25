@@ -6,6 +6,7 @@ import door from "/public/assets/door.png";
 import number from "/public/assets/number.png";
 import date from "/public/assets/date.png";
 import manName from "/public/assets/man-name.png";
+
 import { IUserInfo } from "../../types/EmployeeTypes";
 import InfoInput from "./InfoInput";
 import { formatDateOfBirth } from "../../utils/dateUtils";

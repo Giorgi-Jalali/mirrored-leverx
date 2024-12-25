@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import { useAuth } from "../hooks/useAuth";
-import "../sass/pages/_sign-in.scss";
+import { useSnackbar } from "../hooks/useSnackbar";
 import { useLoadUsersQuery, useCheckPasswordMutation } from "../services/signInApi";
 import { IEmployee } from "src/types/EmployeeTypes";
-import { useSnackbar } from "../hooks/useSnackbar";
-import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../redux/slices/currentUserSlice";
 import Button from "../components/button/Button";
+import "../sass/pages/_sign-in.scss";
 
 const SignIn: React.FC = () => {
   const { setIsAuthenticated } = useAuth();
