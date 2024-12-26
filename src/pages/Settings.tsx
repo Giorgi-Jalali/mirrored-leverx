@@ -13,7 +13,7 @@ import { updateSearchField } from "../redux/slices/advancedSearchSlice";
 
 import { useSnackbar } from "../hooks/useSnackbar";
 import SearchForm from "../components/search/SearchForm";
-import { ADMIN, EMPLOYEE, HR } from "../constants/constants";
+import { ADMIN, EMPLOYEE, HR, OPTION_NAME, PLACEHOLDER_SEARCH } from "../constants/constants";
 import "../sass/pages/_settings.scss";
 
 const Settings: React.FC = () => {
@@ -93,10 +93,10 @@ const Settings: React.FC = () => {
         <div className="settings-left-header">
           <SearchForm
             value={name}
-            handleInputChange={(value) => handleInputChange("name", value)}
+            handleInputChange={(value) => handleInputChange(OPTION_NAME, value)}
             onSubmit={handleSubmit}
             className="search-input-settings"
-            placeholder="Type to search"
+            placeholder={PLACEHOLDER_SEARCH}
             imgClassname="settings-search"
           />
         </div>

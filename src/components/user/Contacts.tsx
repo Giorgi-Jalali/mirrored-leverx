@@ -7,6 +7,7 @@ import skype from "/public/assets/skype.png";
 
 import InfoInput from "./InfoInput";
 import { IUserInfo } from "../../types/EmployeeTypes";
+import { OPTION_EMAIL, OPTION_PHONE, OPTION_SKYPE } from "../../constants/constants";
 
 const Contacts: React.FC<IUserInfo> = ({
   updatedUser,
@@ -39,20 +40,20 @@ const Contacts: React.FC<IUserInfo> = ({
         <div className="info-right">
           <InfoInput
             type="tel"
-            id="phone"
+            id={OPTION_PHONE}
             value={updatedUser?.phone || ""}
             onChange={handleInputChange}
             disabled={!editMode}
           />
           <InfoInput
             type="email"
-            id="email"
+            id={OPTION_EMAIL}
             value={updatedUser?.email || ""}
             onChange={handleInputChange}
             disabled={!editMode}
           />
           <InfoInput
-            id="skype"
+            id={OPTION_SKYPE}
             value={updatedUser?.skype || ""}
             onChange={handleInputChange}
             disabled={!editMode}

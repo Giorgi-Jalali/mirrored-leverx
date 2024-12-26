@@ -8,7 +8,7 @@ import { useLoadUsersQuery, useCheckPasswordMutation } from "../services/signInA
 import { IEmployee } from "src/types/EmployeeTypes";
 import { setCurrentUser } from "../redux/slices/currentUserSlice";
 import Button from "../components/button/Button";
-import { HOME } from "../constants/constants";
+import { HOME, OPTION_EMAIL, PLACEHOLDER_EMAIL, PLACEHOLDER_PASSWORD } from "../constants/constants";
 import "../sass/pages/_sign-in.scss";
 
 const SignIn: React.FC = () => {
@@ -98,12 +98,12 @@ const SignIn: React.FC = () => {
           signIn();
         }}
       >
-        <label htmlFor="email">Email</label>
+        <label htmlFor={OPTION_EMAIL}>Email</label>
         <input
           type="email"
-          id="email"
-          name="email"
-          placeholder="John@john.com"
+          id={OPTION_EMAIL}
+          name={OPTION_EMAIL}
+          placeholder={PLACEHOLDER_EMAIL}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -114,7 +114,7 @@ const SignIn: React.FC = () => {
           type="password"
           id="password"
           name="password"
-          placeholder="Your password..."
+          placeholder={PLACEHOLDER_PASSWORD}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

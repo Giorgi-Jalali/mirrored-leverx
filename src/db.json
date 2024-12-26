@@ -16,11 +16,11 @@
       "building": "Pilsudskiego 65 (Poland)",
       "room": "1404",
       "date_birth": {
-        "year": 1901,
-        "month": 1,
-        "day": 1
+        "year": 1961,
+        "month": 10,
+        "day": 4
       },
-      "desk_number": 20,
+      "desk_number": 29,
       "manager": {
         "id": null,
         "first_name": null,
@@ -68,11 +68,11 @@
       "building": "Pilsudskiego 66 (Poland)",
       "room": "1405",
       "date_birth": {
-        "year": 1901,
-        "month": 1,
-        "day": 1
+        "year": 1991,
+        "month": 11,
+        "day": 23
       },
-      "desk_number": 20,
+      "desk_number": 27,
       "manager": {
         "id": null,
         "first_name": null,
@@ -108,11 +108,11 @@
       "building": "Pilsudskiego 67 (Poland)",
       "room": "1406",
       "date_birth": {
-        "year": 1901,
-        "month": 1,
-        "day": 1
+        "year": 2001,
+        "month": 6,
+        "day": 3
       },
-      "desk_number": 20,
+      "desk_number": 24,
       "manager": {
         "id": 2,
         "first_name": "James",
@@ -148,11 +148,11 @@
       "building": "Pilsudskiego 68 (Poland)",
       "room": "1407",
       "date_birth": {
-        "year": 1901,
-        "month": 1,
-        "day": 1
+        "year": 1981,
+        "month": 2,
+        "day": 12
       },
-      "desk_number": 20,
+      "desk_number": 21,
       "manager": {
         "id": 2,
         "first_name": "James",
@@ -198,7 +198,7 @@
         "month": 1,
         "day": 1
       },
-      "desk_number": 20,
+      "desk_number": 22,
       "manager": {
         "id": null,
         "first_name": null,
@@ -256,7 +256,7 @@
         "month": 1,
         "day": 1
       },
-      "desk_number": 20,
+      "desk_number": 23,
       "manager": {
         "id": null,
         "first_name": null,

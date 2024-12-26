@@ -7,6 +7,7 @@ import { updateSearchField } from "../../redux/slices/advancedSearchSlice";
 import "../../sass/components/searchContainer/_basic-search.scss";
 
 import SearchForm from "./SearchForm";
+import { OPTION_NAME, PLACEHOLDER_NAME } from "../../constants/constants";
 
 const BasicSearch: React.FC = () => {
   const { name } = useSelector((state: RootState) => state.advancedSearch);
@@ -24,10 +25,10 @@ const BasicSearch: React.FC = () => {
     <div className="basic-content">
       <SearchForm
         value={name}
-        handleInputChange={(value) => handleInputChange("name", value)}
+        handleInputChange={(value) => handleInputChange(OPTION_NAME, value)}
         onSubmit={handleSubmit}
         className="search-input-basic"
-        placeholder="John Smith"
+        placeholder={PLACEHOLDER_NAME}
         button={true}
         imgClassname="search"
       />

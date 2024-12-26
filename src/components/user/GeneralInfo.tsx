@@ -10,6 +10,7 @@ import manName from "/public/assets/man-name.png";
 import { IUserInfo } from "../../types/EmployeeTypes";
 import InfoInput from "./InfoInput";
 import { formatDateOfBirth } from "../../utils/dateUtils";
+import { BUILDING_65, BUILDING_66, BUILDING_67, BUILDING_68, BUILDING_69, BUILDING_70, DEP_AI_DATA_SCIENCE, DEP_BACKEND_INTEGRATION, DEP_CLOUD_DEVOPS, DEP_CYBERSECURITY_COMPLIANCE, DEP_UI_UX_DESIGN, DEP_WEB_MOBILE, OPTION_BUILDING, OPTION_DEPARTMENT } from "../../constants/constants";
 
 const GeneralInfo: React.FC<IUserInfo> = ({
   updatedUser,
@@ -60,30 +61,30 @@ const GeneralInfo: React.FC<IUserInfo> = ({
         </div>
         <div className="info-right">
           <select
-            id="department"
+            id={OPTION_DEPARTMENT}
             value={updatedUser?.department || ""}
             onChange={handleInputChange}
             disabled={!editMode}
           >
-            <option value="web">Web & Mobile</option>
-            <option value="cybersecurity">Cybersecurity & Compliance</option>
-            <option value="ui">UI/UX Design</option>
-            <option value="backend">Backend & Integration</option>
-            <option value="ai">AI & Data Science</option>
-            <option value="cloud">Cloud & DevOps</option>
+            <option value={DEP_WEB_MOBILE}>{DEP_WEB_MOBILE}</option>
+            <option value={DEP_CYBERSECURITY_COMPLIANCE}>{DEP_CYBERSECURITY_COMPLIANCE}</option>
+            <option value={DEP_UI_UX_DESIGN}>{DEP_UI_UX_DESIGN}</option>
+            <option value={DEP_BACKEND_INTEGRATION}>{DEP_BACKEND_INTEGRATION}</option>
+            <option value={DEP_AI_DATA_SCIENCE}>{DEP_AI_DATA_SCIENCE}</option>
+            <option value={DEP_CLOUD_DEVOPS}>{DEP_CLOUD_DEVOPS}</option>
           </select>
           <select
-            id="building"
+            id={OPTION_BUILDING}
             value={updatedUser?.building || ""}
             onChange={handleInputChange}
             disabled={!editMode}
           >
-            <option value="building-65">Pilsudskiego 65 (Poland)</option>
-            <option value="building-66">Pilsudskiego 66 (Poland)</option>
-            <option value="building-67">Pilsudskiego 67 (Poland)</option>
-            <option value="building-68">Pilsudskiego 68 (Poland)</option>
-            <option value="building-69">Pilsudskiego 69 (Poland)</option>
-            <option value="building-70">Pilsudskiego 70 (Poland)</option>
+            <option value={BUILDING_65}>{BUILDING_65}</option>
+            <option value={BUILDING_66}>{BUILDING_66}</option>
+            <option value={BUILDING_67}>{BUILDING_67}</option>
+            <option value={BUILDING_68}>{BUILDING_68}</option>
+            <option value={BUILDING_69}>{BUILDING_69}</option>
+            <option value={BUILDING_70}>{BUILDING_70}</option>
           </select>
           <InfoInput
             id="room"
@@ -106,7 +107,7 @@ const GeneralInfo: React.FC<IUserInfo> = ({
           />
           <p>
             {updatedUser?.manager.first_name
-              ? updatedUser.manager.first_name + updatedUser.manager.last_name
+              ? updatedUser.manager.first_name + " " + updatedUser.manager.last_name
               : "No Manager"}
           </p>
         </div>

@@ -4,6 +4,7 @@ import searchIcon from "/public/assets/search.png";
 
 import Button from "../button/Button";
 import Input from "../input/Input";
+import { PLACEHOLDER_SEARCH } from "../../constants/constants";
 
 interface ISearchFormProps {
   value: string;
@@ -41,7 +42,7 @@ const SearchForm: React.FC<ISearchFormProps> = ({
           onChange={handleInputChange}
           required
         />
-        {button && <Button type="submit" text="Search" />}
+        {button && <Button type="submit" text={PLACEHOLDER_SEARCH} />}
       </form>
     </>
   );
