@@ -11,7 +11,7 @@ const GridView: React.FC<TViewProps> = ({ employees, searchQuery }) => {
 
       <ul className="section-body">
         {employees.map((person) => (
-          <EmployeeCard person={person} />
+          <EmployeeCard key={person.id} person={person} />
         ))}
       </ul>
     </>

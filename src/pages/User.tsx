@@ -19,6 +19,7 @@ import UserAside from "../components/user/UserAside";
 
 import { IEmployee } from "../types/EmployeeTypes";
 import "../sass/pages/_user.scss";
+import { ADMIN, HR } from "../constants/constants";
 
 const User: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -163,8 +164,8 @@ const User: React.FC = () => {
           handleInputChange={handleInputChange}
           editMode={editMode}
         />
-        {currentUser?.role === "admin" ||
-        (currentUser?.role === "hr" && user?.manager?.id == currentUser?.id) ? (
+        {currentUser?.role === ADMIN ||
+        (currentUser?.role === HR && user?.manager?.id == currentUser?.id) ? (
           <Button
             onClick={handleSaveClick}
             text="Save"

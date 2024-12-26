@@ -13,6 +13,7 @@ import { updateSearchField } from "../redux/slices/advancedSearchSlice";
 
 import { useSnackbar } from "../hooks/useSnackbar";
 import SearchForm from "../components/search/SearchForm";
+import { ADMIN, EMPLOYEE, HR } from "../constants/constants";
 import "../sass/pages/_settings.scss";
 
 const Settings: React.FC = () => {
@@ -128,7 +129,7 @@ const Settings: React.FC = () => {
                 </div>
               </div>
               <div className="role-container">
-                {["employee", "hr", "admin"].map((role) => (
+                {[EMPLOYEE, HR, ADMIN].map((role) => (
                   <React.Fragment key={role}>
                     <input
                       type="radio"

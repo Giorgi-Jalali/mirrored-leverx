@@ -13,7 +13,7 @@ const ListView: React.FC<TViewProps> = ({ employees, searchQuery }) => {
       <ul className="section-body-list">
         <EmployeeListHeader />
         {employees.map((person) => (
-          <EmployeeListItem person={person} />
+          <EmployeeListItem key={person.id} person={person} />
         ))}
       </ul>
     </>

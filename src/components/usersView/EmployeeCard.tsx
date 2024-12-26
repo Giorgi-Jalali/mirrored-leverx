@@ -6,12 +6,13 @@ import door from "/public/assets/door.png";
 
 import { IPerson } from "../../types/EmployeeTypes";
 
+import { USER_DYNAMIC_PAGE } from "../../constants/constants";
 import "../../sass/components/employee/_employee-card.scss";
 
 const EmployeeCard: React.FC<IPerson> = ({ person }) => {
   return (
-    <li key={person.id} className="employee">
-      <Link to={`../user/${person.id}`} className="employee-link">
+    <li className="employee">
+      <Link to={`${USER_DYNAMIC_PAGE}${person.id}`} className="employee-link">
         <div className="image-center">
           <img
             src={person.user_avatar}

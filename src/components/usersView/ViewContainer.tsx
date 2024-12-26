@@ -9,17 +9,10 @@ import { useGetEmployeesQuery } from "../../services/employeeApi";
 import GridView from "./GridView";
 import ListView from "./ListView";
 import useFilteredEmployees from "../../hooks/useFilteredEmployees";
-
-const GRID_VIEW = "grid";
-const LIST_VIEW = "list";
-const VIEW_TOGGLE = "view-toggle";
-const TOGGLE = "toggle";
-
-type TViewType = typeof GRID_VIEW | typeof LIST_VIEW;
+import {GRID_VIEW, LIST_VIEW, VIEW_TOGGLE, TOGGLE } from "../../constants/constants";
 
 const ViewContainer: React.FC = () => {
-  const [viewType, setViewType] = useState<TViewType>(GRID_VIEW);
-
+  const [viewType, setViewType] = useState<String>(GRID_VIEW);
 
   const { name, email, phone, skype, building, room, department } = useSelector(
     (state: RootState) => state.advancedSearch
@@ -27,10 +20,9 @@ const ViewContainer: React.FC = () => {
 
   const { data: employees, isLoading, isError } = useGetEmployeesQuery();
 
-
   const filteredEmployees = useFilteredEmployees(employees || []);
 
-  const handleToggleView = (view: TViewType) => {
+  const handleToggleView = (view: String) => {
     setViewType(view);
   };
 
@@ -75,9 +67,31 @@ const ViewContainer: React.FC = () => {
       </div>
       <div className="views">
         {viewType === GRID_VIEW ? (
-          <GridView employees={filteredEmployees} searchQuery={{ name, email, phone, skype, building, room, department }} />
+          <GridView
+            employees={filteredEmployees}
+            searchQuery={{
+              name,
+              email,
+              phone,
+              skype,
+              building,
+              room,
+              department,
+            }}
+          />
         ) : (
-          <ListView employees={filteredEmployees} searchQuery={{ name, email, phone, skype, building, room, department }} />
+          <ListView
+            employees={filteredEmployees}
+            searchQuery={{
+              name,
+              email,
+              phone,
+              skype,
+              building,
+              room,
+              department,
+            }}
+          />
         )}
       </div>
     </section>

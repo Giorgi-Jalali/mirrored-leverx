@@ -8,6 +8,7 @@ import pen from "/public/assets/pen.png";
 import InfoInput from "./InfoInput";
 import { IUserInfo } from "../../types/EmployeeTypes";
 import { useSnackbar } from "../../hooks/useSnackbar";
+import { ADMIN, HOME, HR } from "../../constants/constants";
 
 const UserAside: React.FC<IUserInfo> = ({
   updatedUser,
@@ -34,7 +35,7 @@ const UserAside: React.FC<IUserInfo> = ({
 
   return (
     <div className="user-aside">
-      <Link to="/" className="back">
+      <Link to={HOME} className="back">
         <img src={less} alt="Back arrow" width="15px" height="15px" />
       </Link>
       <img
@@ -86,8 +87,8 @@ const UserAside: React.FC<IUserInfo> = ({
         <p>Copy link</p>
       </div>
 
-      {currentUser?.role === "admin" ||
-      (currentUser?.role === "hr" && user?.manager?.id == currentUser?.id) ? (
+      {currentUser?.role === ADMIN ||
+      (currentUser?.role === HR && user?.manager?.id == currentUser?.id) ? (
         <div className="edit" onClick={handleEditClick}>
           <img src={pen} alt="Edit icon" width="25px" height="25px" />
           <p>Edit</p>

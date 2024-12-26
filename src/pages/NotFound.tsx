@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import Button from "../components/button/Button";
+import { HOME } from "../constants/constants";
 import "../sass/pages/_404.scss";
 
 const NotFoundPage: React.FC = () => {
@@ -15,7 +16,7 @@ const NotFoundPage: React.FC = () => {
         className="image404"
       />
       <p>Sorry, we can&apos;t find that page! It might be an old link or maybe it was moved.</p>
-      <Link to="/">
+      <Link to={HOME}>
         <Button className="not-found-button" text="GO TO THE HOME PAGE" />
       </Link>
     </main>

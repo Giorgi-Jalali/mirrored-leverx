@@ -8,6 +8,7 @@ import { useLoadUsersQuery, useCheckPasswordMutation } from "../services/signInA
 import { IEmployee } from "src/types/EmployeeTypes";
 import { setCurrentUser } from "../redux/slices/currentUserSlice";
 import Button from "../components/button/Button";
+import { HOME } from "../constants/constants";
 import "../sass/pages/_sign-in.scss";
 
 const SignIn: React.FC = () => {
@@ -77,7 +78,7 @@ const SignIn: React.FC = () => {
 
         dispatch(setCurrentUser(user));
 
-        navigate("/");
+        navigate(HOME);
         showSnackbar("Login successful!");
       } else {
         showSnackbar("Invalid password.");

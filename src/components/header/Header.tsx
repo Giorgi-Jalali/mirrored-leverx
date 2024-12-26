@@ -9,6 +9,7 @@ import HeaderButton from "./HeaderButton";
 import { useAuth } from "../../hooks/useAuth";
 import { RootState } from "../../redux/store";
 import { clearCurrentUser } from "../../redux/slices/currentUserSlice";
+import { ADMIN, HOME, SETTINGS_PAGE, USER_DYNAMIC_PAGE, USER_EMAIL } from "../../constants/constants";
 import "../../sass/layout/_header.scss";
 
 const Header: React.FC = () => {
@@ -22,8 +23,8 @@ const Header: React.FC = () => {
     const handleLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
     
-      localStorage.removeItem("userEmail");
-      sessionStorage.removeItem("userEmail");
+      localStorage.removeItem(USER_EMAIL);
+      sessionStorage.removeItem(USER_EMAIL);
     
       dispatch(clearCurrentUser());
       setIsAuthenticated(false);
@@ -32,7 +33,7 @@ const Header: React.FC = () => {
 
   return (
     <header>
-      <Link to="/" className="home-link-wrap">
+      <Link to={HOME} className="home-link-wrap">
         <div className="home-link">
           <p>LEVERX</p>
           <h1>EMPLOYEE SERVICES</h1>
@@ -41,18 +42,18 @@ const Header: React.FC = () => {
 
       <div className="tabs">
         <Link
-          to="/"
+          to={HOME}
           className={`home-link-wrap ${
-            location.pathname !== "/settings" ? "active-tab" : ""
+            location.pathname !== SETTINGS_PAGE ? "active-tab" : ""
           }`}
         >
           <p>Address Book</p>
         </Link>
-        {currentUser?.role === "admin" && (
+        {currentUser?.role === ADMIN && (
           <Link
-            to="../settings"
+            to={SETTINGS_PAGE}
             className={`home-link-wrap ${
-              location.pathname === "/settings" ? "active-tab" : ""
+              location.pathname === SETTINGS_PAGE ? "active-tab" : ""
             }`}
             id="settings"
           >
@@ -72,7 +73,7 @@ const Header: React.FC = () => {
           imgSrc={currentUser?.user_avatar}
           imgAlt={`${currentUser?.first_name} ${currentUser?.last_name}`}
           txt={`${currentUser?.first_name} ${currentUser?.last_name}`}
-          path={`./user/${currentUser?.id}`}
+          path={`${USER_DYNAMIC_PAGE}${currentUser?.id}`}
         />
 
         <HeaderButton
