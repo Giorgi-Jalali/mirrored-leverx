@@ -6,6 +6,11 @@ export const SETTINGS_PAGE = "/settings";
 export const USER_DYNAMIC_PAGE = "/user/"
 export const ANY_PAGE = "*";
 
+export const DARK = "dark";
+export const LIGHT = "light";
+export const DARK_THEME = "dark-theme";
+export const LIGHT_THEME = "light-theme";
+
 export const ADMIN = "admin";
 export const HR = "hr";
 export const EMPLOYEE = "employee";

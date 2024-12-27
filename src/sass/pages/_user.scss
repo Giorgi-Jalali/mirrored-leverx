@@ -1,4 +1,3 @@
-@use "../abstracts/var";
 @use "../layout/header";
 @use "../abstracts/mixins" as mixins;
 
@@ -18,21 +17,21 @@
 }
 
 .loader {
-  color: var.$header-bg-color;
+  color: var(--header-bg-color);
   font-size: 2em;
   margin: 20% 50%;
 }
 
 .user-aside {
   position: relative;
-  background-color: var.$white;
+  background-color: var(--white);
   flex: 1;
   @include mixins.flex-center(column, flex-start, center);
   gap: 20px;
   border-radius: 10px 0 0 10px;
   margin: 30px 0;
   padding: 50px 0;
-  box-shadow: var.$card-box-shadow;
+  box-shadow: var(--card-box-shadow);
 
   .user-name-input {
     @include mixins.flex-center(column, flex-start, center);
@@ -47,7 +46,7 @@
   position: absolute;
   left: 20px;
   top: 20px;
-  background-color: var.$background-color;
+  background-color: var(--background-color);
   border-radius: 50%;
   @include mixins.flex-center(row, center, center);
   padding: 10px;
@@ -56,12 +55,12 @@
 
   &:hover {
     scale: 1.1;
-    background-color: var.$input-border;
+    background-color: var(--input-border);
   }
 }
 
 .copy {
-  background-color: var.$input-border;
+  background-color: var(--input-border);
   border-radius: 15px;
   padding: 5px 10px;
   font-size: 0.9em;
@@ -69,12 +68,12 @@
   @include space-between;
 
   &:hover {
-    background-color: var.$background-color;
+    background-color: var(--background-color);
   }
 }
 
 .edit {
-  background-color: var.$background-color;
+  background-color: var(--background-color);
   border-radius: 5px;
   padding: 10px 10px;
   font-weight: 600;
@@ -82,24 +81,24 @@
   @include space-between;
 
   &:hover {
-    background-color: var.$button-bg-color;
+    background-color: var(--button-bg-color);
   }
 }
 
 .user-section {
-  background-color: var.$white;
-  color: var.$gray;
+  background-color: var(--white);
+  color: var(--gray);
   flex: 2;
   border-radius: 0 10px 10px 0;
   margin: 30px 0;
   padding: 60px;
-  box-shadow: var.$card-box-shadow;
+  box-shadow: var(--card-box-shadow);
 }
 
 .line {
   width: 90%;
   height: 1px;
-  background-color: var.$background-color;
+  background-color: var(--background-color);
   margin: 10px 0;
 }
 
@@ -136,7 +135,11 @@
 }
 
 .disabled {
-  color: var.$gray;
+  color: var(--gray);
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.edit-text {
+  color: var(--black);
 }

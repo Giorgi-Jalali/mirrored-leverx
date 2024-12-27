@@ -1,8 +1,7 @@
-@use "../../abstracts/var";
 @use "./not-found";
 
 .basic-content {
-  background-color: var.$white;
+  background-color: var(--white);
   position: relative;
   width: 100%;
   display: flex;
@@ -14,8 +13,8 @@
 .basic-content button {
   width: 100%;
   padding: 10px;
-  background-color: var.$button-bg-color;
-  color: var.$white;
+  background-color: var(--button-bg-color);
+  color: var(--white);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -23,7 +22,7 @@
 }
 
 .basic-content button:hover {
-  background-color: var.$button-hover-bg-color;
+  background-color: var(--button-hover-bg-color);
 }
 
 .basic-content input,
@@ -31,7 +30,7 @@
 .advanced-content select {
   width: 100%;
   padding: 10px;
-  border: 1px solid var.$input-border;
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   margin-bottom: 10px;
 }
@@ -51,7 +50,7 @@
     padding: 10px 140px;
     border: none;
     outline: none;
-    background-color: var.$search-input;
+    background-color: var(--search-input);
     border-radius: 8px;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
   }

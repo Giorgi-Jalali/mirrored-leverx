@@ -1,8 +1,7 @@
-@use "../../abstracts/var";
 @use "../../abstracts/mixins" as mixins;
 
 .list-header {
-  background-color: var.$white;
+  background-color: var(--white);
   width: 100%;
   border-radius: 10px;
   @include mixins.flex-center(row, space-between, center);

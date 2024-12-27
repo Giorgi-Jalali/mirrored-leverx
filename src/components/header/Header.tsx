@@ -2,15 +2,18 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import question from "/public/assets/question.png";
 import logOut from "/public/assets/logout.png";
+import sun from "/public/assets/sun.png";
+import moon from "/public/assets/moon.png";
 
 import HeaderButton from "./HeaderButton";
 import { useAuth } from "../../hooks/useAuth";
 import { RootState } from "../../redux/store";
 import { clearCurrentUser } from "../../redux/slices/currentUserSlice";
-import { ADMIN, HOME, SETTINGS_PAGE, USER_DYNAMIC_PAGE, USER_EMAIL } from "../../constants/constants";
+import { ADMIN, DARK, HOME, SETTINGS_PAGE, USER_DYNAMIC_PAGE, USER_EMAIL } from "../../constants/constants";
 import "../../sass/layout/_header.scss";
+
+import { useTheme } from "../../hooks/useTheme";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -29,6 +32,18 @@ const Header: React.FC = () => {
       dispatch(clearCurrentUser());
       setIsAuthenticated(false);
     };
+
+
+
+  const { theme, toggleTheme } = useTheme();
+
+//   return (
+//     <button >
+// txt={Switch to {theme === "light" ? "Dark" : "Light"} Mode}
+//       
+//     </button>
+//   );
+// };
     
 
   return (
@@ -64,10 +79,10 @@ const Header: React.FC = () => {
 
       <nav>
         <HeaderButton
-          imgSrc={question}
-          imgAlt={"support"}
-          txt={"SUPPORT"}
-          path={"#support"}
+          imgSrc={theme === DARK ? sun : moon}
+          imgAlt={"theme icon"}
+          path={"#theme"}
+          clickHandler={toggleTheme}
         />
         <HeaderButton
           imgSrc={currentUser?.user_avatar}

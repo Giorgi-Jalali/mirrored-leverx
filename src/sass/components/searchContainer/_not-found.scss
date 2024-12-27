@@ -1,8 +1,7 @@
-@use "../../abstracts/var";
 @use "../../abstracts/mixins" as mixins;
 
 .not-found {
-  background-color: var.$white;
+  background-color: var(--white);
   height: 400px;
   @include mixins.flex-center(column, center, center);
   margin: 50px;

@@ -1,4 +1,3 @@
-@use "../abstracts/var";
 @use "../layout/header";
 @use "../abstracts/mixins" as mixins;
 
@@ -7,7 +6,7 @@
 }
 
 input[type="radio"]:checked + label {
-  color: var.$black;
+  color: var(--black);
 }
 
 section {
@@ -20,6 +19,7 @@ section {
 .displayed-employee-text {
   position: absolute;
   left: 70px;
+  color: var(--black);
 }
 
 .grid-icon,
@@ -74,7 +74,7 @@ section {
 .line {
   width: 100%;
   height: 1px;
-  background-color: var.$line-color;
+  background-color: var(--line-color);
   opacity: 0.4;
   margin: 10px 0;
 }

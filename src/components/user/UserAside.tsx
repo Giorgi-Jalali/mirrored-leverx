@@ -91,7 +91,7 @@ const UserAside: React.FC<IUserInfo> = ({
       (currentUser?.role === HR && user?.manager?.id == currentUser?.id) ? (
         <div className="edit" onClick={handleEditClick}>
           <img src={pen} alt="Edit icon" width="25px" height="25px" />
-          <p>Edit</p>
+          <p className="edit-text">Edit</p>
         </div>
       ) : null}
     </div>

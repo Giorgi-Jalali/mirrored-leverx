@@ -1,10 +1,9 @@
-@use "../../abstracts/var";
 @use "../../abstracts/mixins" as mixins;
 
 .employee-list {
-  background-color: var.$white;
+  background-color: var(--white);
   width: 100%;
-  box-shadow: var.$card-box-shadow;
+  box-shadow: var(--card-box-shadow);
   border-radius: 5px;
 
   @include mixins.flex-center(row, space-between, center);

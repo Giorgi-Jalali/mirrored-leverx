@@ -1,102 +1,102 @@
-@use "../abstracts/var" as var;
 @use "../abstracts/mixins" as mixins;
 
 header {
-    background-color: var.$header-bg-color;
-    color: var.$white;
+  background-color: var(--header-bg-color);
+  color: var(--white);
 
-    @include mixins.flex-center;
-    padding: 1.5em 4em;
+  @include mixins.flex-center;
+  padding: 1.5em 4em;
 }
 
 .home-link-wrap {
-    color: var.$white;
-    text-decoration: none;
-    cursor: pointer;
+  color: var(--white);
+  text-decoration: none;
+  cursor: pointer;
 
-    &:hover {
-        color: var.$link-hover-text-color;
-    }
+  &:hover {
+    color: var(--link-hover-text-color);
+  }
 }
 
 .home-link {
-    color: var.$white;
-    background-color: var.$link-bg-color;
-    border-radius: 1em;
-    padding: 1.5em;
-    @include mixins.transition(all, 0.3s, ease);
+  color: var(--white);
+  background-color: var(--link-bg-color);
+  border-radius: 1em;
+  padding: 1.5em;
+  @include mixins.transition(all, 0.3s, ease);
 
+  &:hover {
+    background-color: var(--link-hover-bg-color);
+  }
+
+  p,
+  h1 {
+    margin: 0;
     &:hover {
-        background-color: var.$link-hover-bg-color;
+      color: var(--link-hover-text-color);
     }
-
-    p, h1 {
-        margin: 0;
-        &:hover {
-            color: var.$link-hover-text-color;
-        }
-    }
+  }
 }
 
 h1 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .tabs {
-    @include mixins.flex-center(row, space-around, center);
-    
-    p {
-        padding: 1em 1.5em;
-        margin: 0 1rem;
-        cursor: pointer;
-    }
+  @include mixins.flex-center(row, space-around, center);
 
-    .active-tab {
-        border-bottom: 2px solid var.$aqua;
-        font-weight: bold;
-    }
+  p {
+    padding: 1em 1.5em;
+    margin: 0 1rem;
+    cursor: pointer;
+  }
+
+  .active-tab {
+    border-bottom: 2px solid var(--aqua);
+    font-weight: bold;
+  }
 }
 
 nav {
-    @include mixins.flex-center(row, space-between, center);
-    gap: 1.25rem;
+  @include mixins.flex-center(row, space-between, center);
+  gap: 1.25rem;
 }
 
 .nav-link {
-    background-color: var.$link-bg-color;
-    @include mixins.flex-center(row, space-between, center);
-    gap: 0.5em;
-    padding: 1em 1.5em;
-    border-radius: 2em;
-    cursor: pointer;
-    border: none;
-    text-decoration: none;
-    @include mixins.transition(all, 0.3s, ease);
+  background-color: var(--link-bg-color);
+  @include mixins.flex-center(row, space-between, center);
+  gap: 0.5em;
+  padding: 1em 1.5em;
+  border-radius: 2em;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  @include mixins.transition(all, 0.3s, ease);
+
+  img {
+    width: 1.75em;
+    height: 1.75em;
+    @include mixins.transition(transform, 0.3s, ease);
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--white);
+    font-weight: bold;
+    @include mixins.transition(color, 0.3s, ease);
+  }
+
+  &:hover {
+    background-color: var(--nav-link-hover-bg);
+    box-shadow: 0 4px 12px rgba(var(--black), 0.2);
 
     img {
-        width: 1.75em;
-        height: 1.75em;
-        @include mixins.transition(transform, 0.3s, ease);
+      transform: scale(1.1);
     }
 
     p {
-        margin: 0;
-        font-size: 0.8rem;
-        color: var.$white;
-        font-weight: bold;
-        @include mixins.transition(color, 0.3s, ease);
+      color: var(--nav-link-hover-text);
     }
-
-    &:hover {
-        background-color: var.$nav-link-hover-bg;
-        box-shadow: 0 4px 12px rgba(var.$black, 0.2);
-
-        img {
-            transform: scale(1.1);
-        }
-
-        p {
-            color: var.$nav-link-hover-text;
-        }
-    }
+  }
 }
