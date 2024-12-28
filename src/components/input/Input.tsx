@@ -23,6 +23,7 @@ const Input: React.FC<IInputProps> = ({
   required = false,
   className,
 }) => {
+
   return (
     <div className={className || "input-group"}>
       <label htmlFor={id} className="label-class">

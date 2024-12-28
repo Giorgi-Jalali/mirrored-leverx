@@ -9,18 +9,31 @@ import { useGetEmployeesQuery } from "../../services/employeeApi";
 import GridView from "./GridView";
 import ListView from "./ListView";
 import useFilteredEmployees from "../../hooks/useFilteredEmployees";
-import {GRID_VIEW, LIST_VIEW, VIEW_TOGGLE, TOGGLE } from "../../constants/constants";
+import {
+  GRID_VIEW,
+  LIST_VIEW,
+  VIEW_TOGGLE,
+  TOGGLE,
+} from "../../constants/constants";
 
 const ViewContainer: React.FC = () => {
   const [viewType, setViewType] = useState<String>(GRID_VIEW);
 
-  const { name, email, phone, skype, building, room, department } = useSelector(
-    (state: RootState) => state.advancedSearch
-  );
+  const { search_query, email, phone, skype, building, room, department } =
+    useSelector((state: RootState) => state.advancedSearch);
+
 
   const { data: employees, isLoading, isError } = useGetEmployeesQuery();
 
-  const filteredEmployees = useFilteredEmployees(employees || []);
+  const filteredEmployees = useFilteredEmployees(employees || [], {
+    search_query,
+    email,
+    phone,
+    skype,
+    building,
+    room,
+    department,
+  });
 
   const handleToggleView = (view: String) => {
     setViewType(view);
@@ -70,7 +83,7 @@ const ViewContainer: React.FC = () => {
           <GridView
             employees={filteredEmployees}
             searchQuery={{
-              name,
+              search_query,
               email,
               phone,
               skype,
@@ -83,7 +96,7 @@ const ViewContainer: React.FC = () => {
           <ListView
             employees={filteredEmployees}
             searchQuery={{
-              name,
+              search_query,
               email,
               phone,
               skype,
@@ -97,5 +110,6 @@ const ViewContainer: React.FC = () => {
     </section>
   );
 };
+
 
 export default ViewContainer;

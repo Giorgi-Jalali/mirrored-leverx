@@ -14,7 +14,7 @@ export interface IManager {
   export type TViewProps = {
     employees: IEmployee[];
     searchQuery: {
-      name: string;
+      search_query: string;
       email: string;
       phone: string;
       skype: string;

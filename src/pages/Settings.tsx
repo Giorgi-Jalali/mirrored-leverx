@@ -13,10 +13,17 @@ import { updateSearchField } from "../redux/slices/advancedSearchSlice";
 
 import { useSnackbar } from "../hooks/useSnackbar";
 import SearchForm from "../components/search/SearchForm";
-import { ADMIN, EMPLOYEE, HR, OPTION_NAME, PLACEHOLDER_SEARCH } from "../constants/constants";
+import {
+  ADMIN,
+  EMPLOYEE,
+  HR,
+  PLACEHOLDER_SEARCH,
+} from "../constants/constants";
 import "../sass/pages/_settings.scss";
 
 const Settings: React.FC = () => {
+  const [searchInput, setSearchInput] = useState("");
+
   const { data: employees } = useGetEmployeesQuery();
   const [updateEmployeeRole] = useUpdateEmployeeRoleMutation();
 
@@ -25,24 +32,20 @@ const Settings: React.FC = () => {
   }>({});
 
   const currentUser = useSelector((state: RootState) => state.user.currentUser);
+  const filteredEmployees = useFilteredEmployees(employees || [], {search_query: searchInput});
 
-  const filteredEmployees = useFilteredEmployees(employees || []);
-
-  const { name } = useSelector((state: RootState) => state.advancedSearch);
   const dispatch = useDispatch<AppDispatch>();
 
   const { showSnackbar } = useSnackbar();
 
-  const handleInputChange = (field: string, value: string) => {
-    dispatch(updateSearchField({ field, value }));
-  };
+  const handleInputChange = (value: string) => {
+    setSearchInput(value);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    const trimmedValue = value.trim();
+    dispatch(updateSearchField({ field: "search_query", value: trimmedValue }));
   };
 
   useEffect(() => {
-
     const initialRoles: { [key: string]: string } = {};
     filteredEmployees.forEach((employee) => {
       initialRoles[employee.id] = employee.role;
@@ -79,7 +82,11 @@ const Settings: React.FC = () => {
           )
         );
 
-        dispatch(employeeApi.util.invalidateTags([{ type: "Employee", id: employeeId }]));
+        dispatch(
+          employeeApi.util.invalidateTags([
+            { type: "Employee", id: employeeId },
+          ])
+        );
       })
       .catch((error) => {
         console.error("Error updating role:", error);
@@ -92,9 +99,8 @@ const Settings: React.FC = () => {
       <div className="roles-header">
         <div className="settings-left-header">
           <SearchForm
-            value={name}
-            handleInputChange={(value) => handleInputChange(OPTION_NAME, value)}
-            onSubmit={handleSubmit}
+            value={searchInput}
+            handleInputChange={handleInputChange}
             className="search-input-settings"
             placeholder={PLACEHOLDER_SEARCH}
             imgClassname="settings-search"

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IAdvancedSearchState {
-  name: string;
+  search_query: string;
   email: string;
   phone: string;
   skype: string;
@@ -11,7 +11,7 @@ interface IAdvancedSearchState {
 }
 
 const initialState: IAdvancedSearchState = {
-  name: "",
+  search_query: "",
   email: "",
   phone: "",
   skype: "",
@@ -24,7 +24,7 @@ const advancedSearchSlice = createSlice({
   name: "advancedSearch",
   initialState,
   reducers: {
-    updateSearchField: (state, action: PayloadAction<{ field: string, value: string }>) => {
+    updateSearchField: (state, action: PayloadAction<{ field: string; value: string }>) => {
       const { field, value } = action.payload;
       state[field as keyof IAdvancedSearchState] = value;
     },

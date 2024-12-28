@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-
-import { RootState } from "../redux/store";
 import { IEmployee } from "../types/EmployeeTypes";
 
-const useFilteredEmployees = (employees: IEmployee[]) => {
-  const searchCriteria = useSelector(
-    (state: RootState) => state.advancedSearch
-  );
+const useFilteredEmployees = (
+  employees: IEmployee[],
+  searchCriteria: Record<string, string>
+) => {
   const [filteredEmployees, setFilteredEmployees] = useState<IEmployee[]>([]);
 
   useEffect(() => {
@@ -15,9 +12,11 @@ const useFilteredEmployees = (employees: IEmployee[]) => {
       (value) => value.trim() === ""
     );
 
-    if (isCriteriaEmpty) {
-      setFilteredEmployees(employees);
-    } else {
+    const filterEmployees = () => {
+      if (isCriteriaEmpty) {
+        return employees;
+      }
+
       const lowerCaseCriteria = Object.fromEntries(
         Object.entries(searchCriteria).map(([key, value]) => [
           key,
@@ -25,19 +24,40 @@ const useFilteredEmployees = (employees: IEmployee[]) => {
         ])
       );
 
-      const filtered = employees.filter((employee) =>
-        Object.entries(lowerCaseCriteria).every(([key, value]) => {
-          if (value === "") return true;
-          const fieldValue = employee[key as keyof IEmployee]
-            ?.toString()
-            .toLowerCase();
-          return fieldValue?.includes(value);
-        })
-      );
+      return employees.filter((employee) => {
+        const searchQueryMatch =
+          employee.first_name
+            ?.toLowerCase()
+            .includes(lowerCaseCriteria.search_query || "") ||
+          employee.last_name
+            ?.toLowerCase()
+            .includes(lowerCaseCriteria.search_query || "");
 
-      setFilteredEmployees(filtered);
+        const fieldMatches = Object.entries(lowerCaseCriteria).every(
+          ([key, value]) => {
+            if (key === "search_query") return true;
+            const fieldValue = employee[key as keyof IEmployee]
+              ?.toString()
+              .toLowerCase();
+            return fieldValue?.includes(value);
+          }
+        );
+
+        return searchQueryMatch && fieldMatches;
+      });
+    };
+
+    const newFilteredEmployees = filterEmployees();
+
+    if (
+      newFilteredEmployees.length !== filteredEmployees.length ||
+      !newFilteredEmployees.every(
+        (emp, index) => emp === filteredEmployees[index]
+      )
+    ) {
+      setFilteredEmployees(newFilteredEmployees);
     }
-  }, [employees, searchCriteria]);
+  }, [employees, JSON.stringify(searchCriteria), filteredEmployees]);
 
   return filteredEmployees;
 };

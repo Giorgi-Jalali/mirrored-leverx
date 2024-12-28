@@ -9,7 +9,7 @@ import { PLACEHOLDER_SEARCH } from "../../constants/constants";
 interface ISearchFormProps {
   value: string;
   handleInputChange: (value: string) => void;
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmit?: (e: React.FormEvent) => void;
   className: string;
   placeholder: string;
   button?: boolean;
@@ -40,7 +40,6 @@ const SearchForm: React.FC<ISearchFormProps> = ({
           placeholder={placeholder}
           value={value}
           onChange={handleInputChange}
-          required
         />
         {button && <Button type="submit" text={PLACEHOLDER_SEARCH} />}
       </form>
