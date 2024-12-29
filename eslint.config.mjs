@@ -7,7 +7,7 @@ import reactPlugin from "eslint-plugin-react";
 export default [
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
-    ignores: ["dist/**", "eslint.config.mjs", "global.d.ts", "webpack.config.mjs"],
+    ignores: ["dist/**", "eslint.config.mjs", "global.d.ts", "webpack.config.mjs", "api/server.js"],
     languageOptions: {
       globals: globals.browser,
       parser: tsParser,
