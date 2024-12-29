@@ -4,11 +4,25 @@ cache:
   paths:
     - node_modules/
 
-pages:
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
   script:
     - yarn install
-    - yarn build
-    - cp -r build/ public/
+    - yarn run build
+  artifacts:
+    paths:
+      - build/
+
+pages:
+  stage: deploy
+  script:
+    - mv build public
   artifacts:
     paths:
       - public
+  only:
+    - task-6
