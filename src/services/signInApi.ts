@@ -4,7 +4,7 @@ import { IEmployee } from 'src/types/EmployeeTypes';
 export const signInApi = createApi({
   reducerPath: 'signInApi',
   // baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/users/" }),
-  baseQuery: fetchBaseQuery({ baseUrl: "https://mirrored-leverx.vercel.app/api/server/users/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "/api/server/" }),
   endpoints: (builder) => ({
     loadUsers: builder.query<IEmployee[], void>({
       query: () => '',
