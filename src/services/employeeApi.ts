@@ -3,8 +3,8 @@ import { IEmployee } from '../types/EmployeeTypes';
 
 export const employeeApi = createApi({
   reducerPath: 'employeeApi',
-  // baseQuery: fetchBaseQuery({ baseUrl: '/api/server/' }),
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/api/' }),
+  // baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/' }),
   tagTypes: ['Employee'],
   endpoints: (builder) => ({
     getEmployees: builder.query<IEmployee[], void>({
